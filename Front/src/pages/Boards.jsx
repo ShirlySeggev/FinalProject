@@ -79,13 +79,15 @@ class _Boards extends Component {
         return (
             <section className="boardApp-main">
                 <div className="main-header">
-                    {isAddBoard && <div className="add-new-board">
-                        <label htmlFor="title">Board Title: <input type="text" name="title" id="title" onChange={this.handleChange}/></label>
+                    <h1>BOARDS</h1>
+                </div>
+                <div className="boards-container">
+                    {isAddBoard && <div className="add-new-board-open">
+                        <label htmlFor="title">Board Title: <input type="text" name="title" id="title" onChange={this.handleChange} /></label>
                         <button onClick={this.onAddBoard}>Add</button>
                         <button onClick={this.toggleAddBoard}>Cancel</button>
                     </div>}
-                    <h1>BOARDS</h1>
-                    {!isAddBoard && <div onClick={this.toggleAddBoard}>Add a new board</div>}
+                    {!isAddBoard && <div className="add-new-board-closed" onClick={this.toggleAddBoard}>Add a new board</div>}
                     <BoardList boards={boards} />
                 </div>
             </section >

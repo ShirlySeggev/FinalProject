@@ -1,13 +1,14 @@
+import { Fragment } from 'react';
 import { BoardPreview } from './BoardPreview.jsx';
 
 export function BoardList({ boards }) {
 
   return (
-    <div className="boards-container">
+    <Fragment>
       {boards.map(board =>
         <BoardPreview board={board} key={board._id}  />
       )}
-    </div>
+    </Fragment>
 
   )
 }
