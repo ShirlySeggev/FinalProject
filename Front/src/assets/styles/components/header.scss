@@ -1,0 +1,50 @@
+.app-header {
+    background-color: $clr2;
+    color: $clr6;
+
+    box-shadow: 0 0px 3px 2px #7e7d7d78;
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
+    div{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    img {
+        width: 80px;
+        height: 80px;
+        margin-left: 20px;
+        background-color: none;
+    }
+    h1 {
+        color: $clr6;
+        font-size: rem(40px);
+        font-family: Permanent Marker;
+        margin-left: 20px;
+        margin-block: 18px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        font-size: rem(20px);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        margin-inline: 20px 20px;
+    }
+    li:not(:last-of-type) {
+        padding-right: 20px;
+    }
+
+}
+
+.app-header a {
+    color: $clr6;
+}
+.app-header a:hover {
+    color: $clr1;
+}

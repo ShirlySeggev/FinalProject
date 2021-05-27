@@ -1,0 +1,21 @@
+.toyApp-main {
+    display: flex;
+    flex-direction: column;
+    
+    .main-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 10px;
+    
+        a {
+            width: 150px;
+            align-self: center;
+        }
+    }
+
+}
+
+
+
+

@@ -1,0 +1,16 @@
+// Setup
+@import "setup/variables.scss";
+@import "setup/functions.scss";
+@import "setup/mixins.scss";
+@import "setup/typography.scss";
+
+// Basics
+@import "basic/helpers.scss";
+@import "basic/layout.scss";
+@import "basic/base.scss";
+@import "basic/buttons.scss";
+
+// Components
+@import "components/TrelloApp.scss";
+@import "components/home.scss";
+@import "components/header.scss";
