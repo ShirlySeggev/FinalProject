@@ -16,6 +16,7 @@ class _TrelloApp extends Component {
     }
 
     componentDidMount() {
+        console.log('trelloapp mounted')
         this.loadBoard();
     }
 
@@ -40,6 +41,14 @@ class _TrelloApp extends Component {
         }
     }
 
+    async deleteBoard(boardId) {
+        try {
+            this.props.deleteBoard(boardId);
+        } catch (err) {
+            console.log('Delete Board:', err)
+        }
+    }
+
 
 
     render() {
@@ -49,9 +58,17 @@ class _TrelloApp extends Component {
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
-            <section className="trelloApp-main" /* style={{ backgroundImage: `url(${img})` }} */>
+            <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
                 <BoardHeader board={board} />
-                <GroupList groups={groups} />
+                <Switch>
+                    <Route
+                    to="/board/:boardId/task/:taskId"
+                    component={TaskDetails}
+                    >
+
+                    </Route>
+                </Switch>
+                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard}/>
             </section >
         )
     }

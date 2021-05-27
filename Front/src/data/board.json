@@ -9,7 +9,7 @@
             "imgUrl": "http://some-img"
         },
         "style": {
-            "bcgSrc": "../../img/bcg.png"
+            "bgc": "../src/assets/img/bcg.png"
         },
         "labels": [
             {

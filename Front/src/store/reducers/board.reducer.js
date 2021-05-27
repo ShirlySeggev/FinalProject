@@ -17,10 +17,10 @@ export function boardReducer(state = initialState, action) {
             return { ...state, boards: [action.board, ...state.boards] }
         case 'UPDATE_BOARD':
             return { ...state, board: action.board }
+        case 'REMOVE_BOARD':
+            return { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
         case 'SET_BOARDS':
             return { ...state, boards: action.boards }
-        // case 'REMOVE_BOARD':
-        //     return { ...state, toys: state.toys.filter(toy => toy._id !== action.toyId) }
         // // case 'SET_FILTER':
         // //     return { ...state, filterBy: action.filterBy }
         // case 'ADD_GROUP':

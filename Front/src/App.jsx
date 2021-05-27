@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { routes } from './routes.js';
 import { Header } from "./cmps/Header.jsx";
@@ -17,7 +17,9 @@ class _App extends Component {
                     <Header>
                     </Header>
                     <main>
-                        {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
+                    <Switch>
+                        {routes.map(route => <Route key={route.path} component={route.component} path={route.path} />)}
+                    </Switch>
                     </main>
                 </Router>
             </div>
