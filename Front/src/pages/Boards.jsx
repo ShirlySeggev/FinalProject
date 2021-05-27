@@ -3,7 +3,6 @@ import { Component } from 'react';
 import { loadBoards, addBoard } from '../store/actions/board.actions.js';
 import { BoardList } from '../cmps/BoardList';
 
-
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
@@ -15,6 +14,10 @@ class _Boards extends Component {
         newBoard: {
             title: null,
             groups: [],
+            activities: [],
+            labels: [],
+            members: [],
+            style: {},
             createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
         }
     }
@@ -39,6 +42,10 @@ class _Boards extends Component {
                 newBoard: {
                     title: null,
                     groups: [],
+                    activities: [],
+                    labels: [],
+                    members: [],
+                    style: {},
                     createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
                 }
             })
@@ -80,7 +87,6 @@ class _Boards extends Component {
                     <h1>BOARDS</h1>
                     {!isAddBoard && <div onClick={this.toggleAdd}>Add a new board</div>}
                     <BoardList boards={boards} />
-                    {/* ADD NEW BOARD */}
                 </div>
             </section >
         )
