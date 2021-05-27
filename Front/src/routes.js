@@ -5,12 +5,9 @@ import { TaskDetails } from './pages/TaskDetails.jsx';
 
 export const routes = [
     {
+        
         path: '/board/:boardId',
         component: TrelloApp,
-    },
-    {
-        path: '/board/:boardId/task/:taskId',
-        component: TaskDetails
     },
     {
         path: '/board',

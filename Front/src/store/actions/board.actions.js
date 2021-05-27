@@ -29,7 +29,7 @@ export function addBoard(board) {
             const newBoard = await boardService.save(board)
             dispatch({ type: 'ADD_BOARD', board: newBoard })
         } catch (err) {
-            console.log('ToyActions: err in save board', err)
+            console.log('BoardActions: err in save board', err)
         }
     }
 }
@@ -41,7 +41,18 @@ export function updateBoard(board) {
             const updatedBoard = await boardService.update(board)
             dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
         } catch (err) {
-            console.log('ToyActions: err in editToy', err)
+            console.log('BoardActions: err in updateBoard', err)
+        }
+    }
+}
+
+export function removeBoard(boardId) {
+    return async dispatch => {
+        try {
+            await boardService.remove(boardId)
+            dispatch({ type: 'REMOVE_BOARD', boardId })
+        } catch (err) {
+            console.log('BoardActions: err in removeBoard', err)
         }
     }
 }
@@ -68,15 +79,6 @@ export function updateBoard(board) {
 //     }
 // }
 
-// export function removeToy(toyId) {
-//     return async dispatch => {
-//         try {
-//             await toyService.remove(toyId)
-//             dispatch({ type: 'REMOVE_TOY', toyId })
-//         } catch (err) {
-//             console.log('ToyActions: err in removeToy', err)
-//         }
-//     }
-// }
+
 
 

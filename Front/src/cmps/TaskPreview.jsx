@@ -22,12 +22,9 @@ class _TaskPreview extends Component {
         return (
             <section className="task-preview" >
                 <Link to={`/board/${_id}/task/${id}`}>
-
                     <div>
                         <h1>task title:{title}</h1>
-
                     </div>
-
                 </Link>
             </section>
         )
