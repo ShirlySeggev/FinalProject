@@ -34,7 +34,7 @@ class _Boards extends Component {
         }
     }
 
-    toggleAdd = () => {
+    toggleAddBoard = () => {
         const { isAddBoard } = this.state
         if (isAddBoard) {
             this.setState({
@@ -68,7 +68,7 @@ class _Boards extends Component {
         const { newBoard } = this.state
         const { addBoard } = this.props
         addBoard(newBoard)
-        this.toggleAdd()
+        this.toggleAddBoard()
     }
 
 
@@ -82,10 +82,10 @@ class _Boards extends Component {
                     {isAddBoard && <div className="add-new-board">
                         <label htmlFor="title">Board Title: <input type="text" name="title" id="title" onChange={this.handleChange}/></label>
                         <button onClick={this.onAddBoard}>Add</button>
-                        <button onClick={this.toggleAdd}>Cancel</button>
+                        <button onClick={this.toggleAddBoard}>Cancel</button>
                     </div>}
                     <h1>BOARDS</h1>
-                    {!isAddBoard && <div onClick={this.toggleAdd}>Add a new board</div>}
+                    {!isAddBoard && <div onClick={this.toggleAddBoard}>Add a new board</div>}
                     <BoardList boards={boards} />
                 </div>
             </section >
