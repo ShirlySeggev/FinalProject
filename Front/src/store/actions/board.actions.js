@@ -12,6 +12,17 @@ export function loadBoards() {
     }
 }
 
+export function loadBoard(boardId) { // Action Creator
+    return async dispatch => {
+        try {
+            const board = await boardService.getById(boardId)
+            dispatch({ type: 'SET_BOARD', board })
+        } catch (err) {
+            console.log('BoardActions: err in loadBoard', err)
+        }
+    }
+}
+
 export function addBoard(board) {
     return async dispatch => {
         try {
@@ -23,17 +34,6 @@ export function addBoard(board) {
     }
 }
 
-
-export function loadBoard(boardId) { // Action Creator
-    return async dispatch => {
-        try {
-            const board = await boardService.getById(boardId)
-            dispatch({ type: 'SET_BOARD', board })
-        } catch (err) {
-            console.log('BoardActions: err in loadBoard', err)
-        }
-    }
-}
 
 export function updateBoard(board) {
     return async dispatch => {
