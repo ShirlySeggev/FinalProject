@@ -11,6 +11,17 @@ export function loadBoard(boardId) { // Action Creator
     }
 }
 
+export function updateBoard(board) {
+    return async dispatch => {
+        try {
+            const updatedBoard = await boardService.update(board)
+            dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
+        } catch (err) {
+            console.log('ToyActions: err in editToy', err)
+        }
+    }
+}
+
 // export function setFilter(filterBy) {
 //     return dispatch => {
 //         const action = {
@@ -43,13 +54,4 @@ export function loadBoard(boardId) { // Action Creator
 //     }
 // }
 
-// export function editToy(toy) {
-//     return async dispatch => {
-//         try {
-//             const editedToy = await toyService.update(toy)
-//             dispatch({ type: 'EDIT_TOY', toy: editedToy })
-//         } catch (err) {
-//             console.log('ToyActions: err in editToy', err)
-//         }
-//     }
-// }
+

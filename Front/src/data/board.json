@@ -8,7 +8,9 @@
             "fullname": "Shirly Seggev",
             "imgUrl": "http://some-img"
         },
-        "style": {},
+        "style": {
+            "bcgSrc": "../../img/bcg.png"
+        },
         "labels": [
             {
                 "id": "l101",
