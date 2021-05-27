@@ -1,36 +1,86 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
+import { loadBoards, addBoard } from '../store/actions/board.actions.js';
+import { BoardList } from '../cmps/BoardList';
+
+
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
-import { /* loadToys, setFilter, removeToy  */ } from '../store/actions/board.actions.js';
-import { boardService } from '../services/board.service'
-import { BoardList } from '../cmps/BoardList';
 
 
 
 class _Boards extends Component {
     state = {
-        boards: null
-    }
-
-    async componentDidMount() {
-        try {
-            const boards = await boardService.query();
-            this.setState({ boards });
-        } catch (err) {
-            console.log(err);
+        isAddBoard: false,
+        newBoard: {
+            title: null,
+            groups: [],
+            createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
         }
     }
 
+    async componentDidMount() {
+        this.loadBoards();
+    }
+
+    async loadBoards() {
+        try {
+            this.props.loadBoards();
+
+        } catch (err) {
+            console.log('Board:', err)
+        }
+    }
+
+    toggleAdd = () => {
+        const { isAddBoard } = this.state
+        if (isAddBoard) {
+            this.setState({
+                isAddBoard: false,
+                newBoard: {
+                    title: null,
+                    groups: [],
+                    createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
+                }
+            })
+        } else this.setState({ isAddBoard: true })
+    }
+
+    handleChange = ({ target }) => {
+        const field = target.name;
+        const value = (target.type === 'number') ? +target.value : target.value;
+        this.setState(prevState => ({
+            ...prevState,
+            newBoard: {
+                ...prevState.newBoard,
+                [field]: value,
+            }
+        }))
+    }
+
+    onAddBoard = () => {
+        const { newBoard } = this.state
+        const { addBoard } = this.props
+        addBoard(newBoard)
+        this.toggleAdd()
+    }
 
 
     render() {
-        const { boards } = this.state;
+        const { boards, addBoard } = this.props;
+        const { isAddBoard } = this.state
+        console.log('what you looking for:',  this.state.newBoard.title);
         if (!boards) return <h1>Loading...</h1>
         return (
-            <section className="toyApp-main">
+            <section className="boardApp-main">
                 <div className="main-header">
+                    {isAddBoard && <div className="add-new-board">
+                        <label htmlFor="title">Board Title: <input type="text" name="title" id="title" onChange={this.handleChange}/></label>
+                        <button onClick={this.onAddBoard}>Add</button>
+                        <button onClick={this.toggleAdd}>Cancel</button>
+                    </div>}
                     <h1>BOARDS</h1>
+                    {!isAddBoard && <div onClick={this.toggleAdd}>Add a new board</div>}
                     <BoardList boards={boards} />
                     {/* ADD NEW BOARD */}
                 </div>
@@ -41,12 +91,14 @@ class _Boards extends Component {
 
 function mapStateToProps(state) {
     return {
-
+        boards: state.boardModule.boards,
     }
 }
 const mapDispatchToProps = {
-
+    loadBoards,
+    addBoard
 }
+
 
 
 export const Boards = connect(mapStateToProps, mapDispatchToProps)(_Boards)

@@ -1,5 +1,29 @@
 import { boardService } from '../../services/board.service.js'
 
+
+export function loadBoards() {
+    return async dispatch => {
+        try {
+            const boards = await boardService.query()
+            dispatch({type: 'SET_BOARDS', boards})
+        } catch (err){
+            console.log('BoardActions: err in loading boards', err)
+        }
+    }
+}
+
+export function addBoard(board) {
+    return async dispatch => {
+        try {
+            const newBoard = await boardService.save(board)
+            dispatch({ type: 'ADD_BOARD', board: newBoard })
+        } catch (err) {
+            console.log('ToyActions: err in save board', err)
+        }
+    }
+}
+
+
 export function loadBoard(boardId) { // Action Creator
     return async dispatch => {
         try {
@@ -20,6 +44,7 @@ export function loadBoard(boardId) { // Action Creator
 //         dispatch(action)
 //     }
 // }
+
 
 // export function addToy(toy) {
 //     return async dispatch => {

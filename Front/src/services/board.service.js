@@ -1,6 +1,7 @@
 // import axios from 'axios';
 // import { httpService } from './http.service'
 import { asyncBoardService } from './async-board.service.js';
+import { utilService } from './util-service';
 
 const STORAGE_KEY = 'boards';
 
@@ -31,6 +32,8 @@ function update(board) {
 }
 
 function save(board) {
+    board._id = utilService.makeId()
+    board.createdAt = Date.now()
     return asyncBoardService.post(STORAGE_KEY, board)
 }
 
