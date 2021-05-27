@@ -26,9 +26,8 @@ class _Boards extends Component {
     async loadBoards() {
         try {
             this.props.loadBoards();
-
         } catch (err) {
-            console.log('Board:', err)
+            console.log('Error at loading boards:', err)
         }
     }
 
@@ -69,7 +68,6 @@ class _Boards extends Component {
     render() {
         const { boards, addBoard } = this.props;
         const { isAddBoard } = this.state
-        console.log('what you looking for:',  this.state.newBoard.title);
         if (!boards) return <h1>Loading...</h1>
         return (
             <section className="boardApp-main">
