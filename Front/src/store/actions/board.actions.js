@@ -36,6 +36,7 @@ export function addBoard(board) {
 
 
 export function updateBoard(board) {
+    console.log('board', board);
     return async dispatch => {
         try {
             const updatedBoard = await boardService.update(board)

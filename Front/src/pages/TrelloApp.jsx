@@ -72,7 +72,7 @@ class _TrelloApp extends Component {
             <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
                 <BoardHeader board={board} />
                 <Switch>
-                    <Route path='/board/:boardId/task/:taskId' component={TaskDetails} />
+                    <Route path='/board/:boardId/group/:groupId/task/:taskId' component={TaskDetails} />
                 </Switch>
                 <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
             </section >

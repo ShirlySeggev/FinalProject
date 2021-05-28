@@ -1,19 +1,21 @@
 import { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { TaskDetailsHeader } from './TaskDetailsHeader';
+import { TaskDetailsActivity } from './TaskDetailsActivity';
+import { updateBoard } from '../../store/actions/board.actions.js';
+
+
 import EasyEdit, { Types } from 'react-easy-edit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { TaskDetailsHeader } from './TaskDetailsHeader';
-import { TaskDetailsActivity } from './TaskDetailsActivity';
-
 
 
 
 class _TaskDetails extends Component {
     state = {
         task: null,
-        // isEditDesc: false,
-        // isEditTitle: false
+        groupId: null
+
     }
 
     componentDidMount() {
@@ -21,65 +23,38 @@ class _TaskDetails extends Component {
     }
 
     async loadTask() {
-        // const { activeTask } = this.props;
-        // this.setState({ task: activeTask })
         const { boardId, groupId, taskId } = this.props.match.params;
         console.log('match.params: ', this.props.match)
         const { board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === groupId)
         const task = board.groups[groupIdx].tasks.find(task => task.id === taskId);
-        this.setState({ task })
+        this.setState({ task, groupId })
     }
 
     updateTask = (task) => {
-        console.log(task);
-        const task = this.createTask(ev);
         const taskId = task.id
-        const { board, groupId } = this.props;
+        const {groupId} = this.state
+        const { board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === groupId)
         const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
         const updatedBoard = { ...board };
         updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task );
-        console.log('new tasks:', updatedBoard.groups[groupIdx].tasks);
-        // updateBoard(updatedBoard);
+        updateBoard(updatedBoard);
         // this.setState({ task.title: 'Enter new task title' });
     }
 
 
-
-
-    // setEditDesc = () => {
-    //     this.setState({ isEditDesc: !this.state.isEditDesc })
-    // }
-    // setEditTitle = () => {
-    //     this.setState({ isEditTitle: !this.state.isEditTitle })
-    // }
-
-    // handleChange = ({ target }) => {
-    //     const field = target.name;
-    //     const value = (target.type === 'number') ? +target.value : target.value;
-    //     this.setState(prevState => ({
-    //         ...prevState,
-    //         task: {
-    //             ...prevState.task,
-    //             [field]: value,
-    //         }
-    //     }))
-    // }
-
-
     render() {
-        console.log('groupId', this.props.groupId);
         const { task, isEditDesc, isEditTitle } = this.state;
         if (!task) return <h1>Loading...</h1>
         const { setActiveTask, board } = this.props;
         const { title, description, checklists } = this.state.task;
         return (
             <Fragment>
-                <div className="outer-task-details-container" onClick={() => setActiveTask(null)}>
-                </div>
+                {/* <div className="outer-task-details-container" onClick={() => setActiveTask(null)}>
+                </div> */}
                 <section className="task-details-container" >
-                    <TaskDetailsHeader task={task} onUpdateTask={this.onUpdateTask} />
+                    <TaskDetailsHeader task={task} updateTask={this.updateTask} />
                     <header className="task-details-header">
                         {/* {!isEditTitle && <h1 onClick={this.setEditTitle}>{title}</h1>}
                         {isEditTitle && <input onBlur={this.setEditTitle} onChange={this.handleChange} type="text" value={title} name="title" />} */}
@@ -108,7 +83,10 @@ class _TaskDetails extends Component {
                     {/* TODO: ALL THE OPTINAL COMPONENTS (values of task)  */}
                     {/* {checklists && <TaskDetailsChecklist/>} */}
 
+                    {/* GAL WORKING ON THIS CMPS */}
                     {/* TODO: ADD TO TASK MENU*/}
+
+
                     {/* REMOVE */}
 
 
@@ -127,6 +105,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+    updateBoard
 }
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails)

@@ -10,17 +10,17 @@ export class TaskDetailsHeader extends Component {
         title: null
     }
 
-componentDidMount (){
-    this.setState ({title: this.props.task.title})
-}
+    componentDidMount() {
+        this.setState({ title: this.props.task.title })
+    }
 
-changeTitle = (title)=> {
-console.log(title);
+    updateTaskTitle = (title) => {
+        const { task } = this.props
+        const newTask = { ...task, title }
+        this.props.updateTask(newTask)
+    }
 
-this.props.onUpdateTask
-}
-
-    render() { 
+    render() {
         const { title } = this.state
         return (
             <header>
@@ -28,7 +28,8 @@ this.props.onUpdateTask
                     type={Types.TEXT}
                     value={title}
                     hideSaveButton={true}
-                    onBlur={this.changeTitle}
+                    hideCancelButton={true}
+                    onBlur={this.updateTaskTitle}
                 />
                 <h3>in list -- group title --</h3>
             </header>
