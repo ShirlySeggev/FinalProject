@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import MemberAvatar from './MemberAvatar';
+import MemberAvatar from '../MemberAvatar';
 import { BoardMenu } from './BoardMenu.jsx';
 
 export class BoardHeader extends Component {

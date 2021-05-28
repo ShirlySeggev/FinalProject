@@ -39,7 +39,7 @@ export function updateBoard(board) {
     return async dispatch => {
         try {
             const updatedBoard = await boardService.update(board)
-            dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
+            dispatch({ type: 'SET_BOARD', board: updatedBoard })
         } catch (err) {
             console.log('BoardActions: err in updateBoard', err)
         }
