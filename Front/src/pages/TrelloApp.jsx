@@ -63,42 +63,18 @@ class _TrelloApp extends Component {
         this.updateBoard(updatedBoard);
     }
 
-<<<<<<< HEAD
     render() {
         // console.log('groups', groups);
-        const { board } = this.props;
-        console.log('board', this.props.board);
-=======
-    addGroup = (group) => {
-        const { board } = this.props;
-        const updatedBoard = { ...board };
-        updatedBoard.groups.push(group);
-        this.props.updateBoard(updatedBoard);
-    }
-
-
-
-
-    render() {
         const { board, activeTask } = this.props;
->>>>>>> 957f40a54f3523ba1f655e656e2372160ef66c61
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
             <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
-<<<<<<< HEAD
                 <BoardHeader board={board} />
                 <Switch>
-                    <Route to='/board/:boardId/task/:taskId' component={TaskDetails}/>
+                    <Route path='/board/:boardId/task/:taskId' component={TaskDetails} />
                 </Switch>
                 <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
-=======
-                <BoardHeader board={board} updateBoard={this.updateBoard} removeBoard={this.removeBoard} />
-                {activeTask && <Switch>
-                    <Route to='/board/:boardId/task/:taskId' component={TaskDetails} />
-                </Switch>}
-                <GroupList groups={groups} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} />
->>>>>>> 957f40a54f3523ba1f655e656e2372160ef66c61
             </section >
         )
     }

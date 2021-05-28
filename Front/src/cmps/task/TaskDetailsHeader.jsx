@@ -1,27 +1,38 @@
+import { Component } from 'react';
 import EasyEdit, { Types } from 'react-easy-edit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-export function TaskDetailsHeader({ addGroup }) {
-    // function onAddGroup(ev) {
-    //     const group = createGroup(ev);
-    //     addGroup(group);
-    // }
+export class TaskDetailsHeader extends Component {
+    state = {
+        title: null
+    }
 
-    
+componentDidMount (){
+    this.setState ({title: this.props.task.title})
+}
 
-    // return (
-    //     <div className="TaskDetailsHeader-container">
-    //         <EasyEdit
-    //             type={Types.TEXT}
-    //             value= 'Enter new group title'
-    //             placeholder={<FontAwesomeIcon icon={faPlus} />}
-    //             onSave={onAddGroup}
-    //             saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
-    //             cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
-    //         />
-    //     </div>
+changeTitle = (title)=> {
+console.log(title);
 
-    // )
+this.props.onUpdateTask
+}
+
+    render() { 
+        const { title } = this.state
+        return (
+            <header>
+                <EasyEdit
+                    type={Types.TEXT}
+                    value={title}
+                    hideSaveButton={true}
+                    onBlur={this.changeTitle}
+                />
+                <h3>in list -- group title --</h3>
+            </header>
+        )
+    }
+
 }
