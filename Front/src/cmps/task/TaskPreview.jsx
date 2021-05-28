@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setActiveTask } from '../store/actions/board.actions';
+import { setActiveTask } from '../../store/actions/board.actions';
 
 
 class _TaskPreview extends Component {

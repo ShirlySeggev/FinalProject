@@ -5,7 +5,7 @@ import { loadBoard, updateBoard, removeBoard } from '../store/actions/board.acti
 import { GroupList } from '../cmps/group/GroupList';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { TaskDetails } from '../cmps/task/TaskDetails.jsx';
-import { utilService } from '../services/util-service.js';
+
 
 
 
@@ -63,27 +63,14 @@ class _TrelloApp extends Component {
         this.updateBoard(updatedBoard);
     }
 
-    addGroup = (title) => {
-        console.log(title);
-        const group = this.createGroup(title);
-        console.log(group);
+    addGroup = (group) => {
         const { board } = this.props;
         const updatedBoard = { ...board };
         updatedBoard.groups.push(group);
         this.props.updateBoard(updatedBoard);
     }
 
-    createGroup(title) {
-        const group = {
-            id: utilService.makeId(),
-            title,
-            tasks: [],
-            style: {
-                bgc: utilService.getRandomColor()
-            }
-        }
-        return group;
-    }
+
 
 
     render() {
