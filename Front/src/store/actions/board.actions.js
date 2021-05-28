@@ -5,8 +5,8 @@ export function loadBoards() {
     return async dispatch => {
         try {
             const boards = await boardService.query()
-            dispatch({type: 'SET_BOARDS', boards})
-        } catch (err){
+            dispatch({ type: 'SET_BOARDS', boards })
+        } catch (err) {
             console.log('BoardActions: err in loading boards', err)
         }
     }
@@ -39,7 +39,7 @@ export function updateBoard(board) {
     return async dispatch => {
         try {
             const updatedBoard = await boardService.update(board)
-            dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
+            dispatch({ type: 'SET_BOARD', board: updatedBoard })
         } catch (err) {
             console.log('BoardActions: err in updateBoard', err)
         }
@@ -56,6 +56,13 @@ export function removeBoard(boardId) {
         }
     }
 }
+
+export function setActiveTask(task) {
+    return dispatch => {
+        dispatch({ type: 'SET__TASK', task })
+    }
+}
+
 
 // export function setFilter(filterBy) {
 //     return dispatch => {

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { boardService } from '../services/board.service.js';
+import { boardService } from '../../services/board.service.js';
 
 
 export class BoardMenu extends Component {
@@ -63,8 +63,8 @@ export class BoardMenu extends Component {
     }
 
     deleteBoard = () => {
-        const { board, deleteBoard } = { ...this.props }
-        // deleteBoard(board._id)
+        const { board, removeBoard } = { ...this.props }
+        // removeBoard(board._id)
     }
 
 

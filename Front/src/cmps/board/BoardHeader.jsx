@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import MemberAvatar from './MemberAvatar';
+import MemberAvatar from '../MemberAvatar';
 import { BoardMenu } from './BoardMenu.jsx';
 
 export class BoardHeader extends Component {
@@ -17,7 +17,7 @@ export class BoardHeader extends Component {
     }
 
     render() {
-        console.log('board', this.props.board);
+        // console.log('board', this.props.board);
         const { board } = this.props;
         const { toggleMenu } = this.state;
         if (!board) return <h1>Loading...</h1>
