@@ -1,6 +1,7 @@
 const initialState = {
     boards: null,
-    board: null
+    board: null,
+    activeTask: null,
     // filterBy: {
     //     name: '',
     //     inStock: 'All',
@@ -29,6 +30,10 @@ export function boardReducer(state = initialState, action) {
         //     return {...state, toys: state.toys.map(toy => toy._id === action.toy._id ? action.toy : toy) }
         // case 'ADD_TO_CART':
         //     return { ...state, shoppingCart: [...state.shoppingCart, action.item] }
+        case 'SET__TASK':
+            return { ...state, activeTask: action.task }
+        case 'ADD__TASK':
+            return console.log('add');
         default:
             return state
     }

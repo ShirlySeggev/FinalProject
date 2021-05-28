@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { setActiveTask } from '../store/actions/board.actions';
 
 
 class _TaskPreview extends Component {
@@ -16,13 +16,14 @@ class _TaskPreview extends Component {
 
 
     render() {
-        const { _id } = this.props.board;
-        const { id, title } = this.props.task;
-
+        const { setActiveTask, task, board } = this.props
+        const { id, title } = task;
         return (
             <section className="task-preview" >
-                <Link to={`/board/${_id}/task/${id}`}>
-                    <div>
+                <Link to={`/board/${board._id}/task/${id}`}>
+                    <div onClick={() => {
+                        setActiveTask(task)
+                    }} >
                         <h1>task title:{title}</h1>
                     </div>
                 </Link>
@@ -40,7 +41,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-
+    setActiveTask,
 }
 
 export const TaskPreview = connect(mapStateToProps, mapDispatchToProps)(_TaskPreview)

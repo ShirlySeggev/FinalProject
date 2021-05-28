@@ -16,7 +16,6 @@ class _TrelloApp extends Component {
     }
 
     componentDidMount() {
-        console.log('trelloapp mounted')
         this.loadBoard();
     }
 
@@ -52,23 +51,17 @@ class _TrelloApp extends Component {
 
 
     render() {
-        console.log('board', this.props.board);
-        // console.log('groups', groups);
-        const { board } = this.props;
+        const { board, activeTask } = this.props;
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
             <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
-                <BoardHeader board={board} />
-                <Switch>
-                    <Route
-                    to="/board/:boardId/task/:taskId"
-                    component={TaskDetails}
-                    >
 
-                    </Route>
-                </Switch>
-                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard}/>
+                <BoardHeader board={board} />
+                {activeTask && <Switch>
+                    <Route to='/board/:boardId/task/:taskId' component={TaskDetails} />
+                </Switch>}
+                <GroupList groups={groups} setTaskClicked={this.setTaskClicked} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
             </section >
         )
     }
@@ -77,12 +70,13 @@ class _TrelloApp extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
+        activeTask: state.boardModule.activeTask
     }
 }
 const mapDispatchToProps = {
     loadBoard,
-    updateBoard
-}
+    updateBoard,
 
+}
 
 export const TrelloApp = connect(mapStateToProps, mapDispatchToProps)(_TrelloApp)
