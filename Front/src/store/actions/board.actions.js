@@ -57,16 +57,6 @@ export function removeBoard(boardId) {
     }
 }
 
-export function setActiveTask(task) {
-    return dispatch => {
-        dispatch({ type: 'SET_TASK', task })
-    }
-}
-export function setCurrGroupId(groupId) {
-    return dispatch => {
-        dispatch({ type: 'SET_CURR_GROUP_ID', groupId })
-    }
-}
 
 
 // export function setFilter(filterBy) {

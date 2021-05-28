@@ -83,7 +83,7 @@ class _TrelloApp extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        activeTask: state.boardModule.activeTask
+        // activeTask: state.boardModule.activeTask
     }
 }
 const mapDispatchToProps = {

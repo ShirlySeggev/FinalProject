@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 import EasyEdit, { Types } from 'react-easy-edit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faTrash, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
@@ -63,12 +63,16 @@ export class GroupHeader extends Component {
 
                 <div className="group-actions">
                     <span onClick={this.toggleActions}>{<FontAwesomeIcon icon={faEllipsisH} />}</span>
-                    {toggleActions && <ul >
-                        <li /* onClick={this.openToggle(BGC)} */>Change group background</li>
-                        <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
-                        <li onClick={this.removeGroup}>{<FontAwesomeIcon icon={faTrash} />}</li>
-                        <li /* onClick={this.openToggle(SORT)} */>Sort group by</li>
-                    </ul>}
+                    {toggleActions && <Fragment>
+                        <div className="modal-container"></div>
+                        <ul className="menu-options">
+                            <li onClick={this.toggleActions}>X</li>
+                            <li /* onClick={this.openToggle(BGC)} */>Change group background</li>
+                            <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
+                            <li onClick={this.removeGroup}>{<FontAwesomeIcon icon={faTrash} />}</li>
+                            <li /* onClick={this.openToggle(SORT)} */>Sort group by</li>
+                        </ul>
+                    </Fragment>}
                 </div>
             </section >
         )

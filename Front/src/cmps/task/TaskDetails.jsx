@@ -1,21 +1,17 @@
 import { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { setActiveTask } from '../../store/actions/board.actions.js';
-// import EasyEdit, { Types } from 'react-easy-edit';
+import EasyEdit, { Types } from 'react-easy-edit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { TaskDetailsHeader } from './TaskDetailsHeader';
-import { TaskDetailsDescription } from './TaskDetailsDescription';
 import { TaskDetailsActivity } from './TaskDetailsActivity';
 
-// import { Link } from 'react-router-dom';
 
 
 
 class _TaskDetails extends Component {
     state = {
         task: null,
-        // currGroup: null,
         // isEditDesc: false,
         // isEditTitle: false
     }
@@ -25,11 +21,17 @@ class _TaskDetails extends Component {
     }
 
     async loadTask() {
-        const { activeTask } = this.props;
-        this.setState({ task: activeTask })
+        // const { activeTask } = this.props;
+        // this.setState({ task: activeTask })
+        const { boardId, groupId, taskId } = this.props.match.params;
+        console.log('match.params: ', this.props.match)
+        const { board } = this.props;
+        const groupIdx = board.groups.findIndex(group => group.id === groupId)
+        const task = board.groups[groupIdx].tasks.find(task => task.id === taskId);
+        this.setState({ task })
     }
 
-    onUpdateTask = (task) => {
+    updateTask = (task) => {
         console.log(task);
         const task = this.createTask(ev);
         const taskId = task.id
@@ -69,8 +71,8 @@ class _TaskDetails extends Component {
     render() {
         console.log('groupId', this.props.groupId);
         const { task, isEditDesc, isEditTitle } = this.state;
-        const { setActiveTask, board } = this.props;
         if (!task) return <h1>Loading...</h1>
+        const { setActiveTask, board } = this.props;
         const { title, description, checklists } = this.state.task;
         return (
             <Fragment>
@@ -99,7 +101,7 @@ class _TaskDetails extends Component {
                             value={description} name="description" id="description" cols="30" rows="10"></textarea>}
                     </div> */}
 
-                    {/* <TaskDetailsActivity /> */}
+                    <TaskDetailsActivity task={task} />
                     {/* <div className="task-details-activity">
                     </div> */}
 
@@ -121,13 +123,10 @@ class _TaskDetails extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        activeTask: state.boardModule.activeTask,
-        groupId: state.boardModule.activeGroupId
     }
 }
 
 const mapDispatchToProps = {
-    setActiveTask
 }
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails)

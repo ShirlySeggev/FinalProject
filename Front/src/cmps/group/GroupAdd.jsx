@@ -23,11 +23,14 @@ export function GroupAdd({ addGroup }) {
     }
 
     return (
+
         <div className="groupAdd">
             <EasyEdit
-                type={Types.TEXT}
-                value= 'Enter new group title'
-                placeholder={<FontAwesomeIcon icon={faPlus} />}
+                type='text'
+                value= ''
+                editMode = {false}
+                // placeholder={<FontAwesomeIcon icon={faPlus} />}
+                placeholder='Add group title'
                 onSave={onAddGroup}
                 saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
                 cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
