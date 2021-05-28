@@ -52,23 +52,18 @@ class _TrelloApp extends Component {
 
 
     render() {
-        console.log('board', this.props.board);
         // console.log('groups', groups);
         const { board } = this.props;
+        console.log('board', this.props.board);
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
             <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
                 <BoardHeader board={board} />
                 <Switch>
-                    <Route
-                    to="/board/:boardId/task/:taskId"
-                    component={TaskDetails}
-                    >
-
-                    </Route>
+                    <Route to='/board/:boardId/task/:taskId' component={TaskDetails}/>
                 </Switch>
-                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard}/>
+                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
             </section >
         )
     }
