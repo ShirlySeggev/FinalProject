@@ -57,11 +57,7 @@ export function removeBoard(boardId) {
     }
 }
 
-export function setActiveTask(task) {
-    return dispatch => {
-        dispatch({ type: 'SET__TASK', task })
-    }
-}
+
 
 
 // export function setFilter(filterBy) {

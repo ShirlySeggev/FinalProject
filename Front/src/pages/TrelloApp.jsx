@@ -80,9 +80,12 @@ class _TrelloApp extends Component {
         return (
             <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
                 <BoardHeader board={board} updateBoard={this.updateBoard} removeBoard={this.removeBoard} />
-                {activeTask && <Switch>
-                    <Route to='/board/:boardId/task/:taskId' component={TaskDetails} />
-                </Switch>}
+                <Switch>
+                    <Route path='/board/:boardId/group/:groupId/task/:taskId' exact render={(props) => <TaskDetails {...props} />} />
+                </Switch>
+                {/* {activeTask && <Switch>
+                    <Route path='/board/:boardId/group/:groupId/task/:taskId' exact render={(props)=><TaskDetails {...props}/>} />
+                </Switch>} */}
                 <GroupList groups={groups} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} />
             </section >
         )
@@ -92,7 +95,7 @@ class _TrelloApp extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        activeTask: state.boardModule.activeTask
+        // activeTask: state.boardModule.activeTask
     }
 }
 const mapDispatchToProps = {

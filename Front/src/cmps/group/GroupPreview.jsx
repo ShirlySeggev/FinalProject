@@ -12,7 +12,7 @@ export function GroupPreview({ group, updateGroup, removeGroup, addTask }) {
         <section className="group-preview" style={{ backgroundColor: `${style.bgc}` }}>
             <div>
                 <GroupHeader group={group} updateGroup={updateGroup} removeGroup={removeGroup} />
-                <TaskList tasks={tasks} />
+                <TaskList tasks={tasks} groupId={id}/>
                 <TaskAdd groupId={id} />
             </div>
         </section>
