@@ -1,0 +1,42 @@
+.boardApp-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.boards-container {
+    margin-block-start: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items:flex-end;
+    text-align: center;
+}
+
+.add-new-board-closed, .add-new-board-open {
+    background-color: rgb(179, 184, 184);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-preview, .add-new-board-closed {
+    width: 200px;  
+    height: 300px;
+    border-radius: 10px;
+    margin-inline: 7px;
+    & :hover{
+        cursor: pointer;
+    }
+}
+
+.add-new-board-open {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;  
+    height: 50%;
+    z-index: 2;
+    border-radius: 10px;
+}

@@ -1,6 +1,7 @@
 const initialState = {
     boards: null,
-    board: null
+    board: null,
+    activeTask: null,
 }
 
 export function boardReducer(state = initialState, action) {
@@ -13,6 +14,10 @@ export function boardReducer(state = initialState, action) {
             return { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
         case 'SET_BOARDS':
             return { ...state, boards: action.boards }
+        case 'SET__TASK':
+            return { ...state, activeTask: action.task }
+        case 'ADD__TASK':
+            return console.log('add');
         default:
             return state
     }

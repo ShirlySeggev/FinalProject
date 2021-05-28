@@ -15,7 +15,6 @@ class _TrelloApp extends Component {
     }
 
     componentDidMount() {
-        console.log('trelloapp mounted')
         this.loadBoard();
     }
 
@@ -88,17 +87,15 @@ class _TrelloApp extends Component {
 
 
     render() {
-        console.log('board', this.props.board);
-        // console.log('groups', groups);
-        const { board } = this.props;
+        const { board, activeTask } = this.props;
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
             <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
                 <BoardHeader board={board} updateBoard={this.updateBoard} removeBoard={this.removeBoard} />
-                <Switch>
-                    <Route to="/board/:boardId/task/:taskId" component={TaskDetails} > </Route>
-                </Switch>
+                {activeTask && <Switch>
+                    <Route to='/board/:boardId/task/:taskId' component={TaskDetails} />
+                </Switch>}
                 <GroupList groups={groups} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} />
             </section >
         )
@@ -108,6 +105,7 @@ class _TrelloApp extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
+        activeTask: state.boardModule.activeTask
     }
 }
 const mapDispatchToProps = {
@@ -115,6 +113,5 @@ const mapDispatchToProps = {
     updateBoard,
     removeBoard
 }
-
 
 export const TrelloApp = connect(mapStateToProps, mapDispatchToProps)(_TrelloApp)
