@@ -78,7 +78,7 @@ class _TaskDetails extends Component {
 
                     <TaskDetailsHeader task={task} group={group} updateTask={this.updateTask} />
                     {dueDate && <p>{dueDate}</p>}
-                    {isDone && <p>{dueDate}</p>}
+                    {isDone && <p>hnhnghngnhg{dueDate}</p>}
                     <TaskDetailsDescription task={task} updateTask={this.updateTask} />
 
                     {/* <TaskDetailsDescription /> */}
