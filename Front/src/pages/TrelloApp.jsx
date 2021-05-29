@@ -17,6 +17,7 @@ class _TrelloApp extends Component {
 
     componentDidMount() {
         this.loadBoard();
+        console.log(Date.now());
     }
 
     // componentDidUpdate(prevProps,prevState) {
@@ -61,7 +62,7 @@ class _TrelloApp extends Component {
                 {activeTask && <Switch>
                     <Route to='/board/:boardId/task/:taskId' component={TaskDetails} />
                 </Switch>}
-                <GroupList groups={groups} setTaskClicked={this.setTaskClicked} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
+                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
             </section >
         )
     }

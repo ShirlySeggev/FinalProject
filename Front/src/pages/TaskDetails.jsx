@@ -28,6 +28,7 @@ class _TaskDetails extends Component {
         if (isEditDesc) this.setState({ isEditDesc: false })
         else this.setState({ isEditDesc: true })
     }
+    
     setEditTitle = () => {
         const { isEditTitle } = this.state
         if (isEditTitle) this.setState({ isEditTitle: false })
@@ -67,7 +68,7 @@ class _TaskDetails extends Component {
                         {description && !isEditDesc && <p onClick={this.setEditDesc}>{description}</p>}
                         {(!description || isEditDesc) && <textarea
                             onBlur={this.setEditDesc} onChange={this.handleChange}
-                            value={description} name="description" id="description" cols="30" rows="10"></textarea>}
+                            value={description} name="description" id="description" cols="30" rows="10"  style={{resize: 'none'}}></textarea>}
                     </div>
                     <div className="task-details-activity">
                     </div>
