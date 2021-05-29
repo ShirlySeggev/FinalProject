@@ -2,30 +2,27 @@ import { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TaskDetailsHeader } from './TaskDetailsHeader';
+import { CheckBox } from './CheckBox';
 import { TaskDetailsActivity } from './TaskDetailsActivity';
 import { updateBoard } from '../../store/actions/board.actions';
-
-
-// import EasyEdit, { Types } from 'react-easy-edit';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
-
-
+import { TaskDueDate } from './TaskDueDate';
+import { TaskImage } from './TaskImage';
 
 class _TaskDetails extends Component {
     state = {
         task: null,
-        group: null
+        group: null,
+        isChecked: false
 
     }
 
     componentDidMount() {
         this.loadTask();
+        console.log(this.state.isChecked);
     }
 
     async loadTask() {
         const { boardId, groupId, taskId } = this.props.match.params;
-        // console.log('match.params: ', this.props.match)
         const { board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === groupId)
         const task = board.groups[groupIdx].tasks.find(task => task.id === taskId);
@@ -34,13 +31,35 @@ class _TaskDetails extends Component {
 
     updateTask = (task) => {
         const taskId = task.id
-        const {id} = this.state.group
+        const { id } = this.state.group
         const { board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === id)
         const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
         const updatedBoard = { ...board };
-        updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task )
+        updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task)
         updateBoard(updatedBoard);
+    }
+    removeTask = (task) => {
+        const taskId = this.state.task.id
+        const { id } = this.state.group
+        const { board } = this.props;
+        const groupIdx = board.groups.findIndex(group => group.id === id)
+        const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+        const updatedBoard = { ...board };
+        updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task)
+        updateBoard(updatedBoard);
+
+    }
+
+
+    async updateBoard(board) {
+        try {
+            this.props.updateBoard(board);
+        } catch (err) { console.log('on task details,update Board:', err) }
+    }
+    DueDate() {
+        console.log('date');
+        <input type="date"></input>
     }
 
 
@@ -52,12 +71,12 @@ class _TaskDetails extends Component {
         return (
             <Fragment>
                 <Link to={`/board/${board._id}/`}>
-                <div className="outer-task-details-container">
-                </div>
+                    <div className="outer-task-details-container">
+                    </div>
                 </Link>
                 <section className="task-details-container" >
-                    
-                    <TaskDetailsHeader task={task} updateTask={this.updateTask} group={group}/>
+
+                    <TaskDetailsHeader task={task} updateTask={this.updateTask} group={group} />
 
                     {/* <TaskDetailsDescription /> */}
                     {/* <div className="task-details-description">
@@ -66,7 +85,8 @@ class _TaskDetails extends Component {
                         {(!description || isEditDesc) && <textarea
                             onBlur={this.setEditDesc} onChange={this.handleChange}
                             value={description} name="description" id="description" cols="30" rows="10"></textarea>}
-                    </div> */}
+                        </div> */}
+
 
                     <TaskDetailsActivity task={task} />
                     {/* <div className="task-details-activity">
@@ -77,10 +97,12 @@ class _TaskDetails extends Component {
 
                     {/* GAL WORKING ON THIS CMPS */}
                     {/* TODO: ADD TO TASK MENU*/}
-
-
-                    {/* REMOVE */}
-
+                    <ul className="task-actions">
+                        <li onClick={this.removeTask}>delete</li>
+                    </ul>
+                    <TaskDueDate task={task}/>
+                    <CheckBox isChecked={this.state.isChecked} />
+                    <TaskImage task={task}/>
 
                 </section>
             </Fragment>

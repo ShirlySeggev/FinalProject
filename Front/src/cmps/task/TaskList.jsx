@@ -1,6 +1,6 @@
 import { TaskPreview } from './TaskPreview.jsx';
 
-export function TaskList({ tasks, groupId }) {
+export function TaskList({ tasks, groupId,removeTask }) {
     return (
         <div className="tasks-container">
             {tasks.map(task =>

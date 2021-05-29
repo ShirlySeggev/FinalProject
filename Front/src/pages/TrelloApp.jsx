@@ -63,6 +63,14 @@ class _TrelloApp extends Component {
         updatedBoard.groups.splice(groupIdx, 1)
         this.updateBoard(updatedBoard);
     }
+    // removeTask = (taskId,groupId) => {
+    //     const { board } = this.props;
+    //     const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    //     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    //     const updatedBoard = { ...board };
+    //     updatedBoard.groups.tasks.splice(taskIdx, 1)
+    //     this.updateBoard(updatedBoard);
+    // }
 
     render() {
         const { board, activeTask } = this.props;
@@ -74,7 +82,7 @@ class _TrelloApp extends Component {
                 <Switch>
                     <Route path='/board/:boardId/group/:groupId/task/:taskId' component={TaskDetails} />
                 </Switch>
-                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
+                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} deleteBoard={this.deleteBoard}  />
             </section >
         )
     }
