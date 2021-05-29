@@ -22,16 +22,18 @@ export class TaskDetailsHeader extends Component {
 
     render() {
         const { title } = this.state
+        const { group } = this.props
         return (
-            <header>
+            <header className="task-details-header">
                 <EasyEdit
                     type={Types.TEXT}
                     value={title}
                     hideSaveButton={true}
                     hideCancelButton={true}
+                    onSave={this.updateTaskTitle}
                     onBlur={this.updateTaskTitle}
                 />
-                <h3>in list -- group title --</h3>
+                <h3>in list {group.title}</h3>
             </header>
         )
     }

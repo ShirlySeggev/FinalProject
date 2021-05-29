@@ -1,6 +1,6 @@
 import EasyEdit, { Types } from 'react-easy-edit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+// import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../../services/util-service.js';
 
 
@@ -32,8 +32,8 @@ export function GroupAdd({ addGroup }) {
                 // placeholder={<FontAwesomeIcon icon={faPlus} />}
                 placeholder='Add group title'
                 onSave={onAddGroup}
-                saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
-                cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
+                // saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
+                // cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
             />
         </div>
 
