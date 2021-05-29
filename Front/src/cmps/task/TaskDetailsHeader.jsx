@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import EasyEdit, { Types } from 'react-easy-edit';
-
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 export class TaskDetailsHeader extends Component {
@@ -28,12 +27,12 @@ export class TaskDetailsHeader extends Component {
                 <EasyEdit
                     type={Types.TEXT}
                     value={title}
-                    hideSaveButton={true}
-                    hideCancelButton={true}
                     onSave={this.updateTaskTitle}
                     onBlur={this.updateTaskTitle}
+                    saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
+                    cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
                 />
-                <h3>in list {group.title}</h3>
+                <p>in list {group.title}</p>
             </header>
         )
     }

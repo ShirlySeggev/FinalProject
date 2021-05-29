@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { TaskDetailsHeader } from './TaskDetailsHeader';
 import { CheckBox } from './CheckBox';
 import { TaskDetailsActivity } from './TaskDetailsActivity';
+import { TaskDetailsDescription } from './TaskDetailsDescription';
 import { updateBoard } from '../../store/actions/board.actions';
 import { TaskDueDate } from './TaskDueDate';
 import { TaskImage } from './TaskImage';
@@ -30,14 +31,22 @@ class _TaskDetails extends Component {
     }
 
     updateTask = (task) => {
-        const taskId = task.id
-        const { id } = this.state.group
+        const taskId = task.id;
+        const { id } = this.state.group;
         const { board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === id)
         const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
         const updatedBoard = { ...board };
         updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task)
-        updateBoard(updatedBoard);
+        this.updateBoard(updatedBoard);
+    }
+
+    async updateBoard(board) {
+        try {
+            this.props.updateBoard(board);
+        } catch (err) {
+            console.log('On Task details, Update Board:', err)
+        }
     }
     removeTask = (task) => {
         const taskId = this.state.task.id
@@ -74,9 +83,10 @@ class _TaskDetails extends Component {
                     <div className="outer-task-details-container">
                     </div>
                 </Link>
-                <section className="task-details-container" >
+                <section className="taskDetails-container" >
 
-                    <TaskDetailsHeader task={task} updateTask={this.updateTask} group={group} />
+                    <TaskDetailsHeader task={task} group={group} updateTask={this.updateTask} />
+                    <TaskDetailsDescription task={task} updateTask={this.updateTask} />
 
                     {/* <TaskDetailsDescription /> */}
                     {/* <div className="task-details-description">
@@ -88,7 +98,7 @@ class _TaskDetails extends Component {
                         </div> */}
 
 
-                    <TaskDetailsActivity task={task} />
+                    <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
                     {/* <div className="task-details-activity">
                     </div> */}
 
