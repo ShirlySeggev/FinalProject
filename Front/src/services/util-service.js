@@ -1,7 +1,8 @@
 export const utilService = {
     makeId,
     makeLorem,
-    getRandomIntInclusive
+    getRandomIntInclusive,
+    getRandomColor
 }
 
 function makeId(length = 6) {
@@ -29,4 +30,10 @@ function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
+
+function getRandomColor() {
+    var colors = ['#eca1a6', '#b1cbbb', '#92a8d1', '#f7786b', '#ADD8E6'];
+    var num = getRandomIntInclusive(0, 4);
+    return colors[num];
 }

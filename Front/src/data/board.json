@@ -39,7 +39,9 @@
                         "title": "Add Samples"
                     }
                 ],
-                "style": {}
+                "style": {
+                    "bgc": "#fefbd8"
+                }
             },
             {
                 "id": "g102",
@@ -102,7 +104,9 @@
                         }
                     }
                 ],
-                "style": {}
+                "style": {
+                    "bgc": "#fefbd8"
+                }
             }
         ],
         "activities": [
@@ -160,7 +164,9 @@
                         "title": "Add Samples"
                     }
                 ],
-                "style": {}
+                "style": {
+                    "bgc": "#92a8d1"
+                }
             },
             {
                 "id": "g102",
@@ -223,7 +229,9 @@
                         }
                     }
                 ],
-                "style": {}
+                "style": {
+                    "bgc": "#f7786b"
+                }
             }
         ],
         "activities": [

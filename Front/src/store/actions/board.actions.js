@@ -34,12 +34,12 @@ export function addBoard(board) {
     }
 }
 
-
-export function updateBoard(board) {
+export function updateBoard(newBoard) {
     return async dispatch => {
+        console.log('maybe?');
         try {
-            const updatedBoard = await boardService.update(board)
-            dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
+            const updatedBoard = await boardService.update(newBoard)
+            dispatch({ type: 'SET_BOARD', board: updatedBoard })
         } catch (err) {
             console.log('BoardActions: err in updateBoard', err)
         }
@@ -57,11 +57,6 @@ export function removeBoard(boardId) {
     }
 }
 
-export function setActiveTask(task) {
-    return dispatch => {
-        dispatch({ type: 'SET__TASK', task })
-    }
-}
 
 
 // export function setFilter(filterBy) {
@@ -73,19 +68,3 @@ export function setActiveTask(task) {
 //         dispatch(action)
 //     }
 // }
-
-
-// export function addToy(toy) {
-//     return async dispatch => {
-//         try {
-//             const newToy = await toyService.add(toy)
-//             dispatch({ type: 'ADD_TOY', toy: newToy })
-//         } catch (err) {
-//             console.log('ToyActions: err in saveToy', err)
-//         }
-//     }
-// }
-
-
-
-

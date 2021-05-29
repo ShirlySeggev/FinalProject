@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { loadBoards, addBoard } from '../store/actions/board.actions.js';
-import { BoardList } from '../cmps/BoardList';
+import { BoardList } from '../cmps/board/BoardList';
 
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+
 
 
 
