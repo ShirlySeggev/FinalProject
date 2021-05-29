@@ -42,6 +42,7 @@ class _TaskAdd extends Component {
         const task = {
             id: utilService.makeId(),
             title,
+            isDone: false,
             description: '',
             comments: [],
             checklists: [],

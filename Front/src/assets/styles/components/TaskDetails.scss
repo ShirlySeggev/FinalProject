@@ -26,6 +26,14 @@
             border: 1px solid black;
         }
     }
+
+    .section-title{
+        display:flex;
+        align-items:center;
+        .icon {
+            margin-inline-end: 3px;
+        }
+    }
 }
 
 .outer-task-details-container {

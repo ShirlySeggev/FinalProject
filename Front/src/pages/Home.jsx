@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import img from '../assets/img/home.jpg';
+import img from '../assets/img/wePlan.gif';
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';

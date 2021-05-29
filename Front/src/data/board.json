@@ -55,6 +55,7 @@
                         "id": "c104",
                         "title": "Help me",
                         "description": "this description is awsome",
+                        "isDone": "false",
                         "comments": [
                             {
                                 "id": "ZdPnm",

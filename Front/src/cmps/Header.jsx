@@ -13,7 +13,7 @@ class _Header extends React.Component {
                 <nav>
                     <div>
                         <img src={logo} alt="" />
-                        <NavLink to="/"><h1>TRELLO</h1></NavLink>
+                        <NavLink to="/"><h1>WePlan</h1></NavLink>
                     </div>
                     <ul>
                         <li><NavLink to="/">Home</NavLink></li>

@@ -13,8 +13,6 @@ class _TaskDetails extends Component {
     state = {
         task: null,
         group: null,
-        isChecked: false
-
     }
 
     componentDidMount() {
@@ -30,6 +28,16 @@ class _TaskDetails extends Component {
         this.setState({ task, group: board.groups[groupIdx] })
     }
 
+
+    async updateBoard(board) {
+        try {
+            this.props.updateBoard(board);
+        } catch (err) {
+            console.log('On Task details, Update Board:', err)
+        }
+    }
+
+
     updateTask = (task) => {
         const taskId = task.id;
         const { id } = this.state.group;
@@ -41,34 +49,15 @@ class _TaskDetails extends Component {
         this.updateBoard(updatedBoard);
     }
 
-    async updateBoard(board) {
-        try {
-            this.props.updateBoard(board);
-        } catch (err) {
-            console.log('On Task details, Update Board:', err)
-        }
-    }
-    removeTask = (task) => {
-        const taskId = this.state.task.id
-        const { id } = this.state.group
+    removeTask = () => {
+        const taskId = this.state.task.id;
+        const { id } = this.state.group;
         const { board } = this.props;
-        const groupIdx = board.groups.findIndex(group => group.id === id)
-        const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+        const groupIdx = board.groups.findIndex(group => group.id === id);
+        const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
         const updatedBoard = { ...board };
-        updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task)
-        updateBoard(updatedBoard);
-
-    }
-
-
-    async updateBoard(board) {
-        try {
-            this.props.updateBoard(board);
-        } catch (err) { console.log('on task details,update Board:', err) }
-    }
-    DueDate() {
-        console.log('date');
-        <input type="date"></input>
+        updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1)
+        this.updateBoard(updatedBoard);
     }
 
 
@@ -76,6 +65,8 @@ class _TaskDetails extends Component {
         const { task, group } = this.state;
         if (!task) return <h1>Loading...</h1>
         const { board } = this.props;
+        const { dueDate, isDone } = this.state.task;
+        console.log(dueDate);
         // const { title, description, checklists } = this.state.task;
         return (
             <Fragment>
@@ -86,6 +77,8 @@ class _TaskDetails extends Component {
                 <section className="taskDetails-container" >
 
                     <TaskDetailsHeader task={task} group={group} updateTask={this.updateTask} />
+                    {dueDate && <p>{dueDate}</p>}
+                    {isDone && <p>{dueDate}</p>}
                     <TaskDetailsDescription task={task} updateTask={this.updateTask} />
 
                     {/* <TaskDetailsDescription /> */}
@@ -110,9 +103,9 @@ class _TaskDetails extends Component {
                     <ul className="task-actions">
                         <li onClick={this.removeTask}>delete</li>
                     </ul>
-                    <TaskDueDate task={task}/>
+                    <TaskDueDate task={task} updateTask={this.updateTask} />
                     <CheckBox isChecked={this.state.isChecked} />
-                    <TaskImage task={task}/>
+                    <TaskImage task={task} />
 
                 </section>
             </Fragment>

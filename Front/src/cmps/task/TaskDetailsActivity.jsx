@@ -2,7 +2,8 @@ import { Component, Fragment } from 'react';
 import { formatDistance } from 'date-fns'
 import { utilService } from '../../services/util-service.js';
 import { updateBoard } from '../../store/actions/board.actions.js';
-
+import { SectionTitle } from './TaskDetails/SectionTitle.jsx';
+import {BiCommentDots} from 'react-icons/bi'
 
 export class TaskDetailsActivity extends Component {
     state = {
@@ -70,6 +71,9 @@ export class TaskDetailsActivity extends Component {
 
             <div className="taskActivity-container" >
                 <div className="activity-header">
+                    <SectionTitle 
+                    Icon={BiCommentDots}
+>Activity</SectionTitle>
                     <h1>Activity</h1>
                     <button onClick={this.onToggleActivity}>{toggleActivity ? 'Hide activity' : 'Show activity'}</button>
                 </div>

@@ -3,7 +3,7 @@ import EasyEdit, { Types } from 'react-easy-edit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faTrash, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
-
+let modalPos;
 export class GroupHeader extends Component {
     state = {
         toggleActions: false,
@@ -28,7 +28,10 @@ export class GroupHeader extends Component {
     //     }
     // }
 
-    toggleActions = () => {
+    toggleActions = (ev) => {
+        const {clientX,clientY} =ev
+        console.log('client X,Y', {clientX,clientY})
+        modalPos = {left: clientX+'px',top: clientY+'px'}
         this.setState({ toggleActions: !this.state.toggleActions })
     }
 
@@ -64,7 +67,7 @@ export class GroupHeader extends Component {
                 <div className="group-actions">
                     <span onClick={this.toggleActions}>{<FontAwesomeIcon icon={faEllipsisH} />}</span>
                     {toggleActions && <Fragment>
-                        <ul className="menu-options">
+                        <ul style={{...modalPos}} className="menu-options">
                             <li onClick={this.toggleActions}>X</li>
                             <li /* onClick={this.openToggle(BGC)} */>Change group background</li>
                             <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>

@@ -1,7 +1,5 @@
 import { Component } from 'react';
-import EasyEdit, { Types } from 'react-easy-edit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export class TaskDetailsDescription extends Component {
