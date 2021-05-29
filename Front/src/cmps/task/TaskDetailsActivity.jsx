@@ -1,11 +1,7 @@
-import { Component } from 'react';
-import EasyEdit, { Types } from 'react-easy-edit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component, Fragment } from 'react';
+import { formatDistance } from 'date-fns'
 import { utilService } from '../../services/util-service.js';
 import { updateBoard } from '../../store/actions/board.actions.js';
-import { TextField } from '@material-ui/core';
-import MemberAvatar from '../MemberAvatar';
 
 
 export class TaskDetailsActivity extends Component {
@@ -14,6 +10,18 @@ export class TaskDetailsActivity extends Component {
         comment: {
             txt: ''
         },
+        activities: []
+    }
+
+    componentDidMount() {
+        const { board } = this.props;
+        const { id } = this.props.task;
+        const activities = board.activities.filter(activity => {
+            if (activity.task) {
+                return activity.task.id === id;
+            }
+        })
+        this.setState({ activities })
     }
 
     onToggleActivity = () => {
@@ -50,24 +58,39 @@ export class TaskDetailsActivity extends Component {
                 fullname: "Tal Tarablus",
             }
         }
-
-
     }
 
 
 
     render() {
-        const { toggleActivity } = this.state;
+        const { toggleActivity, activities } = this.state;
         const { txt } = this.state.comment;
-        // console.log(this.props.task.comments);
-        // const { byMember } = this.props.task.comments;
-        // console.log(byMember);
+ 
         return (
 
-            <div className="taskActivity" >
-                {/* <MemberAvatar member={byMember} /> */}
+            <div className="taskActivity-container" >
+                <div className="activity-header">
+                    <h1>Activity</h1>
+                    <button onClick={this.onToggleActivity}>{toggleActivity ? 'Hide activity' : 'Show activity'}</button>
+                </div>
+                {toggleActivity && <Fragment>
+                    {activities.map(activity => {
+                        return <div key={activity.id}>
+                            <img src={activity.byMember.imgUrl} />
+                            <div>
+                                <p>{activity.byMember.fullname} </p>
+                                <p>{activity.txt} </p>
+                                <p>{activity.task.title}</p>
+                            </div>
+                            <div className="activity-date">
+                                <p>{formatDistance(activity.createdAt, Date.now())}</p>
+                            </div>
+                        </div>
+                    })
+                    }
+                </Fragment>
+                }
 
-                <TextField name="txt" value={txt} placeholder="Write a comment..." onChange={this.handleChange} onKeyDown={this.onEnter}></TextField>
             </div>
 
         )

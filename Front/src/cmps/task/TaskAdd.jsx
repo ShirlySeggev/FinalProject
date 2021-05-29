@@ -1,25 +1,41 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
-import EasyEdit, { Types } from 'react-easy-edit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../../services/util-service.js';
 import { updateBoard } from '../../store/actions/board.actions.js';
 
 
 class _TaskAdd extends Component {
     state = {
-        title: ''
+        task: {
+            title: '',
+        }
+    }
+
+    handleChange = (ev) => {
+        var task = { ...this.state.task }
+        var { name, value } = ev.target
+        task[name] = value;
+        this.setState({ task })
     }
 
     onAddTask = (ev) => {
-        const task = this.createTask(ev);
+        ev.preventDefault()
+        const taskTitle = this.state.task.title;
+        const task = this.createTask(taskTitle);
         const { board, updateBoard, groupId } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === groupId)
         const updatedBoard = { ...board };
         updatedBoard.groups[groupIdx].tasks.push(task);
         updateBoard(updatedBoard);
-        this.setState({ title: 'Enter new task title' });
+        this.clearTask();
+    }
+
+    clearTask = () => {
+        this.setState({
+            task: {
+                title: '',
+            }
+        })
     }
 
     createTask = (title) => {
@@ -41,17 +57,12 @@ class _TaskAdd extends Component {
         return task;
     }
     render() {
-        const { title } = this.state;
+        const { title } = this.state.task;
         return (
             <div className="taskAdd" >
-                <EasyEdit
-                    type={Types.TEXT}
-                    value={title}
-                    placeholder={<FontAwesomeIcon icon={faPlus} />}
-                    onSave={this.onAddTask}
-                    saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
-                    cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
-                />
+                <form onSubmit={this.onAddTask}>
+                    <input type="text" name="title" value={title} placeholder="+Add new task" autoComplete="off" onChange={this.handleChange} />
+                </form>
             </div>
 
         )

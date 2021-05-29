@@ -1,16 +1,39 @@
-import EasyEdit, { Types } from 'react-easy-edit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component } from 'react';
 import { utilService } from '../../services/util-service.js';
 
 
-export function GroupAdd({ addGroup }) {
-    function onAddGroup(ev) {
-        const group = createGroup(ev);
-        addGroup(group);
+export class GroupAdd extends Component {
+    state = {
+        group: {
+            title: '',
+        }
     }
 
-    function createGroup(title) {
+    handleChange = (ev) => {
+        var group = { ...this.state.group }
+        var { name, value } = ev.target
+        group[name] = value;
+        this.setState({ group })
+    }
+
+    onAddGroup = (ev) => {
+        ev.preventDefault();
+        const groupTitle = this.state.group.title;
+        const group = this.createGroup(groupTitle);
+        const { addGroup } = this.props;
+        addGroup(group);
+        this.clearGroup();
+    }
+
+    clearGroup = () => {
+        this.setState({
+            group: {
+                title: '',
+            }
+        })
+    }
+
+    createGroup = (title) => {
         const group = {
             id: utilService.makeId(),
             title,
@@ -22,21 +45,15 @@ export function GroupAdd({ addGroup }) {
         return group;
     }
 
-    return (
-
-        <div className="groupAdd">
-            <EasyEdit
-                type='text'
-                value= ''
-                editMode = {false}
-                // placeholder={<FontAwesomeIcon icon={faPlus} />}
-                placeholder='Add group title'
-                onSave={onAddGroup}
-                // saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
-                // cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
-            />
-        </div>
-
-    )
+    render() {
+        const { title } = this.state.group;
+        return (
+            <div className="groupAdd">
+                <form onSubmit={this.onAddGroup}>
+                    <input type="text" name="title" value={title} placeholder="+Add new group" autoComplete="off" onChange={this.handleChange} />
+                </form>
+            </div>
+        )
+    }
 }
 

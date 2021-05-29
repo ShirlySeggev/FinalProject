@@ -16,7 +16,6 @@ class _TrelloApp extends Component {
 
     componentDidMount() {
         this.loadBoard();
-        console.log(Date.now());
     }
 
     // componentDidUpdate(prevProps,prevState) {
@@ -49,6 +48,7 @@ class _TrelloApp extends Component {
     }
 
     updateGroup = (group) => {
+        console.log(group, 'noew');
         const { board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === group.id);
         const updatedBoard = { ...board };
@@ -64,17 +64,25 @@ class _TrelloApp extends Component {
         this.updateBoard(updatedBoard);
     }
 
+    addGroup = (group) => {
+        const { board } = this.props;
+        const updatedBoard = { ...board };
+        updatedBoard.groups.push(group);
+        this.props.updateBoard(updatedBoard);
+    }
+
+
     render() {
         const { board, activeTask } = this.props;
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
             <section className="trelloApp-main" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
-                <BoardHeader board={board} />
+                 <BoardHeader board={board} updateBoard={this.updateBoard} removeBoard={this.removeBoard} />
                 <Switch>
                     <Route path='/board/:boardId/group/:groupId/task/:taskId' component={TaskDetails} />
                 </Switch>
-                <GroupList groups={groups} updateBoard={this.updateBoard} deleteBoard={this.deleteBoard} />
+                <GroupList groups={groups} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} />
             </section >
         )
     }

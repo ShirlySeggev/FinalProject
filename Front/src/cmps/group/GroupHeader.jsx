@@ -50,6 +50,7 @@ export class GroupHeader extends Component {
     render() {
         const { title } = this.props.group;
         const { toggleActions } = this.state;
+
         // if (!title) return <h1>Loading...</h1>
         return (
             <section className="group-header" >
@@ -60,11 +61,9 @@ export class GroupHeader extends Component {
                     saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
                     cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
                 />
-
                 <div className="group-actions">
                     <span onClick={this.toggleActions}>{<FontAwesomeIcon icon={faEllipsisH} />}</span>
                     {toggleActions && <Fragment>
-                        <div className="modal-container"></div>
                         <ul className="menu-options">
                             <li onClick={this.toggleActions}>X</li>
                             <li /* onClick={this.openToggle(BGC)} */>Change group background</li>

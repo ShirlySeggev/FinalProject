@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TaskDetailsHeader } from './TaskDetailsHeader';
 import { TaskDetailsActivity } from './TaskDetailsActivity';
+import { TaskDetailsDescription } from './TaskDetailsDescription';
 import { updateBoard } from '../../store/actions/board.actions';
 
 
@@ -33,14 +34,22 @@ class _TaskDetails extends Component {
     }
 
     updateTask = (task) => {
-        const taskId = task.id
-        const {id} = this.state.group
+        const taskId = task.id;
+        const { id } = this.state.group;
         const { board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === id)
         const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
         const updatedBoard = { ...board };
-        updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task )
-        updateBoard(updatedBoard);
+        updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task)
+        this.updateBoard(updatedBoard);
+    }
+
+    async updateBoard(board) {
+        try {
+            this.props.updateBoard(board);
+        } catch (err) {
+            console.log('On Task details, Update Board:', err)
+        }
     }
 
 
@@ -52,12 +61,13 @@ class _TaskDetails extends Component {
         return (
             <Fragment>
                 <Link to={`/board/${board._id}/`}>
-                <div className="outer-task-details-container">
-                </div>
+                    <div className="outer-task-details-container">
+                    </div>
                 </Link>
-                <section className="task-details-container" >
-                    
-                    <TaskDetailsHeader task={task} updateTask={this.updateTask} group={group}/>
+                <section className="taskDetails-container" >
+
+                    <TaskDetailsHeader task={task} group={group} updateTask={this.updateTask} />
+                    <TaskDetailsDescription task={task} updateTask={this.updateTask} />
 
                     {/* <TaskDetailsDescription /> */}
                     {/* <div className="task-details-description">
@@ -68,7 +78,7 @@ class _TaskDetails extends Component {
                             value={description} name="description" id="description" cols="30" rows="10"></textarea>}
                     </div> */}
 
-                    <TaskDetailsActivity task={task} />
+                    <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
                     {/* <div className="task-details-activity">
                     </div> */}
 
