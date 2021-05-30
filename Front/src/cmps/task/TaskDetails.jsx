@@ -5,6 +5,8 @@ import { TaskDetailsHeader } from './TaskDetailsHeader';
 import { CheckBox } from './CheckBox';
 import { TaskDetailsActivity } from './TaskDetailsActivity';
 import { TaskDetailsDescription } from './TaskDetailsDescription';
+import { ChecklistList } from './TaskCheckList/ChecklistList';
+import { ChecklistAdd } from './TaskCheckList/ChecklistAdd';
 import { updateBoard } from '../../store/actions/board.actions';
 import { TaskDueDate } from './TaskDueDate';
 import { TaskImage } from './TaskImage';
@@ -21,7 +23,7 @@ class _TaskDetails extends Component {
         task: null,
         group: null,
         toggleTaskLabel: false,
-        isDate:false
+        isDate: false
     }
 
     componentDidMount() {
@@ -100,14 +102,18 @@ class _TaskDetails extends Component {
 
     }
     toggleDate = () => {
-        console.log('hi');
         this.setState({ isDate: !this.state.isDate })
+    }
+
+    toggleChecklist = () => {
+
     }
 
 
     render() {
         const { task, group, toggleTaskLabel } = this.state;
         if (!task) return <h1>Loading...</h1>
+        const { checklists } = this.state.task;
         const { board } = this.props;
         return (
             <section className="TaskDetails-modal">
@@ -129,19 +135,20 @@ class _TaskDetails extends Component {
                             {this.state.isDate && <TaskDueDate onChange={this.handleDateChange} task={task} dueDate={this.state.task.dueDate} updateTask={this.updateTask} />}
                             <CheckBox handleChange={this.handleChange} isChecked={this.state.task.isDone} updateTask={this.updateTask} task={task} />
                             <TaskDetailsDescription task={task} updateTask={this.updateTask} />
+                            {checklists && <ChecklistList checklists={checklists} task={task} updateTask={this.updateTask} />}
                             <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
-
                         </div>
 
                         <ul className="task-actions">
                             <li className="button-link" onClick={this.toggleTaskLabel}><MdLabelOutline />Labels</li>
                             <li className="button-link"><BsPerson />Memebrs</li>
                             <li className="button-link" onClick={this.toggleDate}><BiTimeFive />Due Date</li>
-                            <li className="button-link"><BsCheckBox />Checklist</li>
+                            <li className="button-link" onClick={this.toggleChecklist}><BsCheckBox />Checklist</li>
                             <li className="button-link"><ImAttachment />Image</li>
                             <li className="button-link"><BsArrowRightShort />Move</li>
                             <li className="button-link"><MdContentCopy />Copy</li>
                             <li className="button-link" onClick={this.removeTask}><BsTrash />Delete</li>
+                            <ChecklistAdd updateTask={this.updateTask} task={task} />
                         </ul>
 
                     </div>
@@ -164,5 +171,6 @@ const mapDispatchToProps = {
 }
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails)
+
 
 

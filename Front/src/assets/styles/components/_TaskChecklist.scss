@@ -1,0 +1,98 @@
+//  --- CHECKLIST MAIN --- \\
+.task-details-checklist-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    input {
+        background-color: inherit;
+        font-size: inherit;
+    }
+    button {
+        border-radius: 5px;
+    }
+}
+
+// --- CHECKLIST HEADER --- \\
+.checklist-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-weight: bold;
+    .checklist-title-container {
+        text-transform: capitalize;
+        text-decoration: underline;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+//  --- CHECKLIST TODOS --- \\
+.checklist-todos-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .checklist-todo-container {
+        display: grid;
+        grid-template-columns: 1fr 8fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 10px;
+        width: 100%;
+        margin-block-end: 7px;
+        input {
+            grid-column: 1;
+        }
+        div {
+            display: flex;
+            grid-column: 2;
+            text-align: start;
+            input {
+                width: 100%;
+            }
+            // margin-inline: 5px;
+        }
+        button {
+            grid-column: 3;
+        }
+    }
+    .checklist-todo-add-btn {
+        grid-column: 2;
+        width: fit-content;
+    }
+}
+
+.checklist-add-todo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    border-radius: 5px;
+    .checklist-add-todo-actions {
+        display: flex;
+        align-self: flex-start;
+        justify-content: space-evenly;
+    }
+}
+
+// --- CHECKLIST PROGRESS BAR --- \\
+.checklist-progress-bar-main {
+    display: flex;
+    width: 100%;
+    background-color: rgb(219, 219, 168);
+    border-radius: 2em;
+    margin-block: 10px;
+    height: 25px;
+    text-align: start;
+    font-size: 16px;
+    .checklist-progress-bar-secondery {
+        display: flex;
+        background-color: #5ba4cf;
+        border-radius: 2em;
+        color: rgb(95, 82, 64);
+        justify-content: center;
+        align-content: stretch;
+        align-items: center;
+        min-width: 5%;
+    }
+}
