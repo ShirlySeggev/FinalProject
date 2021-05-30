@@ -38,6 +38,7 @@
                     {
                         "id": "t101",
                         "title": "Eilat Todos",
+                        "isDone":false,
                         "checklists": [
                             {
                                 "id": "sdgs5g5",
