@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 import { utilService } from '../../services/util-service.js';
 import { updateBoard } from '../../store/actions/board.actions.js';
+// import { IoAdd } from 'react-icons/Io';
 
 
 class _TaskAdd extends Component {
@@ -60,11 +61,9 @@ class _TaskAdd extends Component {
     render() {
         const { title } = this.state.task;
         return (
-            <div className="taskAdd" >
-                <form onSubmit={this.onAddTask}>
-                    <input type="text" name="title" value={title} placeholder="+Add new task" autoComplete="off" onChange={this.handleChange} />
+                <form className="task-add group-layout" onSubmit={this.onAddTask}>
+                    <input type="text" name="title" value={title} placeholder="+ Add another card" autoComplete="off" onChange={this.handleChange} />
                 </form>
-            </div>
 
         )
     }

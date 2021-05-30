@@ -8,6 +8,11 @@ import { TaskDetailsDescription } from './TaskDetailsDescription';
 import { updateBoard } from '../../store/actions/board.actions';
 import { TaskDueDate } from './TaskDueDate';
 import { TaskImage } from './TaskImage';
+import { GrFormClose } from 'react-icons/gr';
+import { BiCreditCard, BiTimeFive } from 'react-icons/bi';
+import { MdLabelOutline, MdContentCopy } from 'react-icons/md';
+import { BsPerson, BsCheckBox, BsArrowRightShort, BsTrash } from 'react-icons/bs';
+import { ImAttachment } from 'react-icons/im';
 
 class _TaskDetails extends Component {
     state = {
@@ -69,46 +74,47 @@ class _TaskDetails extends Component {
         console.log(dueDate);
         // const { title, description, checklists } = this.state.task;
         return (
-            <Fragment>
+            <section className="TaskDetails-modal">
                 <Link to={`/board/${board._id}/`}>
                     <div className="outer-task-details-container">
                     </div>
                 </Link>
                 <section className="taskDetails-container" >
+                    <div className="taskDetails-header">
+                        <div className="header-icon">
+                            <BiCreditCard className="modalHeader icon" />
+                            <TaskDetailsHeader task={task} group={group} updateTask={this.updateTask} />
+                        </div>
+                        <Link to={`/board/${board._id}/`}><GrFormClose className="modalHeader icon" /></Link>
+                    </div>
+                    {/* {dueDate && <p>{dueDate}</p>}
+                    {isDone && <p>{dueDate}</p>} */}
+                    <div className="taskDetails-body">
+                        <div className="task-details">
+                            {/* <TaskDueDate task={task} updateTask={this.updateTask} /> */}
+                            {/* <CheckBox isChecked={this.state.isChecked} /> */}
+                            <TaskDetailsDescription task={task} updateTask={this.updateTask} />
+                            <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
+                            {/* <TaskImage task={task} /> */}
 
-                    <TaskDetailsHeader task={task} group={group} updateTask={this.updateTask} />
-                    {dueDate && <p>{dueDate}</p>}
-                    {isDone && <p>{dueDate}</p>}
-                    <TaskDetailsDescription task={task} updateTask={this.updateTask} />
+                            {/* TODO: ALL THE OPTINAL COMPONENTS (values of task)  */}
+                            {/* {checklists && <TaskDetailsChecklist/>} */}
+                        </div>
 
-                    {/* <TaskDetailsDescription /> */}
-                    {/* <div className="task-details-description">
-                        <h3>Description</h3>
-                        {description && !isEditDesc && <p onClick={this.setEditDesc}>{description}</p>}
-                        {(!description || isEditDesc) && <textarea
-                            onBlur={this.setEditDesc} onChange={this.handleChange}
-                            value={description} name="description" id="description" cols="30" rows="10"></textarea>}
-                        </div> */}
-
-
-                    <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
-                    {/* <div className="task-details-activity">
-                    </div> */}
-
-                    {/* TODO: ALL THE OPTINAL COMPONENTS (values of task)  */}
-                    {/* {checklists && <TaskDetailsChecklist/>} */}
-
-                    {/* GAL WORKING ON THIS CMPS */}
-                    {/* TODO: ADD TO TASK MENU*/}
-                    <ul className="task-actions">
-                        <li onClick={this.removeTask}>delete</li>
-                    </ul>
-                    <TaskDueDate task={task} updateTask={this.updateTask} />
-                    <CheckBox isChecked={this.state.isChecked} />
-                    <TaskImage task={task} />
+                        <ul className="task-actions">
+                            <li className="button-link"><MdLabelOutline />Labels</li>
+                            <li className="button-link"><BsPerson />Memebrs</li>
+                            <li className="button-link"><BiTimeFive />Due Date</li>
+                            <li className="button-link"><BsCheckBox />Checklist</li>
+                            <li className="button-link"><ImAttachment />Image</li>
+                            <li className="button-link"><BsArrowRightShort />Move</li>
+                            <li className="button-link"><MdContentCopy />Copy</li>
+                            <li className="button-link" onClick={this.removeTask}><BsTrash />Delete</li>
+                        </ul>
+                    </div>
 
                 </section>
-            </Fragment>
+            </section>
         )
 
     }

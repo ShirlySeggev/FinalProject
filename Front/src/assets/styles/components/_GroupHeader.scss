@@ -1,0 +1,31 @@
+.group-header {
+    display: flex;
+    justify-content: space-between;
+    
+    .modalHeader {
+        @include modalHeader;
+    }
+    .group-menu {
+        padding: 0 15px;
+        position: absolute;
+        z-index: 2;
+        width: 280px;
+        // height: 250px;
+        border-radius: 5px;
+        box-shadow: 0 0px 3px 2px #7e7d7d78;
+        background-color: #fff;
+    }
+    .menu-options {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    li:hover{
+        // background-color: rgba(0,0,0,.2);
+        color: $clr1;
+        border-radius: .0625rem;
+    }
+    li/* :not(:last-of-type) */ {
+        margin-bottom: 10px;
+    }
+}

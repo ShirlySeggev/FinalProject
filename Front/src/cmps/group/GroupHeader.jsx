@@ -1,7 +1,8 @@
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
 import EasyEdit, { Types } from 'react-easy-edit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faTrash, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { ModalHeader } from '../shared/ModalHeader';
 
 let modalPos;
 export class GroupHeader extends Component {
@@ -29,9 +30,9 @@ export class GroupHeader extends Component {
     // }
 
     toggleActions = (ev) => {
-        const {clientX,clientY} =ev
-        console.log('client X,Y', {clientX,clientY})
-        modalPos = {left: clientX+'px',top: clientY+'px'}
+        const { clientX, clientY } = ev
+        console.log('client X,Y', { clientX, clientY })
+        modalPos = { left: clientX + 'px', top: (clientY - 80) + 'px' }
         this.setState({ toggleActions: !this.state.toggleActions })
     }
 
@@ -56,7 +57,7 @@ export class GroupHeader extends Component {
 
         // if (!title) return <h1>Loading...</h1>
         return (
-            <section className="group-header" >
+            <section className="group-header group-layout" >
                 <EasyEdit
                     type={Types.TEXT}
                     value={title}
@@ -66,15 +67,15 @@ export class GroupHeader extends Component {
                 />
                 <div className="group-actions">
                     <span onClick={this.toggleActions}>{<FontAwesomeIcon icon={faEllipsisH} />}</span>
-                    {toggleActions && <Fragment>
-                        <ul style={{...modalPos}} className="menu-options">
-                            <li onClick={this.toggleActions}>X</li>
+                    {toggleActions && <div className="group-menu" >
+                        <ModalHeader title='List actions' closeModal={this.toggleActions} />
+                        <ul style={{ ...modalPos }} className="menu-options">
                             <li /* onClick={this.openToggle(BGC)} */>Change group background</li>
                             <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
-                            <li onClick={this.removeGroup}>{<FontAwesomeIcon icon={faTrash} />}</li>
+                            <li onClick={this.removeGroup}>Delete list</li>
                             <li /* onClick={this.openToggle(SORT)} */>Sort group by</li>
                         </ul>
-                    </Fragment>}
+                    </div>}
                 </div>
             </section >
         )

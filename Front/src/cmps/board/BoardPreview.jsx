@@ -32,14 +32,11 @@ export function BoardPreview({ board }) {
                         image={`https://robohash.org/${_id}?set=set2`}
                         title={title}
                     />
-                    <CardContent>
+                    {/* <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             {title}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {title}
-                        </Typography>
-                    </CardContent>
+                    </CardContent> */}
                 </CardActionArea>
             </Link>
             

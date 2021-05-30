@@ -32,7 +32,7 @@ export class TaskDetailsHeader extends Component {
                     saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
                     cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
                 />
-                <p>in list {group.title}</p>
+                <p className="taskDetails-header-subtext">in list <span>{group.title}</span></p>
             </header>
         )
     }

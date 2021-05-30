@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { boardService } from '../../services/board.service.js';
+import { ModalHeader } from '../shared/ModalHeader.jsx';
 
 
 export class BoardMenu extends Component {
@@ -68,15 +69,18 @@ export class BoardMenu extends Component {
     }
 
 
+
     render() {
         const { openToggle } = this.state;
+        const { toggleBoardMenu } = this.props;
         return (
-            <section className="trelloApp-menu" >
-                <ul>
+            <section className="wePlanApp-menu open" >
+                <ModalHeader title='About this board' closeModal={toggleBoardMenu} />
+                <ul className="menu-options">
                     <li /* onClick={this.openToggle(NAME)} */>Change name</li>
                     <li /* onClick={this.openToggle(BGC)} */>Change board background</li>
                     <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
-                    <li /* onClick={this.openToggle(DELETE)} */>Delete Board</li>
+                    <li /* onClick={this.openToggle(DELETE)} */>Delete board</li>
                     <li /* onClick={this.openDashboard} */>Board dashboard</li>
                 </ul>
                 {openToggle && <this.DynamicCmp /* note={note} */ />}

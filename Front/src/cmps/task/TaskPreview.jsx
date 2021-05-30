@@ -9,7 +9,7 @@ import { CheckBox } from './CheckBox';
 
 class _TaskPreview extends Component {
     state = {
-        isChecked:false
+        isChecked: false
     }
 
     componentDidMount() {
@@ -18,14 +18,17 @@ class _TaskPreview extends Component {
     render() {
         const { setActiveTask, task, board, groupId } = this.props
         const { id, title } = task;
-        return (
-            <section className="task-preview" >
-                <Link to={`/board/${board._id}/group/${groupId}/task/${id}`}>
-                {/* {this.state.isChecked===true && <h1>{title+' Is done'}</h1>} */}
-                    <h1>{title}</h1>
-                </Link>
-                {/* {this.state.isChecked===true && <h1>DONE</h1>} */}
-            </section>
+        return (<Link className="task-preview" to={`/board/${board._id}/group/${groupId}/task/${id}`}>
+            <div className="task-preview-info">
+                <div className="task-preview-labels"></div>
+                <span className="task-preview-title">{title}</span>
+                <div className="badges"></div>
+                <div className="task-preview-members"></div>
+            </div>
+
+            {/* {this.state.isChecked===true && <h1>{title+' Is done'}</h1>} */}
+            {/* {this.state.isChecked===true && <h1>DONE</h1>} */}
+        </Link>
         )
 
     }

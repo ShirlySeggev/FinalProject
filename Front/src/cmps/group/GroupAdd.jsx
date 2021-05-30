@@ -50,7 +50,7 @@ export class GroupAdd extends Component {
         return (
             <div className="groupAdd">
                 <form onSubmit={this.onAddGroup}>
-                    <input type="text" name="title" value={title} placeholder="+Add new group" autoComplete="off" onChange={this.handleChange} />
+                    <input type="text" name="title" value={title} placeholder="+ Add another list" autoComplete="off" onChange={this.handleChange} />
                 </form>
             </div>
         )

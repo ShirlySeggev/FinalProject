@@ -1,0 +1,24 @@
+.groupList-container {
+    display: flex;
+    align-items: start;
+    max-width: 97vw;
+    // height: calc(97vh-80px);
+    height: 85vh;
+    overflow: auto;
+    margin-inline: 10px;
+    
+    .group-preview {
+        background-color:#ebecf0;
+        border-radius:3px;
+        max-height: 100%;
+        margin-inline-end: 10px;
+    }
+ 
+    .group-layout{
+        margin: 4px;
+        padding: 0 4px;
+    }
+    .task-preview,.task-add {
+        width: 256px;
+    }
+}

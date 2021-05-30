@@ -1,0 +1,31 @@
+.wePlanApp-menu {
+    position: fixed;
+    bottom: 0;
+    top: 90px;
+    width: 300px;
+    background-color: $clr2;
+    right: -100%;
+    z-index: 2;
+    transition: right 0.5s;
+    padding: 0 15px;
+    box-shadow: 0 0px 3px 2px #7e7d7d78;
+    &.open {
+        right: 0px;
+    }
+    .modalHeader {
+        @include modalHeader;
+    }
+    .menu-options {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    li:hover{
+        // background-color: rgba(0,0,0,.2);
+        color: $clr1;
+        border-radius: .0625rem;
+    }
+    li:not(:last-of-type) {
+        margin-bottom: 10px;
+    }
+}

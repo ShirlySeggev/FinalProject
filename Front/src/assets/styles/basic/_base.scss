@@ -10,18 +10,24 @@
 html {
     font-family: Arial, Helvetica, sans-serif;
     font-size: rem(18px);
-    color: $clr2;
+    color: $clr0;
     line-height: 1.6;
 }
 
 body {
     margin: 0;
-    background-color: $clr6;
+    background-color: $clr5;
 }
 
 img {
     width: 100%;
 }
+
+input {
+    margin: 0;
+}
+
+
 
 h1,
 h2,
@@ -41,6 +47,7 @@ p {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 ul {

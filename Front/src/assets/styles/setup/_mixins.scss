@@ -1,3 +1,25 @@
+/* Modal mixins */
+@mixin modalHeader {
+    display: flex;
+    align-items: center;
+
+    &.title {
+        border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+        flex-grow: 1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 1em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .icon {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
 /* Breakpoint mixins */
 
 @mixin for-mobile-layout {
@@ -29,30 +51,30 @@
     position: relative;
     overflow: hidden;
     &::before {
-      display: block;
-      content: "";
-      width: 100%;
-      padding-top: ($height / $width) * 100%;
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
     }
     > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
-  
+
     > img {
-      height: 100%;
-      object-fit: cover;
+        height: 100%;
+        object-fit: cover;
     }
-  }
-  
-  // Mixin for removing hover efects on iphone screen
-  @mixin hover-supported {    
+}
+
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
     @media not all and (pointer: coarse) {
         &:hover {
             @content;
         }
     }
-  }
+}
