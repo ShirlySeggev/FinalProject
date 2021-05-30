@@ -21,11 +21,11 @@ class _TaskDetails extends Component {
         task: null,
         group: null,
         toggleTaskLabel: false,
+        isDate:false
     }
 
     componentDidMount() {
         this.loadTask();
-        console.log(this.state.isChecked);
     }
 
     async loadTask() {
@@ -78,13 +78,37 @@ class _TaskDetails extends Component {
     }
 
 
+    handleChange = ({ target }) => {
+        const { value, name, checked, type } = target
+        let computedValue = type === 'checkbox' ? checked : value
+        this.setState(prevState => (
+            { ...prevState, task: { ...prevState.task, [name]: computedValue } }
+        ), () => {
+            this.updateTask(this.state.task)
+        })
+    }
+    handleDateChange = ({ target }) => {
+        const { value, name } = target
+        var task = { ...this.state }
+        task[name] = value;
+        console.log(task);
+        this.setState(prevState => (
+            { ...prevState, task: { ...prevState.task, [name]: value } }
+        ), () => {
+            this.updateTask(this.state.task)
+        })
+
+    }
+    toggleDate = () => {
+        console.log('hi');
+        this.setState({ isDate: !this.state.isDate })
+    }
+
+
     render() {
         const { task, group, toggleTaskLabel } = this.state;
         if (!task) return <h1>Loading...</h1>
         const { board } = this.props;
-        const { dueDate, isDone } = this.state.task;
-        console.log(dueDate);
-        // const { title, description, checklists } = this.state.task;
         return (
             <section className="TaskDetails-modal">
                 <Link to={`/board/${board._id}/`}>
@@ -95,37 +119,32 @@ class _TaskDetails extends Component {
                     <div className="taskDetails-header">
                         <div className="header-icon">
                             <BiCreditCard className="modalHeader icon" />
-                            <TaskDetailsHeader task={task} group={group} updateTask={this.updateTask} />
+                            <TaskDetailsHeader task={this.state.task} group={group} updateTask={this.updateTask} />
                         </div>
                         <Link to={`/board/${board._id}/`}><GrFormClose className="modalHeader icon" /></Link>
                     </div>
-                    {/* {dueDate && <p>{dueDate}</p>}
-                    {isDone && <p>{dueDate}</p>} */}
                     <div className="taskDetails-body">
                         <div className="task-details">
-                            <TaskDueDate task={task} updateTask={this.updateTask} />
                             {toggleTaskLabel && <TaskLabel task={task} /* modalPos={modalPos} */ updateTask={this.updateTask} toggleTaskLabel={this.toggleTaskLabel} />}
-                            {/* <CheckBox isChecked={this.state.isChecked} /> */}
+                            {this.state.isDate && <TaskDueDate onChange={this.handleDateChange} task={task} dueDate={this.state.task.dueDate} updateTask={this.updateTask} />}
+                            <CheckBox handleChange={this.handleChange} isChecked={this.state.task.isDone} updateTask={this.updateTask} task={task} />
                             <TaskDetailsDescription task={task} updateTask={this.updateTask} />
                             <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
-                            {/* <TaskImage task={task} /> */}
 
-                            {/* TODO: ALL THE OPTINAL COMPONENTS (values of task)  */}
-                            {/* {checklists && <TaskDetailsChecklist/>} */}
                         </div>
 
                         <ul className="task-actions">
                             <li className="button-link" onClick={this.toggleTaskLabel}><MdLabelOutline />Labels</li>
                             <li className="button-link"><BsPerson />Memebrs</li>
-                            <li className="button-link"><BiTimeFive />Due Date</li>
+                            <li className="button-link" onClick={this.toggleDate}><BiTimeFive />Due Date</li>
                             <li className="button-link"><BsCheckBox />Checklist</li>
                             <li className="button-link"><ImAttachment />Image</li>
                             <li className="button-link"><BsArrowRightShort />Move</li>
                             <li className="button-link"><MdContentCopy />Copy</li>
                             <li className="button-link" onClick={this.removeTask}><BsTrash />Delete</li>
                         </ul>
-                    </div>
 
+                    </div>
                 </section>
             </section>
         )

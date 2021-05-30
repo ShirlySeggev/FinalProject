@@ -1,11 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import Checkbox from '@material-ui/core/Checkbox'
-import { TaskDetails } from './TaskDetails';
-import { CheckBox } from './CheckBox';
-
-
+import { BsCheckBox,BsClock } from 'react-icons/bs';
 
 class _TaskPreview extends Component {
     state = {
@@ -17,17 +13,17 @@ class _TaskPreview extends Component {
 
     render() {
         const { setActiveTask, task, board, groupId } = this.props
-        const { id, title } = task;
+        const { id, title,dueDate } = task;
         return (<Link className="task-preview" to={`/board/${board._id}/group/${groupId}/task/${id}`}>
             <div className="task-preview-info">
                 <div className="task-preview-labels"></div>
                 <span className="task-preview-title">{title}</span>
-                <div className="badges"></div>
+                {task.isDone&&
+                <div className="badges"> <BsCheckBox/> </div>}
+                {task.dueDate&&
+                <div className="badges"> <BsClock/> {dueDate}</div>}
                 <div className="task-preview-members"></div>
             </div>
-
-            {/* {this.state.isChecked===true && <h1>{title+' Is done'}</h1>} */}
-            {/* {this.state.isChecked===true && <h1>DONE</h1>} */}
         </Link>
         )
 
