@@ -1,23 +1,16 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { loadBoards, addBoard } from '../store/actions/board.actions.js';
+import { SectionTitle } from '../cmps/task/TaskDetails/SectionTitle';
+import { BsCardChecklist } from 'react-icons/bs';
 import { BoardList } from '../cmps/board/BoardList';
-
-
-
+import { utilService } from '../services/util-service.js';
 
 
 class _Boards extends Component {
     state = {
-        isAddBoard: false,
-        newBoard: {
-            title: null,
-            groups: [],
-            activities: [],
-            labels: [],
-            members: [],
-            style: {},
-            createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
+        board: {
+            title: '',
         }
     }
 
@@ -33,60 +26,66 @@ class _Boards extends Component {
         }
     }
 
-    toggleAddBoard = () => {
-        const { isAddBoard } = this.state
-        if (isAddBoard) {
-            this.setState({
-                isAddBoard: false,
-                newBoard: {
-                    title: null,
-                    groups: [],
-                    activities: [],
-                    labels: [],
-                    members: [],
-                    style: {},
-                    createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
-                }
-            })
-        } else this.setState({ isAddBoard: true })
+
+    handleChange = (ev) => {
+        var board = { ...this.state.board };
+        var { name, value } = ev.target;
+        board[name] = value;
+        this.setState({ board })
     }
 
-    handleChange = ({ target }) => {
-        const field = target.name;
-        const value = (target.type === 'number') ? +target.value : target.value;
-        this.setState(prevState => ({
-            ...prevState,
-            newBoard: {
-                ...prevState.newBoard,
-                [field]: value,
+    onAddBoard = (ev) => {
+        ev.preventDefault();
+        const boardTitle = this.state.board.title;
+        this.clearBoard(); //doesnt clean the board!
+        const board = this.createBoard(boardTitle);
+        const { addBoard } = this.props;
+        addBoard(board);
+        this.loadBoards();
+        // this.props.history.push(`/board/${board._id}`);
+    }
+    clearBoard = () => {
+        this.setState({
+            board: {
+                title: '',
             }
-        }))
+        })
     }
 
-    onAddBoard = () => {
-        const { newBoard } = this.state
-        const { addBoard } = this.props
-        addBoard(newBoard)
-        this.toggleAddBoard()
+    createBoard = (title) => {
+        const board = {
+            _id: utilService.makeId(),
+            title,
+            createdAt: Date.now(),
+            createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
+            style: {
+                "bgc": "#00AECC"
+            },
+            labels: [],
+            members: [{ _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" }],
+            groups: [],
+            activities: [],
+        }
+        return board;
     }
 
 
     render() {
-        const { boards, addBoard } = this.props;
-        const { isAddBoard } = this.state
+        const { boards } = this.props;
         if (!boards) return <h1>Loading...</h1>
         return (
             <section className="boardApp-main">
-                <h4 className="boards-boards-title">Boards</h4>
+                <span className="boardApp-header">
+                    <SectionTitle Icon={BsCardChecklist}> Boards</SectionTitle>
+                </span>
+                {/* <h4 className="boards-boards-title">Boards</h4> */}
+
                 <div className="boards-container">
-                    {isAddBoard && <div className="taskAdd" >
-                        <form onSubmit={this.onAddTask}>
-                            <input type="text" name="title" id="title" placeholder="+Add new board" autoComplete="off" onChange={this.handleChange} />
-                            <button onClick={this.onAddBoard}>Add</button>
-                            <button onClick={this.toggleAddBoard}>Cancel</button>
+                    <div className="boardAdd">
+                        <form onSubmit={this.onAddBoard}>
+                            <input className="boardAdd-input" type="text" name="title" id="title" placeholder="+ Add new board" autoComplete="off" onChange={this.handleChange} />
                         </form>
-                    </div>}
-                    {!isAddBoard && <div className="add-new-board-closed" onClick={this.toggleAddBoard}>+Add a new board</div>}
+                    </div>
                     <BoardList boards={boards} />
                 </div>
             </section >

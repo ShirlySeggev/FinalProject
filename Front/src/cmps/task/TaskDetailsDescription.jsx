@@ -6,7 +6,7 @@ import { SectionTitle } from './TaskDetails/SectionTitle';
 
 export class TaskDetailsDescription extends Component {
     state = {
-        description: null,
+        description: '',
         toggleUpdate: false
     }
 

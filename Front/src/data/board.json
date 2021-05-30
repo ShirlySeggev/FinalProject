@@ -9,7 +9,7 @@
             "imgUrl": "http://some-img"
         },
         "style": {
-            "bgc": "../src/assets/img/bcg.png"
+            "bgc": "#0079BF"
         },
         "labels": [
             {
@@ -378,7 +378,7 @@
         "activities": [
             {
                 "id": "a101",
-                "txt": "Gal Meir Nelken has changed title [Negev trip] to [Mactesh Ramon]",
+                "txt": "has changed title [Negev trip] to [Mactesh Ramon]",
                 "createdAt": 1618915695000,
                 "byMember": {
                     "_id": "u106",
@@ -392,7 +392,7 @@
             },
             {
                 "id": "a102",
-                "txt": "Gal Meir Nelken created new checklist ",
+                "txt": "created new checklist ",
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u106",
@@ -406,11 +406,11 @@
             },
             {
                 "id": "a103",
-                "txt": "Abi Abambi has changed title",
-                "createdAt": 1618915695000,
+                "txt": "has changed title",
+                "createdAt": 1622380326000,
                 "byMember": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "fullname": "Shirly Seggev",
                     "imgUrl": "http://some-img"
                 },
                 "task": {
@@ -420,11 +420,11 @@
             },
             {
                 "id": "a104",
-                "txt": "Guest has changed description",
+                "txt": "has changed description",
                 "createdAt": 1554514,
                 "byMember": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "fullname": "Guest",
                     "imgUrl": "http://some-img"
                 },
                 "task": {
@@ -434,11 +434,11 @@
             },
             {
                 "id": "a105",
-                "txt": "Abi Abambi has changed title",
-                "createdAt": 15451514,
+                "txt": "has changed title",
+                "createdAt": 1622380326000,
                 "byMember": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "fullname": "Shirly Seggev",
                     "imgUrl": "http://some-img"
                 },
                 "task": {
@@ -448,11 +448,11 @@
             },
             {
                 "id": "a106",
-                "txt": "Abi Abambi has description",
-                "createdAt": 1618915695000,
+                "txt": "has description",
+                "createdAt": 1622380326000,
                 "byMember": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "fullname": "Shirly Seggev",
                     "imgUrl": "http://some-img"
                 },
                 "task": {
@@ -462,11 +462,11 @@
             },
             {
                 "id": "a107",
-                "txt": "Abi Abambi has changed background color",
+                "txt": "has changed background color",
                 "createdAt": 1618915695000,
                 "byMember": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "fullname": "Linoy Fakiro ",
                     "imgUrl": "http://some-img"
                 },
                 "task": {
@@ -476,11 +476,11 @@
             },
             {
                 "id": "a108",
-                "txt": "Abi Abambi has changed title",
-                "createdAt": 154514,
+                "txt": "has changed title",
+                "createdAt": 1615122726000,
                 "byMember": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "fullname": "Gal Nelken",
                     "imgUrl": "http://some-img"
                 },
                 "task": {
@@ -490,7 +490,7 @@
             },
             {
                 "id": "a109",
-                "txt": "Abi Abambi has changed title",
+                "txt": "has changed title",
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u101",
@@ -504,7 +504,7 @@
             },
             {
                 "id": "a110",
-                "txt": "Abi Abambi has changed title",
+                "txt": "has changed title",
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u101",
@@ -518,7 +518,7 @@
             },
             {
                 "id": "a111",
-                "txt": "Abi Abambi has changed title",
+                "txt": "has changed title",
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u101",
@@ -532,7 +532,7 @@
             },
             {
                 "id": "a112",
-                "txt": "Abi Abambi has changed description",
+                "txt": "has changed description",
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u101",
@@ -546,7 +546,7 @@
             },
             {
                 "id": "a113",
-                "txt": "Abi Abambi has removed checklist",
+                "txt": "has removed checklist",
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u101",
@@ -569,7 +569,9 @@
             "fullname": "Abi Abambi",
             "imgUrl": "http://some-img"
         },
-        "style": {},
+        "style": {
+            "bgc": "#B04632"
+        },
         "labels": [
             {
                 "id": "l101",
@@ -951,7 +953,9 @@
             "fullname": "Abi Abambi",
             "imgUrl": "http://some-img"
         },
-        "style": {},
+        "style": {
+            "bgc": "#519839"
+        },
         "labels": [
             {
                 "id": "l101",

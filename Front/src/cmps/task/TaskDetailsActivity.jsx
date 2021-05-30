@@ -83,7 +83,7 @@ export class TaskDetailsActivity extends Component {
                             <MemberAvatar member={activity.byMember} />
                             <div className="activity-description">
                                 <p ><span>{activity.byMember.fullname}</span> {activity.txt} to {activity.task.title}</p>
-                                <p>{formatDistance(activity.createdAt, Date.now())}</p>
+                                <p>{formatDistance(activity.createdAt, Date.now())} ago</p>
                             </div>
                             </div>
                         </div>

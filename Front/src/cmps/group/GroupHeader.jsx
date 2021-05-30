@@ -73,7 +73,7 @@ export class GroupHeader extends Component {
                             <li /* onClick={this.openToggle(BGC)} */>Change group background</li>
                             <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
                             <li onClick={this.removeGroup}>Delete list</li>
-                            <li /* onClick={this.openToggle(SORT)} */>Sort group by</li>
+                            <li /* onClick={this.openToggle(SORT)} */>Sort list by</li>
                         </ul>
                     </div>}
                 </div>

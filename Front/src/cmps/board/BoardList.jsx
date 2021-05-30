@@ -6,7 +6,7 @@ export function BoardList({ boards }) {
   return (
     <Fragment>
       {boards.map(board =>
-        <BoardPreview board={board} key={board._id}  />
+        <BoardPreview board={board} key={board._id} />
       )}
     </Fragment>
 

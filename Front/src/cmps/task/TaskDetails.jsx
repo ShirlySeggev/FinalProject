@@ -8,16 +8,19 @@ import { TaskDetailsDescription } from './TaskDetailsDescription';
 import { updateBoard } from '../../store/actions/board.actions';
 import { TaskDueDate } from './TaskDueDate';
 import { TaskImage } from './TaskImage';
+import { TaskLabel } from './TaskLabel';
 import { GrFormClose } from 'react-icons/gr';
 import { BiCreditCard, BiTimeFive } from 'react-icons/bi';
 import { MdLabelOutline, MdContentCopy } from 'react-icons/md';
 import { BsPerson, BsCheckBox, BsArrowRightShort, BsTrash } from 'react-icons/bs';
 import { ImAttachment } from 'react-icons/im';
 
+let modalPos;
 class _TaskDetails extends Component {
     state = {
         task: null,
         group: null,
+        toggleTaskLabel: false,
     }
 
     componentDidMount() {
@@ -67,9 +70,16 @@ class _TaskDetails extends Component {
         this.props.history.push(`/board/${boardId}`)
     }
 
+    toggleTaskLabel = (ev) => {
+        // const { clientX, clientY } = ev;
+        // console.log('client X,Y', { clientX, clientY })
+        // modalPos = { left: clientX + 'px', top: (clientY - 80) + 'px' }
+        this.setState({ toggleTaskLabel: !this.state.toggleTaskLabel })
+    }
+
 
     render() {
-        const { task, group } = this.state;
+        const { task, group, toggleTaskLabel } = this.state;
         if (!task) return <h1>Loading...</h1>
         const { board } = this.props;
         const { dueDate, isDone } = this.state.task;
@@ -94,6 +104,7 @@ class _TaskDetails extends Component {
                     <div className="taskDetails-body">
                         <div className="task-details">
                             <TaskDueDate task={task} updateTask={this.updateTask} />
+                            {toggleTaskLabel && <TaskLabel task={task} /* modalPos={modalPos} */ updateTask={this.updateTask} toggleTaskLabel={this.toggleTaskLabel} />}
                             {/* <CheckBox isChecked={this.state.isChecked} /> */}
                             <TaskDetailsDescription task={task} updateTask={this.updateTask} />
                             <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
@@ -104,7 +115,7 @@ class _TaskDetails extends Component {
                         </div>
 
                         <ul className="task-actions">
-                            <li className="button-link"><MdLabelOutline />Labels</li>
+                            <li className="button-link" onClick={this.toggleTaskLabel}><MdLabelOutline />Labels</li>
                             <li className="button-link"><BsPerson />Memebrs</li>
                             <li className="button-link"><BiTimeFive />Due Date</li>
                             <li className="button-link"><BsCheckBox />Checklist</li>

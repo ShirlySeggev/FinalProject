@@ -81,12 +81,12 @@ class _WePlanApp extends Component {
 
 
     render() {
-        const { board, activeTask } = this.props;
+        const { board } = this.props;
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
-            <section className="wePlanApp-main-content" /* style={{ backgroundImage: `url(${style.bgc})` }} */>
-                 <BoardHeader board={board} updateBoard={this.updateBoard} removeBoard={this.removeBoard} />
+            <section className="wePlanApp-main-content" /* style={{ backgroundColor: style.bgc }} */>
+                <BoardHeader board={board} updateBoard={this.updateBoard} removeBoard={this.removeBoard} />
                 <Switch>
                     <Route path='/board/:boardId/group/:groupId/task/:taskId' component={TaskDetails} />
                 </Switch>

@@ -30,7 +30,7 @@ export class BoardHeader extends Component {
                     {members.map(member => <MemberAvatar member={member} key={member._id} />)}
                 </div>
                 <div className="board-menu-btn btn" onClick={this.toggleBoardMenu}>
-                    <icon className="board-btn-icon"><BsThreeDots /></icon>
+                    <div className="board-btn-icon"><BsThreeDots /></div>
                     <span className="board-btn-txt">Show menu</span>
                 </div>
                 {toggleMenu && <BoardMenu {...this.props} toggleBoardMenu={this.toggleBoardMenu}/>}

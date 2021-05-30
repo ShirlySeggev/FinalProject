@@ -5,8 +5,11 @@
     box-shadow: 0 0px 3px 2px #7e7d7d78;
     margin-top: 20px;
     padding-inline: 20px;
+    .boardApp-header{
+        margin-top: 20px;
+        font-weight: bold;
+    }
 
- 
     .boards-container {
         display: grid;
         gap: 20px;
@@ -14,14 +17,13 @@
         // justify-items: center;
         border-radius: 2px;
         padding: 15px 0px;
-        & :hover {
-            transform: scale(1.025);
-            box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px #000033;
-        }
+    }
 
+    .boardAdd {
+        background-color: $clr4;
     }
     .single-board-preview,
-    .add-new-board-closed {
+    .boardAdd {
         height: 120px;
         text-decoration: none;
         cursor: pointer;
@@ -30,8 +32,18 @@
         align-items: center;
         justify-content: center;
         border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.089);
-        background-image: linear-gradient(rgb(150, 169, 194), rgb(222, 233, 238));
+        box-shadow: 0 0px 3px 2px #7e7d7d78;
+        // background-image: linear-gradient(rgb(150, 169, 194), rgb(222, 233, 238));
+        .boardAdd-input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+        &:hover {
+            transform: scale(1.025);
+            box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px #000033;
+        }
     }
 }
-
