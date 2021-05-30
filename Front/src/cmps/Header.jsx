@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../assets/img/construction.png';
+import logo from '../assets/img/wePlan.png';
 
 
 

@@ -12,10 +12,10 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        maxWidth: 95,
     },
     media: {
-        height: 140,
+        height: 40,
     },
 });
 
@@ -24,26 +24,13 @@ export function BoardPreview({ board }) {
     const classes = useStyles();
 
     return (
-        <Card className="board-preview">
-            <Link to={`/board/${_id}`}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={`https://robohash.org/${_id}?set=set2`}
-                        title={title}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {title}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
+        
+        <Link to={`/board/${_id}`}>
+                <div className="single-board-preview">
+            <h4>{title}</h4>
+            </div>
             </Link>
-            
-        </Card>
+        
     );
 
 }

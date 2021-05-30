@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import img from '../assets/img/wePlan.gif';
+import img from '../assets/img/book.gif';
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -114,7 +114,7 @@ const images = [
               <Typography
                 component="span"
                 variant="subtitle1"
-                color="inherit"
+                color="rgb(34,40,49)"
                 className={classes.imageTitle}
               >
                 {image.title}

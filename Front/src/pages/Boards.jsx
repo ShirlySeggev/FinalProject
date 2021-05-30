@@ -77,16 +77,23 @@ class _Boards extends Component {
         if (!boards) return <h1>Loading...</h1>
         return (
             <section className="boardApp-main">
-                <div className="main-header">
-                    <h1>BOARDS</h1>
-                </div>
+                {/* <div className="main-header">
+                </div> */}
                 <div className="boards-container">
-                    {isAddBoard && <div className="add-new-board-open">
+                    <h4 className="boards-boards-title">Check your boards</h4>
+                    {isAddBoard && <div className="taskAdd" >
+                                    <form onSubmit={this.onAddTask}>
+                                        <input type="text" name="title" id="title" placeholder="+Add new board" autoComplete="off" onChange={this.handleChange} />
+                                <button onClick={this.onAddBoard}>Add</button>
+                                <button onClick={this.toggleAddBoard}>Cancel</button>
+                                    </form>
+                                </div>}
+                    {/* {isAddBoard && <div className="add-new-board-open">
                         <label htmlFor="title">Board Title: <input type="text" name="title" id="title" onChange={this.handleChange} /></label>
-                        <button onClick={this.onAddBoard}>Add</button>
-                        <button onClick={this.toggleAddBoard}>Cancel</button>
-                    </div>}
-                    {!isAddBoard && <div className="add-new-board-closed" onClick={this.toggleAddBoard}>Add a new board</div>}
+                    </div>} */}
+
+
+                    {!isAddBoard && <div className="add-new-board-closed" onClick={this.toggleAddBoard}>+Add a new board</div>}
                     <BoardList boards={boards} />
                 </div>
             </section >
