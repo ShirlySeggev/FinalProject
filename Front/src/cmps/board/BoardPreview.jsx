@@ -5,7 +5,6 @@ import React from 'react';
 
 export function BoardPreview({ board }) {
     const { _id, title } = board;
-    const classes = useStyles();
 
     return (
         

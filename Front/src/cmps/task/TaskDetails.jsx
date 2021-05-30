@@ -58,11 +58,13 @@ class _TaskDetails extends Component {
         const taskId = this.state.task.id;
         const { id } = this.state.group;
         const { board } = this.props;
+        const boardId = board._Id;
         const groupIdx = board.groups.findIndex(group => group.id === id);
         const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
         const updatedBoard = { ...board };
         updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1)
         this.updateBoard(updatedBoard);
+        this.props.history.push(`/board/${boardId}`)
     }
 
 
@@ -91,7 +93,7 @@ class _TaskDetails extends Component {
                     {isDone && <p>{dueDate}</p>} */}
                     <div className="taskDetails-body">
                         <div className="task-details">
-                            {/* <TaskDueDate task={task} updateTask={this.updateTask} /> */}
+                            <TaskDueDate task={task} updateTask={this.updateTask} />
                             {/* <CheckBox isChecked={this.state.isChecked} /> */}
                             <TaskDetailsDescription task={task} updateTask={this.updateTask} />
                             <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />

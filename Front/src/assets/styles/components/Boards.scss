@@ -1,110 +1,37 @@
 .boardApp-main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #daf5f7;
-    height: 100vh;
-    
-}
-.single-board-preview{
-    width: 270px;
-    height: 120px;
-    text-decoration: none;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.089);
-    margin: 12px;
-    background-image: linear-gradient(rgb(150, 169, 194), rgb(222, 233, 238))
-}
-.add-new-board-open {
-    
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.089);
-    margin: 12px;
-    width: 270px;
-    height: 120px;
-    background-color: rgb(201, 209, 209);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    margin-inline: 10px;
+    box-shadow: 0 0px 3px 2px #7e7d7d78;
+    margin-top: 20px;
+    padding-inline: 20px;
 
-.boards-container {
-    border-radius: 15px;
-    margin-block-start: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items:flex-end;
-    text-align: center;
-    background-color: #fff;
-    padding: 25px;
-    top: 105px;
-    position: absolute;
-    width: 1300px;
-    
-    
+ 
+    .boards-container {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        // justify-items: center;
+        border-radius: 2px;
+        padding: 15px 0px;
+        & :hover {
+            transform: scale(1.025);
+            box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px #000033;
+        }
 
-}
-.boards-boards-container{
-    margin-top:330px;
-    // padding-left: 10px;
-    display: flex;
-    position: static;
-    left: 220px;
-    background-color: rgb(102, 16, 16);
-    
-}
-
-.boards-boards-title{
-    display: flex;
-    position: relative;
-    bottom: 310px;
-    padding-left: 10px;
-    
-}
-h4{
-    color:rgb(49, 45, 45)
-}
-
-.board-preview, .add-new-board-closed {
-    width: 200px;  
-    height: 300px;
-    border-radius: 10px;
-    margin-inline: 7px;
-    & :hover{
+    }
+    .single-board-preview,
+    .add-new-board-closed {
+        height: 120px;
+        text-decoration: none;
         cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.089);
+        background-image: linear-gradient(rgb(150, 169, 194), rgb(222, 233, 238));
     }
 }
 
-.add-new-board-open {
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50%;  
-    height: 50%;
-    z-index: 2;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.089);
-    
-
-}
-.add-new-board-closed {
-    width: 270px;
-    height: 120px;
-    text-decoration: none;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.089);
-    margin: 12px;
-    background-color: rgb(220, 232, 241);
-}
