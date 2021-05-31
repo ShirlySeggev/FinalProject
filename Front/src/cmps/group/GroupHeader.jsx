@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { ModalHeader } from '../shared/ModalHeader';
@@ -67,7 +68,7 @@ export class GroupHeader extends Component {
     // group.tasks.map(task=>{
     //     console.log(task);
     //    })
-    
+
     sortGroupList = () => {
         console.log('hi');
         const { group } = this.props

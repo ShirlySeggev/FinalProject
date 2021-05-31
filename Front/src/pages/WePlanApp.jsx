@@ -32,7 +32,6 @@ class _WePlanApp extends Component {
     }
 
     async updateBoard(board) {
-        console.log('on update', board);
         try {
             this.props.updateBoard(board);
         } catch (err) {
@@ -84,12 +83,12 @@ class _WePlanApp extends Component {
         if (!board) return <h1>Loading...</h1>
         const { title, groups, style } = this.props.board;
         return (
-            <section className="wePlanApp-main-content" /* style={{ backgroundColor: style.bgc }} */>
+            <section className="wePlanApp-main-content" style={{ backgroundColor: style.bgc }}>
                 <BoardHeader board={board} onUpdateBoard={this.onUpdateBoard} onRemoveBoard={this.onRemoveBoard} />
                 <Switch>
                     <Route path='/board/:boardId/group/:groupId/task/:taskId' component={TaskDetails} />
                 </Switch>
-                <GroupList groups={groups} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} />
+                <GroupList groups={groups} boardId={board._Id} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} />
             </section >
         )
     }

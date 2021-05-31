@@ -2,6 +2,7 @@ import { Component } from 'react';
 import MemberAvatar from '../shared/MemberAvatar';
 import { BoardMenu } from './BoardMenu.jsx';
 import { BsThreeDots } from 'react-icons/bs';
+import { withRouter } from 'react-router';
 
 export class BoardHeader extends Component {
     state = {
@@ -54,7 +55,7 @@ export class BoardHeader extends Component {
                     <div className="board-btn-icon"><BsThreeDots /></div>
                     <span className="board-btn-txt">Show menu</span>
                 </div>
-                {toggleMenu && <BoardMenu toggleBoardMenu={this.toggleBoardMenu} onRemoveBoard={this.props.onRemoveBoard} />}
+                {toggleMenu && <BoardMenu board={board} toggleBoardMenu={this.toggleBoardMenu} onRemoveBoard={this.props.onRemoveBoard} onUpdateBoard={this.props.onUpdateBoard}/>}
             </section >
         )
     }

@@ -1,90 +1,73 @@
 import { Component } from 'react';
 import { boardService } from '../../services/board.service.js';
 import { ModalHeader } from '../shared/ModalHeader.jsx';
+import { BoardBackground } from './BoardBackground.jsx';
+import { ActivityLog } from './ActivityLog.jsx';
 
 
 export class BoardMenu extends Component {
     state = {
-        openToggle: false,
-        // toggleUpdateBoardBcg: false,
-        // toggleAddMemberToBoard: false,
-        // toggleDeleteBoard: false,
+        toggleBoardBcg: false,
+        toggleRemoveBoard: false,
+        toggleActivity: false,
     }
 
     componentDidMount() {
     }
 
-    openToggle = (type) => {
-        this.setState({ openToggle: !this.state.openToggle });
-        switch (type) {
-            case 'NAME':
-                return
-            case 'BGC':
-                return
-            case 'MEMBER':
-                return
-            case 'DELETE':
-                return
-        }
+
+    toggleBoardBcg = () => {
+        this.setState({ toggleBoardBcg: !this.state.toggleBoardBcg })
     }
 
-    // DynamicCmp = (note) => {
-    //     switch (type) {
-    //         case 'NoteText':
-    //             return <NoteText note={note} />
-    //         case 'NoteImg':
-    //             return <NoteImg note={note} />
-    //         case 'NoteTodos':
-    //             return <NoteTodos note={note} />
-    //         case 'NoteVideo':
-    //             return <NoteVideo note={note} />
-    //         case 'NoteAudio':
-    //             return <NoteAudio note={note} />
-    //         default:
-    //             return console.log('no note type');
-    //     }
-    // }
-
-    updateBoardName = (title) => {
-        const { board, updateBoard } = { ...this.props }
-        // board.title = title
-        // updateBoard(board)
+    toggleRemoveBoard = () => {
+        this.setState({ toggleRemoveBoard: !this.state.toggleRemoveBoard })
+    }
+    toggleActivity = () => {
+        this.setState({ toggleActivity: !this.state.toggleActivity })
     }
 
-    updateBoardBgc = (bgc) => {
-        const { board, updateBoard } = { ...this.props }
-        // board.style.bgc = bgc
-        // updateBoard(board)
+
+    onRemove = () => {
+        console.log('here');
+        const { board, onRemoveBoard } = this.props;
+        onRemoveBoard(board._id);
+        // this.props.history.push('/board');
     }
 
-    addMemberToBoard = (member) => {
-        const { board, updateBoard } = { ...this.props }
-        // board.members.push(member)
-        // updateBoard(board)
+    onUpdateBgc = (newStyle) => {
+        console.log('here');
+        const { board, onUpdateBoard } = this.props;
+        const updatedBoard = { ...board };
+        updatedBoard.style = newStyle;
+        onUpdateBoard(updatedBoard);
     }
-
-    deleteBoard = () => {
-        const { board, removeBoard } = { ...this.props }
-        // removeBoard(board._id)
-    }
-
 
 
     render() {
-        const { openToggle } = this.state;
+        const { toggleBoardBcg, toggleRemoveBoard, toggleActivity } = this.state;
         const { toggleBoardMenu } = this.props;
+        const { activities } = this.props.board;
         return (
             <section className="wePlanApp-menu open" >
                 <ModalHeader title='About this board' closeModal={toggleBoardMenu} />
                 <ul className="menu-options">
-                    <li /* onClick={this.openToggle(NAME)} */>Change name</li>
-                    <li /* onClick={this.openToggle(BGC)} */>Change board background</li>
+                    <li onClick={this.toggleBoardBcg}>Change board background</li>
+                    {toggleBoardBcg && <BoardBackground onUpdateBgc={this.onUpdateBgc} />}
                     <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
-                    <li /* onClick={this.openToggle(DELETE)} */>Delete board</li>
-                    <li /* onClick={this.openDashboard} */>Activity menu</li>
+                    <li onClick={this.toggleRemoveBoard}>Delete board</li>
+                    {toggleRemoveBoard &&
+                        <div>
+                            <p>Are you shure?</p>
+                            <button onClick={this.onRemove}>Yes, delete board</button>
+                            <button onClick={this.toggleRemoveBoard}>No</button>
+                        </div>
+                    }
+                    <li onClick={this.toggleActivity}>Activity menu</li>
+                    {toggleActivity && <ActivityLog activities={activities} />}
                     <li /* onClick={this.openDashboard} */>Board dashboard</li>
                 </ul>
-                {openToggle && <this.DynamicCmp /* note={note} */ />}
+                {/* {openToggle &&  />} */}
 
             </section >
         )
