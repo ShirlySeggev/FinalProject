@@ -29,7 +29,7 @@ export class GroupHeader extends Component {
         group[name] = value;
         this.setState({ group })
     }
-
+    
     editGroupName = (ev) => {
         ev.preventDefault();
         const { group, updateGroup } = this.props;
@@ -37,7 +37,7 @@ export class GroupHeader extends Component {
         copyGroup.title = this.state.group.title;
         updateGroup(copyGroup);
     }
-
+    
     changeGroupBgc = (bgcColor) => {
         console.log(bgcColor);
         const { group, updateGroup } = this.props;
@@ -45,6 +45,13 @@ export class GroupHeader extends Component {
         copyGroup.style.bgc = bgcColor;
         updateGroup(copyGroup);
     }
+    sortGroupList = () => {
+        const { group, updateGroup } = this.props;
+const sortedTasks = group.tasks.sort((task1,task2)=>{
+    return task1.title.localeCompare(task2.title)
+}) 
+updateGroup(sortedTasks) 
+}  
 
     toggleColor = () => {
         this.setState({ toggleBgc: !this.state.toggleBgc })
@@ -64,19 +71,12 @@ export class GroupHeader extends Component {
         const { group, removeGroup } = this.props;
         removeGroup(group.id);
     }
-    // group.tasks.map(task=>{
-    //     console.log(task);
-    //    })
     
-    sortGroupList = () => {
-        console.log('hi');
-        const { group } = this.props
-        const sorted = group.tasks.sort()
-        console.log(sorted);
+    
 
 
-        // updateGroup(copyGroup)
-    }
+      
+    
 
 
     render() {

@@ -15,12 +15,12 @@ export class TaskImg extends React.Component {
         this.setState({
             pictures: this.state.pictures.concat(picture),
         });
-        //console.log(picture);
-        //console.log(this.props.task);
+        console.log(picture);
+        // console.log(this.props.task);
         //this.state.pictures.push(picture)
         //console.log(this.state.pictures);
-        task.img = picture;
-        this.props.updateTask(task)
+        // task.img = picture;
+        // this.props.updateTask(task)
     }
 
  

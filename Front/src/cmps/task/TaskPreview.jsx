@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { BsCheckBox, BsClock } from 'react-icons/bs';
+import { BsCheckBox, BsCalendar } from 'react-icons/bs';
 import { TaskLabelPreview } from './TaskDetails/TaskLabelPreview';
 
 class _TaskPreview extends Component {
     state = {
-        isChecked: false
+        isChecked: false,
     }
 
     componentDidMount() {
@@ -15,7 +15,7 @@ class _TaskPreview extends Component {
     render() {
         const { task, board, groupId } = this.props;
         const { id, title, dueDate, labelIds } = task;
-
+        let date = new Intl.DateTimeFormat('he-IL', { day: '2-digit',month: '2-digit', }).format(dueDate)
         return (
             <div className="task-preview">
                 {labelIds && <div className="taskDetails-labels" >
@@ -27,7 +27,7 @@ class _TaskPreview extends Component {
                     {task.isDone &&
                         <div className="badges"> <BsCheckBox /> </div>}
                     {task.dueDate &&
-                        <div className="badges"> <BsClock /> {dueDate}</div>}
+                        <div className="badges"> <BsCalendar /> {date}</div>}
                     <div className="task-preview-members"></div>
                 </Link>
             </div>
