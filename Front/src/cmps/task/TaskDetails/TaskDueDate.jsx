@@ -1,6 +1,5 @@
 
 import { Component } from 'react';
-import DatePicker from 'react-date-picker';
 import React from 'react';
 
 

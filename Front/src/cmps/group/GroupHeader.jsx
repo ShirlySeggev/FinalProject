@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { ModalHeader } from '../shared/ModalHeader';
 import { GroupHeaderBgc } from './GroupHeaderBgc';
-import { GroupSort } from './GroupSort';
 
 let modalPos;
 export class GroupHeader extends Component {
@@ -46,6 +45,13 @@ export class GroupHeader extends Component {
         copyGroup.style.bgc = bgcColor;
         updateGroup(copyGroup);
     }
+    sortGroupList = () => {
+        const { group, updateGroup } = this.props;
+        const sortedTasks = group.tasks.sort((task1, task2) => {
+            return task1.title.localeCompare(task2.title)
+        })
+        updateGroup(sortedTasks)
+    }
 
     toggleColor = () => {
         this.setState({ toggleBgc: !this.state.toggleBgc })
@@ -65,20 +71,6 @@ export class GroupHeader extends Component {
         const { group, removeGroup } = this.props;
         removeGroup(group.id);
     }
-    // group.tasks.map(task=>{
-    //     console.log(task);
-    //    })
-
-    sortGroupList = () => {
-        console.log('hi');
-        const { group } = this.props
-        const sorted = group.tasks.sort()
-        console.log(sorted);
-
-
-        // updateGroup(copyGroup)
-    }
-
 
     render() {
         const { title } = this.state.group;
@@ -98,7 +90,6 @@ export class GroupHeader extends Component {
                         <ul style={{ ...modalPos }} className="menu-options">
                             <li onClick={this.toggleColor} >Change group background</li>
                             {toggleBgc && <GroupHeaderBgc changeGroupBgc={this.changeGroupBgc} />}
-                            <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
                             <li onClick={this.removeGroup}>Delete list</li>
                             <li onClick={this.sortGroupList}>Sort list by name</li>
 

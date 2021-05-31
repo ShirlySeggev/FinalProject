@@ -1,27 +1,26 @@
 import { Component } from "react";
 import { utilService } from '../../../services/util-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { TextField } from '@material-ui/core';
+import {  faTimes } from '@fortawesome/free-solid-svg-icons';
+import { ModalHeader } from "../../shared/ModalHeader";
 
 export class ChecklistAdd extends Component {
     state = {
         title: '',
-        isOpen: false
     }
 
-    toggleAddChecklist = () => {
-        this.setState({ isOpen: !this.state.isOpen })
-    }
+
 
     onAddChecklist = () => {
+
         const { task, updateTask } = this.props
         const { title } = this.state
+        if (!title) return
         const newChecklist = this.createNewChecklist(title)
         if (task.checklists) task.checklists.push(newChecklist)
         else task.checklists = [newChecklist]
         updateTask(task)
-        this.toggleAddChecklist()
+        this.props.toggleAddCheckList()
     }
 
     onEnter = (ev) => {
@@ -50,22 +49,15 @@ export class ChecklistAdd extends Component {
 
 
     render() {
-        const { title, isOpen } = this.state
-        if (!isOpen) return <div onClick={this.toggleAddChecklist}>
-            {<FontAwesomeIcon icon={faCheckSquare} />}
-            Checklist
-            </div>
-
+        const { toggleAddCheckList } = this.props
         return (
-            <div className="checklist-add-container">
-                <TextField id="title" name="title" label="Title" variant="filled" placeholder="Write a comment..."
+            <div className="checklist-new-container">
+                <ModalHeader title='Add checklist' closeModal={toggleAddCheckList} />
+                <input name="title" label="Title" placeholder="Checklist Header..."
                     onChange={this.handleChange}
                     onKeyDown={this.onEnter}>
-                </TextField>
-                <div className="checklist-add-actions">
-                <button onClick={this.onAddChecklist}>Add</button>
-                <button onClick={this.toggleAddChecklist}>{<FontAwesomeIcon icon={faTimes} />}</button>
-                </div>
+                </input>
+                <button className="secondary-btn" onClick={this.onAddChecklist}>Add</button>
             </div>
         )
     }

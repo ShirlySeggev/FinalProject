@@ -5,35 +5,21 @@ import { faTimes, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 export class ChecklistTodoPreview extends Component {
-    state = {
-        todo: null
-    }
-
-    componentDidMount() {
-        this.loadTodos()
-    }
-    
-    loadTodos = ()=> {
-        this.setState({ todo: this.props.todo })
-    }
 
     onUpdateTodo = (title) => {
-        const { todo } = this.state
-        this.setState({ todo: { ...todo, title } })
-        this.props.updateTodo(todo)
+        const { todo } = this.props
+        this.props.updateTodo( ...todo, title)
     }
 
-    toggleIsDone = () => {
-        const { todo } = this.state
-        this.setState({ todo: { ...todo, isDone: !todo.isDone } }, () => {
-            this.props.updateTodo(this.state.todo)
-        })
+    toggleIsDone = ({target}) => {
+        const { todo } = this.props
+        this.props.updateTodo({...todo, isDone: target.checked})
     }
 
     render() {
-        if (!this.state.todo) return <h3>Loading...</h3>
+        if (!this.props.todo) return <h3>Loading...</h3>
         const { removeTodo } = this.props
-        const { title, isDone, id } = this.state.todo
+        const { title, isDone, id } = this.props.todo
         return (
 
             <li className="checklist-todo-container">
@@ -47,7 +33,7 @@ export class ChecklistTodoPreview extends Component {
                         onSave={this.onUpdateTodo}
                         onBlur={this.onUpdateTodo} />
                 </div>
-                <button onClick={() => removeTodo(id)}>{<FontAwesomeIcon icon={faTrash} />}</button>
+                <button className="secondary-btn" onClick={() => removeTodo(id)}>{<FontAwesomeIcon icon={faTrash} />}</button>
             </li>
         )
     }
