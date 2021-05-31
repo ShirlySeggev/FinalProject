@@ -46,8 +46,8 @@ export class GroupHeader extends Component {
         updateGroup(copyGroup);
     }
 
-    toggleColor = (ev) => {
-        this.setState({ isBgc: !this.state.isBgc })
+    toggleColor = () => {
+        this.setState({ toggleBgc: !this.state.toggleBgc })
     }
 
     toggleActions = (ev) => {
@@ -67,6 +67,7 @@ export class GroupHeader extends Component {
     // group.tasks.map(task=>{
     //     console.log(task);
     //    })
+    
     sortGroupList = () => {
         console.log('hi');
         const { group } = this.props
@@ -79,9 +80,9 @@ export class GroupHeader extends Component {
 
 
     render() {
-        const { group } = this.props
-        const { title, style } = this.props.group;
-        const { toggleActions } = this.state;
+        const { title } = this.state.group;
+        const { style } = this.props.group;
+        const { toggleActions, toggleBgc } = this.state;
 
         // if (!title) return <h1>Loading...</h1>
         return (
@@ -95,7 +96,7 @@ export class GroupHeader extends Component {
                         <ModalHeader title='List actions' closeModal={this.toggleActions} />
                         <ul style={{ ...modalPos }} className="menu-options">
                             <li onClick={this.toggleColor} >Change group background</li>
-                            {this.state.toggleBgc && <GroupHeaderBgc changeGroupBgc={this.changeGroupBgc} />}
+                            {toggleBgc && <GroupHeaderBgc changeGroupBgc={this.changeGroupBgc} />}
                             <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
                             <li onClick={this.removeGroup}>Delete list</li>
                             <li onClick={this.sortGroupList}>Sort list by name</li>

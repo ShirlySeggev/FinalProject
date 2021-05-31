@@ -55,11 +55,11 @@ class _WePlanApp extends Component {
         this.removeBoard(boardId);
     }
 
-    updateGroup = (group) => {
+    updateGroup = (newGroup) => {
         const { board } = this.props;
-        const groupIdx = board.groups.findIndex(group => group.id === group.id);
+        const groupIdx = board.groups.findIndex(group => group.id === newGroup.id);
         const updatedBoard = { ...board };
-        updatedBoard.groups[groupIdx] = group;
+        updatedBoard.groups[groupIdx] = newGroup;
         this.updateBoard(updatedBoard);
     }
 
