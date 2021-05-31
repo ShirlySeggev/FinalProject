@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { ModalHeader } from '../shared/ModalHeader';
+import { GroupHeaderBgc } from './GroupHeaderBgc';
+import { GroupSort } from './GroupSort';
 
 let modalPos;
 export class GroupHeader extends Component {
@@ -9,7 +11,10 @@ export class GroupHeader extends Component {
         toggleActions: false,
         group: {
             title: '',
-        }
+        },
+        toggleBgc: false,
+        togglesort: false
+
     }
 
     componentDidMount() {
@@ -33,20 +38,17 @@ export class GroupHeader extends Component {
         updateGroup(copyGroup);
     }
 
-    // openToggle = (type) => {
-    //     this.setState({ toggleActions: !this.state.toggleActions })
-    //     console.log(type);
-    //     const { group, removeGroup } = this.props;
-    //     switch (type) {
-    //         case 'BGC':
-    //             brake
-    //         case 'MEMBER':
-    //             return
-    //         case 'REMOVE': 
-    //             {removeGroup(group.id)}
-    //             return
-    //     }
-    // }
+    changeGroupBgc = (bgcColor) => {
+        console.log(bgcColor);
+        const { group, updateGroup } = this.props;
+        const copyGroup = { ...group };
+        copyGroup.style.bgc = bgcColor;
+        updateGroup(copyGroup);
+    }
+
+    toggleColor = (ev) => {
+        this.setState({ isBgc: !this.state.isBgc })
+    }
 
     toggleActions = (ev) => {
         const { clientX, clientY } = ev
@@ -56,23 +58,35 @@ export class GroupHeader extends Component {
     }
 
 
-  
+
 
     removeGroup = () => {
         const { group, removeGroup } = this.props;
         removeGroup(group.id);
     }
+    // group.tasks.map(task=>{
+    //     console.log(task);
+    //    })
+    sortGroupList = () => {
+        console.log('hi');
+        const { group } = this.props
+        const sorted = group.tasks.sort()
+        console.log(sorted);
 
+
+        // updateGroup(copyGroup)
+    }
 
 
     render() {
-        const { title } = this.state.group;
+        const { group } = this.props
+        const { title, style } = this.props.group;
         const { toggleActions } = this.state;
 
         // if (!title) return <h1>Loading...</h1>
         return (
-            <section className="group-header group-layout" >
-                 <form onSubmit={this.editGroupName}>
+            <section className="group-header group-layout" style={{ backgroundColor: style.bgc }}>
+                <form onSubmit={this.editGroupName}>
                     <input type="text" name="title" value={title} autoComplete="off" onChange={this.handleChange} />
                 </form>
                 <div className="group-actions">
@@ -80,10 +94,12 @@ export class GroupHeader extends Component {
                     {toggleActions && <div className="group-menu" >
                         <ModalHeader title='List actions' closeModal={this.toggleActions} />
                         <ul style={{ ...modalPos }} className="menu-options">
-                            <li /* onClick={this.openToggle(BGC)} */>Change group background</li>
+                            <li onClick={this.toggleColor} >Change group background</li>
+                            {this.state.toggleBgc && <GroupHeaderBgc changeGroupBgc={this.changeGroupBgc} />}
                             <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
                             <li onClick={this.removeGroup}>Delete list</li>
-                            <li /* onClick={this.openToggle(SORT)} */>Sort list by</li>
+                            <li onClick={this.sortGroupList}>Sort list by name</li>
+
                         </ul>
                     </div>}
                 </div>

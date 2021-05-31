@@ -9,7 +9,7 @@ import { ChecklistList } from '../TaskCheckList/ChecklistList';
 import { ChecklistAdd } from '../TaskCheckList/ChecklistAdd';
 import { updateBoard } from '../../../store/actions/board.actions';
 import { TaskDueDate } from './TaskDueDate';
-import { TaskImage } from './TaskImage';
+import { TaskImg } from './TaskImg';
 import { TaskLabel } from './TaskLabel';
 import { GrFormClose } from 'react-icons/gr';
 import { BiCreditCard, BiTimeFive } from 'react-icons/bi';
@@ -24,11 +24,13 @@ class _TaskDetails extends Component {
         task: null,
         group: null,
         toggleTaskLabel: false,
-        isDate: false
+        isDate: false,
+        isImg: false
     }
 
     componentDidMount() {
         this.loadTask();
+
     }
 
     async loadTask() {
@@ -85,6 +87,7 @@ class _TaskDetails extends Component {
             this.updateTask(this.state.task)
         })
     }
+
     handleDateChange = ({ target }) => {
         const { value, name } = target
         var task = { ...this.state }
@@ -95,7 +98,6 @@ class _TaskDetails extends Component {
         ), () => {
             this.updateTask(this.state.task)
         })
-
     }
 
 
@@ -109,11 +111,18 @@ class _TaskDetails extends Component {
     }
 
     toggleDate = () => {
-        this.setState({ isDate: !this.state.isDate })
+        this.updateTask(this.state.task)
     }
 
+  
     toggleChecklist = () => {
 
+    }
+
+
+    toggleImgUpload = () => {
+        this.setState({ isImg: !this.state.isImg })
+        console.log(this.state.task.img.name);
     }
 
     // taskDetailsRef = React.createRef()
@@ -140,36 +149,38 @@ class _TaskDetails extends Component {
                     </div>
                     <div className="taskDetails-body">
                         <div className="task-details">
-                            {isDate && <TaskDueDate onChange={this.handleDateChange} task={task} dueDate={this.state.task.dueDate} updateTask={this.updateTask} />}
-                            {labelIds && <div className="taskDetails-labels">
-                                <p>LABELS</p>
-                                <div className="labels-container">
-                                    < TaskLabelPreview labelIds={labelIds} />
-                                </div>
+
+                        {labelIds && <div className="taskDetails-labels">
+                            <p>LABELS</p>
+                            <div className="labels-container">
+                                < TaskLabelPreview labelIds={labelIds} />
                             </div>
-                            }
-                            <CheckBox handleChange={this.handleChange} isChecked={this.state.task.isDone} updateTask={this.updateTask} task={task} />
-                            <TaskDetailsDescription task={task} updateTask={this.updateTask} />
-                            {checklists && <ChecklistList checklists={checklists} task={task} updateTask={this.updateTask} />}
-                            <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
                         </div>
-
-                        <ul className="task-actions">
-                            <li className="button-link" onClick={this.toggleTaskLabel}><MdLabelOutline />Labels</li>
-                            <li className="button-link"><BsPerson />Memebrs</li>
-                            <li className="button-link" onClick={this.toggleDate}><BiTimeFive />Due Date</li>
-                            <li className="button-link" onClick={this.toggleChecklist}><BsCheckBox />Checklist</li>
-                            <li className="button-link"><ImAttachment />Image</li>
-                            <li className="button-link"><BsArrowRightShort />Move</li>
-                            <li className="button-link"><MdContentCopy />Copy</li>
-                            <li className="button-link" onClick={this.removeTask}><BsTrash />Delete</li>
-                            <ChecklistAdd updateTask={this.updateTask} task={task} />
-                        </ul>
-
-                        {toggleTaskLabel && <TaskLabel task={task} /* modalPos={modalPos} */ updateTask={this.updateTask} toggleTaskLabel={this.toggleTaskLabel} />}
+                        }
+                        {this.state.isDate && <TaskDueDate onChange={this.handleDateChange} task={task} dueDate={this.state.task.dueDate} updateTask={this.updateTask} />}
+                        {this.state.isImg && <TaskImg onChange={this.handleDateChange} task={task} updateTask={this.updateTask} />}
+                        <CheckBox handleChange={this.handleChange} isChecked={this.state.task.isDone} updateTask={this.updateTask} task={task} />
+                        <TaskDetailsDescription task={task} updateTask={this.updateTask} />
+                        {checklists && <ChecklistList checklists={checklists} task={task} updateTask={this.updateTask} />}
+                        <TaskDetailsActivity task={task} board={board} updateTask={this.updateTask} />
                     </div>
-                </section>
+
+                    <ul className="task-actions">
+                        <li className="button-link" onClick={this.toggleTaskLabel}><MdLabelOutline />Labels</li>
+                        <li className="button-link"><BsPerson />Memebrs</li>
+                        <li className="button-link" onClick={this.toggleDate}><BiTimeFive />Due Date</li>
+                        <li className="button-link" onClick={this.toggleChecklist}><BsCheckBox />Checklist</li>
+                        <li className="button-link" onClick={this.toggleImgUpload}><ImAttachment />Image</li>
+                        <li className="button-link"><BsArrowRightShort />Move</li>
+                        <li className="button-link"><MdContentCopy />Copy</li>
+                        <li className="button-link" onClick={this.removeTask}><BsTrash />Delete</li>
+                        <ChecklistAdd updateTask={this.updateTask} task={task} />
+                    </ul>
+
+                    {toggleTaskLabel && <TaskLabel task={task} /* modalPos={modalPos} */ updateTask={this.updateTask} toggleTaskLabel={this.toggleTaskLabel} />}
+                    </div>
             </section>
+            </section >
         )
 
     }
