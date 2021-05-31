@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { loadBoards, addBoard } from '../store/actions/board.actions.js';
-import { SectionTitle } from '../cmps/task/TaskDetails/SectionTitle';
+import { SectionTitle } from '../cmps/shared/SectionTitle';
 import { BsCardChecklist } from 'react-icons/bs';
 import { BoardList } from '../cmps/board/BoardList';
 import { utilService } from '../services/util-service.js';

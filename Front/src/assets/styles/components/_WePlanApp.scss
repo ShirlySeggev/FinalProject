@@ -6,39 +6,5 @@
     position: relative;
     transition: margin 0.1s ease-in;
     // background-image: url("../../img/bcg.png");
-    .wePlanApp-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        // background-color: $clr4;
-        height: auto;
-        padding: 10px;
-        position: relative;
-
-        .board-title {
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 32px;
-        }
-        .board-members{
-            display: flex;
-        }
-        .board-menu-btn {
-            display: flex;
-            align-items: center;
-
-            .board-btn-icon {
-                height: 20px;
-                font-size: 16px;
-                line-height: 20px;
-                width: 20px;
-            }
-            .board-btn-txt {
-                font-size: 14px;
-                line-height: 32px;
-            }
-        }
-  
-    }
+   
 }

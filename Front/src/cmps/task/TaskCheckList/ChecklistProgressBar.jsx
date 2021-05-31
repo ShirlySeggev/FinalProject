@@ -11,7 +11,6 @@ export class ChecklistProgressBar extends Component {
         const { todos } = this.props
         const completed = this.getCompletedRatio(todos)
         this.setState({ completed })
-        console.log('DONE',this.state.completed);
     }
 
     getCompletedRatio = (todos=[]) => {

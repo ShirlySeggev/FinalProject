@@ -37,6 +37,21 @@
                 }
             }
         }
+        .taskDetails-labels {
+            p {
+                margin: 0;
+            }
+            .labels-container{
+                display: flex;
+            }
+            .label {
+                min-width: 40px;
+                height: 30px;
+                padding: 0 12px;
+                border-radius: 3px;
+                margin: 0 4px 4px 0;
+            }
+        }
         textarea {
             resize: none;
             padding: 7px 12px;

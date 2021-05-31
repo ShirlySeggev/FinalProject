@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { BsTextLeft } from 'react-icons/bs';
-import { SectionTitle } from './TaskDetails/SectionTitle';
+import { SectionTitle } from '../../shared/SectionTitle';
 
 
 

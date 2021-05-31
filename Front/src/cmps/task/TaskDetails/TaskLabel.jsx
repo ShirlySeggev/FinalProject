@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import { ModalHeader } from '../shared/ModalHeader.jsx';
+import React, { Component } from 'react';
+import { ModalHeader } from '../../shared/ModalHeader.jsx';
 import { BsPencil } from 'react-icons/bs';
 import { BiCheck } from 'react-icons/bi';
 
@@ -13,6 +13,23 @@ export class TaskLabel extends Component {
             { id: 'l105', color: "#c377e0", title: '', isPicked: false },
             { id: 'l106', color: "#1f79bf", title: '', isPicked: false },
         ],
+        labelsRef: []
+    }
+
+    componentDidMount() {
+        const { labelIds } = this.props.task;
+        if (!labelIds) return;
+        const labels = this.state.labels.map((label, idx) => {
+            let currLabel = {
+                id: label.id,
+                color: label.color,
+                title: labelIds[idx].title,
+                isPicked: labelIds[idx].isPicked,
+            }
+            return currLabel;
+        })
+        this.setState({ labels });
+        this.setLabelsRef();
     }
 
     handleChange = (ev, labelId, idx) => {
@@ -21,49 +38,64 @@ export class TaskLabel extends Component {
         const title = ev.target.value;
         const newLabels = [...this.state.labels];
         newLabels[idx].title = title;
-        console.log(newLabels);
         this.setState({ labels: newLabels })
-
-        // const { updateTask, task } = this.props;
-        // const newTask = { ...task }
-        // console.log(newTask);
+        this.updateLabel();
     }
 
     onPickLabel = (idx) => {
-        console.log(idx);
         const newLabels = [...this.state.labels];
         newLabels[idx].isPicked = !this.state.labels[idx].isPicked;
-        console.log(newLabels);
         this.setState({ labels: newLabels })
+        this.updateLabel();
     }
 
     updateLabel = () => {
-        const { updateTask, task, toggleTaskLabel } = this.props;
-        const newTask = { ...task }
+        const { updateTask, task } = this.props;
+        const newTask = { ...task };
+        newTask.labelIds = this.state.labels;
         updateTask(newTask);
-        toggleTaskLabel();
+
     }
 
+    onUpdateLabel = () => {
+        this.updateLabel();
+        this.props.toggleTaskLabel();
+    }
+
+    setLabelsRef = () => {
+        const labelsRef = [];
+        this.state.labels.forEach(label => {
+            labelsRef.push(React.createRef())
+        })
+        this.setState({ labelsRef: labelsRef }, () => console.log(this.state))
+    }
+
+    setFocus = (ev, idx) => {
+        ev.stopPropagation();
+        const { labelsRef } = this.state;
+        labelsRef[idx].current.focus();
+    }
 
     render() {
-        const { labels } = this.state;
+        const { labels, labelsRef } = this.state;
         const { toggleTaskLabel, /* modalPos */ } = this.props;
         // console.log(modalPos);
         return (
-            <section className="TaskLabel-modal" /* style={{ modalPos }} */>
+            <section className="TaskLabel-modal" /* style={{ ...modalPos }} */>
                 <ModalHeader title='Labels' closeModal={toggleTaskLabel} />
                 {labels.map((label, idx) => {
                     return (
                         <div className="label-container" key={label.id}>
                             <input
-                                className={`TaskLabel ${label.isPicked && 'picked'}`} style={{ backgroundColor: label.color }}
+                                style={{ backgroundColor: label.color }}
                                 value={label.title}
                                 onClick={() => this.onPickLabel(idx)}
                                 onChange={(ev) => this.handleChange(ev, label.id, idx)}
+                                ref={labelsRef[idx]}
                             >
                             </input>
-                            <BsPencil />
-                            <BiCheck onClick={this.updateLabel} />
+                            <BsPencil onClick={(ev) => this.setFocus(ev, idx)} />
+                            <BiCheck onClick={this.onUpdateLabel} />
                         </div>
                     )
                 })

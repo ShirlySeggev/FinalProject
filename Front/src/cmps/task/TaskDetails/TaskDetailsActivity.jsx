@@ -1,10 +1,9 @@
 import { Component, Fragment } from 'react';
 import { formatDistance } from 'date-fns'
-import { utilService } from '../../services/util-service.js';
-import { updateBoard } from '../../store/actions/board.actions.js';
-import { SectionTitle } from './TaskDetails/SectionTitle.jsx';
+import { utilService } from '../../../services/util-service.js';
+import { SectionTitle } from '../../shared/SectionTitle.jsx';
 import { BiCommentDots } from 'react-icons/bi';
-import MemberAvatar from '../shared/MemberAvatar.jsx';
+import MemberAvatar from '../../shared/MemberAvatar.jsx';
 
 export class TaskDetailsActivity extends Component {
     state = {

@@ -1,13 +1,13 @@
-import { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TaskDetailsHeader } from './TaskDetailsHeader';
 import { CheckBox } from './CheckBox';
 import { TaskDetailsActivity } from './TaskDetailsActivity';
 import { TaskDetailsDescription } from './TaskDetailsDescription';
-import { ChecklistList } from './TaskCheckList/ChecklistList';
-import { ChecklistAdd } from './TaskCheckList/ChecklistAdd';
-import { updateBoard } from '../../store/actions/board.actions';
+import { ChecklistList } from '../TaskCheckList/ChecklistList';
+import { ChecklistAdd } from '../TaskCheckList/ChecklistAdd';
+import { updateBoard } from '../../../store/actions/board.actions';
 import { TaskDueDate } from './TaskDueDate';
 import { TaskImage } from './TaskImage';
 import { TaskLabel } from './TaskLabel';
@@ -16,6 +16,7 @@ import { BiCreditCard, BiTimeFive } from 'react-icons/bi';
 import { MdLabelOutline, MdContentCopy } from 'react-icons/md';
 import { BsPerson, BsCheckBox, BsArrowRightShort, BsTrash } from 'react-icons/bs';
 import { ImAttachment } from 'react-icons/im';
+import { TaskLabelPreview } from './TaskLabelPreview';
 
 let modalPos;
 class _TaskDetails extends Component {
@@ -49,6 +50,7 @@ class _TaskDetails extends Component {
 
 
     updateTask = (task) => {
+        this.setState({ task })
         const taskId = task.id;
         const { id } = this.state.group;
         const { board } = this.props;
@@ -69,16 +71,10 @@ class _TaskDetails extends Component {
         const updatedBoard = { ...board };
         updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1)
         this.updateBoard(updatedBoard);
-        this.props.history.push(`/board/${boardId}`)
+        // this.setState({ task: null, group: null })
+        // this.loadTask();
+        // this.props.history.push(`/board/${boardId}`)
     }
-
-    toggleTaskLabel = (ev) => {
-        // const { clientX, clientY } = ev;
-        // console.log('client X,Y', { clientX, clientY })
-        // modalPos = { left: clientX + 'px', top: (clientY - 80) + 'px' }
-        this.setState({ toggleTaskLabel: !this.state.toggleTaskLabel })
-    }
-
 
     handleChange = ({ target }) => {
         const { value, name, checked, type } = target
@@ -101,6 +97,17 @@ class _TaskDetails extends Component {
         })
 
     }
+
+
+    toggleTaskLabel = (ev) => {
+        // let { top, left } = this.taskDetailsRef.current.getBoundingClientRect();
+        // top = parseFloat(top);
+        // left = parseFloat(left) + 100;
+        // const { clientX, clientY } = ev;
+        // modalPos = { left: clientX - left + 'px', top: (clientY - top) + 'px' };
+        this.setState({ toggleTaskLabel: !this.state.toggleTaskLabel });
+    }
+
     toggleDate = () => {
         this.setState({ isDate: !this.state.isDate })
     }
@@ -109,19 +116,21 @@ class _TaskDetails extends Component {
 
     }
 
+    // taskDetailsRef = React.createRef()
+
 
     render() {
-        const { task, group, toggleTaskLabel } = this.state;
-        if (!task) return <h1>Loading...</h1>
-        const { checklists } = this.state.task;
         const { board } = this.props;
+        const { task, group, toggleTaskLabel, isDate } = this.state;
+        if (!task) return <h1>Loading...</h1>
+        const { checklists, labelIds } = this.state.task;
         return (
             <section className="TaskDetails-modal">
                 <Link to={`/board/${board._id}/`}>
                     <div className="outer-task-details-container">
                     </div>
                 </Link>
-                <section className="taskDetails-container" >
+                <section ref={this.taskDetailsRef} className="taskDetails-container" >
                     <div className="taskDetails-header">
                         <div className="header-icon">
                             <BiCreditCard className="modalHeader icon" />
@@ -131,8 +140,14 @@ class _TaskDetails extends Component {
                     </div>
                     <div className="taskDetails-body">
                         <div className="task-details">
-                            {toggleTaskLabel && <TaskLabel task={task} /* modalPos={modalPos} */ updateTask={this.updateTask} toggleTaskLabel={this.toggleTaskLabel} />}
-                            {this.state.isDate && <TaskDueDate onChange={this.handleDateChange} task={task} dueDate={this.state.task.dueDate} updateTask={this.updateTask} />}
+                            {isDate && <TaskDueDate onChange={this.handleDateChange} task={task} dueDate={this.state.task.dueDate} updateTask={this.updateTask} />}
+                            {labelIds && <div className="taskDetails-labels">
+                                <p>LABELS</p>
+                                <div className="labels-container">
+                                    < TaskLabelPreview labelIds={labelIds} />
+                                </div>
+                            </div>
+                            }
                             <CheckBox handleChange={this.handleChange} isChecked={this.state.task.isDone} updateTask={this.updateTask} task={task} />
                             <TaskDetailsDescription task={task} updateTask={this.updateTask} />
                             {checklists && <ChecklistList checklists={checklists} task={task} updateTask={this.updateTask} />}
@@ -151,6 +166,7 @@ class _TaskDetails extends Component {
                             <ChecklistAdd updateTask={this.updateTask} task={task} />
                         </ul>
 
+                        {toggleTaskLabel && <TaskLabel task={task} /* modalPos={modalPos} */ updateTask={this.updateTask} toggleTaskLabel={this.toggleTaskLabel} />}
                     </div>
                 </section>
             </section>

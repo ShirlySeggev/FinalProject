@@ -1,17 +1,36 @@
 import { Component } from 'react';
-import EasyEdit, { Types } from 'react-easy-edit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faTrash, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { ModalHeader } from '../shared/ModalHeader';
 
 let modalPos;
 export class GroupHeader extends Component {
     state = {
         toggleActions: false,
+        group: {
+            title: '',
+        }
     }
 
     componentDidMount() {
+        const { title } = this.props.group;
+        const group = { title };
+        this.setState({ group });
+    }
 
+    handleChange = (ev) => {
+        var group = { ...this.state.group };
+        var { name, value } = ev.target;
+        group[name] = value;
+        this.setState({ group })
+    }
+
+    editGroupName = (ev) => {
+        ev.preventDefault();
+        const { group, updateGroup } = this.props;
+        const copyGroup = { ...group };
+        copyGroup.title = this.state.group.title;
+        updateGroup(copyGroup);
     }
 
     // openToggle = (type) => {
@@ -37,12 +56,7 @@ export class GroupHeader extends Component {
     }
 
 
-    editGroupName = (ev) => {
-        const { group, updateGroup } = this.props;
-        const copyGroup = { ...group };
-        copyGroup.title = ev;
-        updateGroup(copyGroup);
-    }
+  
 
     removeGroup = () => {
         const { group, removeGroup } = this.props;
@@ -52,19 +66,15 @@ export class GroupHeader extends Component {
 
 
     render() {
-        const { title } = this.props.group;
+        const { title } = this.state.group;
         const { toggleActions } = this.state;
 
         // if (!title) return <h1>Loading...</h1>
         return (
             <section className="group-header group-layout" >
-                <EasyEdit
-                    type={Types.TEXT}
-                    value={title}
-                    onSave={this.editGroupName}
-                    saveButtonLabel={<FontAwesomeIcon icon={faCheck} />}
-                    cancelButtonLabel={<FontAwesomeIcon icon={faTimes} />}
-                />
+                 <form onSubmit={this.editGroupName}>
+                    <input type="text" name="title" value={title} autoComplete="off" onChange={this.handleChange} />
+                </form>
                 <div className="group-actions">
                     <span onClick={this.toggleActions}>{<FontAwesomeIcon icon={faEllipsisH} />}</span>
                     {toggleActions && <div className="group-menu" >

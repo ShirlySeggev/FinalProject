@@ -1,7 +1,6 @@
 import { Home } from './pages/Home.jsx';
 import { WePlanApp } from './pages/WePlanApp.jsx';
 import { Boards } from './pages/Boards.jsx';
-import { TaskDetails } from './cmps/task/TaskDetails';
 
 export const routes = [
     {

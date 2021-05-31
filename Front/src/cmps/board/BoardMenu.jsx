@@ -81,6 +81,7 @@ export class BoardMenu extends Component {
                     <li /* onClick={this.openToggle(BGC)} */>Change board background</li>
                     <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
                     <li /* onClick={this.openToggle(DELETE)} */>Delete board</li>
+                    <li /* onClick={this.openDashboard} */>Activity menu</li>
                     <li /* onClick={this.openDashboard} */>Board dashboard</li>
                 </ul>
                 {openToggle && <this.DynamicCmp /* note={note} */ />}
