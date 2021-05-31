@@ -36,7 +36,6 @@ export class BoardMenu extends Component {
     }
 
     onUpdateBgc = (newStyle) => {
-        console.log('here');
         const { board, onUpdateBoard } = this.props;
         const updatedBoard = { ...board };
         updatedBoard.style = newStyle;
@@ -53,9 +52,11 @@ export class BoardMenu extends Component {
                 <ModalHeader title='About this board' closeModal={toggleBoardMenu} />
                 <ul className="menu-options">
                     <li onClick={this.toggleBoardBcg}>Change board background</li>
-                    {toggleBoardBcg && <BoardBackground onUpdateBgc={this.onUpdateBgc} />}
-                    <li /* onClick={this.openToggle(MEMBER)} */>Add a member</li>
+                    <li /* onClick={this.openToggle} */>Add a member</li>
                     <li onClick={this.toggleRemoveBoard}>Delete board</li>
+                    <li onClick={this.toggleActivity}>Activity menu</li>
+                    <li /* onClick={this.openDashboard} */>Board dashboard</li>
+                    {toggleBoardBcg && <BoardBackground onUpdateBgc={this.onUpdateBgc} />}
                     {toggleRemoveBoard &&
                         <div>
                             <p>Are you shure?</p>
@@ -63,11 +64,8 @@ export class BoardMenu extends Component {
                             <button onClick={this.toggleRemoveBoard}>No</button>
                         </div>
                     }
-                    <li onClick={this.toggleActivity}>Activity menu</li>
                     {toggleActivity && <ActivityLog activities={activities} />}
-                    <li /* onClick={this.openDashboard} */>Board dashboard</li>
                 </ul>
-                {/* {openToggle &&  />} */}
 
             </section >
         )

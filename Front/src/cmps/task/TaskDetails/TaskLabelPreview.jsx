@@ -3,7 +3,13 @@ import { Fragment, Component } from 'react';
 export class TaskLabelPreview extends Component {
 
     state = {
-        isOpen: false
+        isOpen: true
+    }
+
+
+    componentDidMount() {
+        const status = this.props.isOpen;
+        this.setState({ isOpen: status })
     }
 
     toggleLabel = () => {
@@ -18,7 +24,7 @@ export class TaskLabelPreview extends Component {
             <Fragment>
                 {labelIds.map(label => {
                     return label.isPicked ?
-                        <div className={`label ${isOpen && 'open'}`} onClick={this.toggleLabel} style={{ backgroundColor: label.color }} key={label.id}><span>{label.title}</span></div> :
+                        <div className={`label ${isOpen && 'open'}`} onClick={this.toggleLabel} style={{ backgroundColor: label.color }} key={label.id}><span>{isOpen ? label.title : ''}</span></div> :
                         ''
                 })}
             </Fragment>

@@ -91,14 +91,12 @@ class _TaskDetails extends Component {
 
     handleDateChange = ({ target }) => {
         const { valueAsNumber, name } = target
-        console.log(target.valueAsNumber);
         var task = { ...this.state }
         task[name] = valueAsNumber;
         this.setState(prevState => (
             { ...prevState, task: { ...prevState.task, [name]: valueAsNumber } }
         ), () => {
             this.updateTask(this.state.task)
-            console.log(task);
         })
     }
 
@@ -118,7 +116,6 @@ class _TaskDetails extends Component {
 
 
     toggleAddCheckList = () => {
-        console.log('in checklist');
         this.setState({ isChecklistAdd: !this.state.isChecklistAdd }, () => console.log(this.state.isChecklistAdd))
     }
 
@@ -156,7 +153,7 @@ class _TaskDetails extends Component {
                             {labelIds && <div className="taskDetails-labels">
                                 <p>LABELS</p>
                                 <div className="labels-container">
-                                    < TaskLabelPreview labelIds={labelIds} />
+                                    < TaskLabelPreview labelIds={labelIds} isOpen={true}/>
                                 </div>
                             </div>
                             }
@@ -173,7 +170,7 @@ class _TaskDetails extends Component {
                             <li className="button-link" onClick={this.toggleTaskLabel}><MdLabelOutline />Labels</li>
                             <li className="button-link"><BsPerson />Memebrs</li>
                             <li className="button-link" onClick={this.toggleDate}><BiTimeFive />Due Date</li>
-                            <li className="button-link" onClick={this.toggleAddCheckList}><BsCheckBox />Checklist!</li>
+                            <li className="button-link" onClick={this.toggleAddCheckList}><BsCheckBox />Checklist</li>
                             <li className="button-link" onClick={this.toggleImgUpload}><ImAttachment />Image</li>
                             <li className="button-link"><BsArrowRightShort />Move</li>
                             <li className="button-link"><MdContentCopy />Copy</li>

@@ -76,7 +76,6 @@ export class ChecklistPreview extends Component {
         const { checklist } = this.props
         const { isAddTodo } = this.state
         const { title, todos } = checklist
-        console.log('here',todos);
         return (
             <ul className="task-details-checklist-container">
                 <header className="checklist-header">

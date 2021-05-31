@@ -16,7 +16,9 @@ export class BoardBackground extends Component {
     onPickBgc = (idx) => {
         const newBgc = this.state.bgc[idx].color;
         const style = { bgc: newBgc };
-        this.props.onUpdateBgc(style);
+        const { onBoardsCompose } = this.props;
+        if(!onBoardsCompose) this.props.onUpdateBgc(style);
+        else this.props.chooseBgc(style);
     }
 
     render() {

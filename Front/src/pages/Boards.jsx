@@ -5,12 +5,19 @@ import { SectionTitle } from '../cmps/shared/SectionTitle';
 import { BsCardChecklist } from 'react-icons/bs';
 import { BoardList } from '../cmps/board/BoardList';
 import { utilService } from '../services/util-service.js';
+import { BsPlus } from 'react-icons/bs';
+import { BoardBackground } from '../cmps/board/BoardBackground.jsx';
+import { ModalHeader } from '../cmps/shared/ModalHeader.jsx';
 
 
 class _Boards extends Component {
     state = {
+        isModalOpen: false,
         board: {
             title: '',
+            style: {
+                bgc: '#00AECC'
+            }
         }
     }
 
@@ -25,7 +32,15 @@ class _Boards extends Component {
             console.log('Error at loading boards:', err)
         }
     }
+    newBoardModal = () => {
+        this.setState({ isModalOpen: !this.state.isModalOpen });
+    }
 
+    chooseBgc = (style) => {
+        const board = { ...this.state.board };
+        board.style = style;
+        this.setState({ board });
+    }
 
     handleChange = (ev) => {
         var board = { ...this.state.board };
@@ -37,29 +52,24 @@ class _Boards extends Component {
     onAddBoard = (ev) => {
         ev.preventDefault();
         const boardTitle = this.state.board.title;
-        this.clearBoard(); //doesnt clean the board!
-        const board = this.createBoard(boardTitle);
+        const boardBgc = this.state.board.style.bgc;
+        const board = this.createBoard(boardTitle, boardBgc);
         const { addBoard } = this.props;
         addBoard(board);
         this.loadBoards();
-        // this.props.history.push(`/board/${board._id}`);
-    }
-    clearBoard = () => {
-        this.setState({
-            board: {
-                title: '',
-            }
-        })
+        this.newBoardModal()
+        this.props.history.push(`/board/${board._id}`);
     }
 
-    createBoard = (title) => {
+
+    createBoard = (title, bgc) => {
         const board = {
             _id: utilService.makeId(),
             title,
             createdAt: Date.now(),
             createdBy: { _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" },
             style: {
-                "bgc": "#00AECC"
+                bgc
             },
             labels: [],
             members: [{ _id: "u105", fullname: "Poki King", imgUrl: "http://some-img" }],
@@ -72,22 +82,24 @@ class _Boards extends Component {
 
     render() {
         const { boards } = this.props;
+        const { isModalOpen } = this.state;
         if (!boards) return <h1>Loading...</h1>
         return (
             <section className="boardApp-main">
                 <span className="boardApp-header">
                     <SectionTitle Icon={BsCardChecklist}> Boards</SectionTitle>
                 </span>
-                {/* <h4 className="boards-boards-title">Boards</h4> */}
-
                 <div className="boards-container">
-                    <div className="boardAdd">
-                        <form onSubmit={this.onAddBoard}>
-                            <input className="boardAdd-input" type="text" name="title" id="title" placeholder="+ Add new board" autoComplete="off" onChange={this.handleChange} />
-                        </form>
-                    </div>
+                    <div className="boardAdd" onClick={this.newBoardModal}><BsPlus /> Add a new board</div>
                     <BoardList boards={boards} />
                 </div>
+                {isModalOpen && <div className="boardAdd-modal">
+                    <ModalHeader title='New Board' closeModal={this.newBoardModal} />
+                    <input className="boardAdd-input" type="text" name="title" id="title" placeholder="Board title" autoComplete="off" onChange={this.handleChange} />
+                    <BoardBackground onBoardsCompose={true} chooseBgc={this.chooseBgc} />
+                    <button className="secondary-btn" onClick={this.onAddBoard}>Create Board</button>
+                </div>
+                }
             </section >
         )
     }

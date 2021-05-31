@@ -42,17 +42,15 @@
             margin: 0 4px 4px 0;
             cursor: pointer;
             span {
-                display: none;
                 min-width: 40px;
                 width: auto;
                 height: 16px;
             }
             &.open {
-                display: block;
                 height: 16px;
                 font-size: 12px;
-                font-size: 12px;
                 padding: 0 8px;
+                color: white;
             }
         }
     }

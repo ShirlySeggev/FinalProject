@@ -4,13 +4,11 @@ import { utilService } from '../../../services/util-service.js';
 import { SectionTitle } from '../../shared/SectionTitle.jsx';
 import { BiCommentDots } from 'react-icons/bi';
 import MemberAvatar from '../../shared/MemberAvatar.jsx';
+import { TaskComment } from './TaskComment.jsx';
 
 export class TaskDetailsActivity extends Component {
     state = {
         toggleActivity: false,
-        comment: {
-            txt: ''
-        },
         activities: []
     }
 
@@ -42,30 +40,8 @@ export class TaskDetailsActivity extends Component {
         })
     }
 
-    onEnter = ev => {
-        if (ev.key === "Enter" && ev.shiftKey === false) {
-            ev.preventDefault()
-            this.addComment()
-        }
-    }
-
-    addComment = () => {
-        const newComment = {
-            id: utilService.makeId(),
-            createdAt: Date.now(),
-            txt: this.state.comment,
-            byMember: {
-                _id: "u101",
-                fullname: "Tal Tarablus",
-            }
-        }
-    }
-
-
-
     render() {
         const { toggleActivity, activities } = this.state;
-        const { txt } = this.state.comment;
 
         return (
 
@@ -74,16 +50,22 @@ export class TaskDetailsActivity extends Component {
                     <SectionTitle Icon={BiCommentDots}>Activity</SectionTitle>
                     <button className="secondary-btn" onClick={this.onToggleActivity}>{toggleActivity ? 'Hide details' : 'Show details'}</button>
                 </div>
+                <MemberAvatar member={{
+                    "_id": "u1001",
+                    "fullname": "Guess User",
+                    "imgUrl": "http://some-img"
+                }} />
+                <TaskComment task={this.props.task} updateTask={this.props.updateTask}/>
                 {toggleActivity && <Fragment>
                     {activities.map(activity => {
                         return <div key={activity.id}>
                             {/* <img src={activity.byMember.imgUrl} /> */}
                             <div className="activity">
-                            <MemberAvatar member={activity.byMember} />
-                            <div className="activity-description">
-                                <p ><span>{activity.byMember.fullname}</span> {activity.txt} to {activity.task.title}</p>
-                                <p>{formatDistance(activity.createdAt, Date.now())} ago</p>
-                            </div>
+                                <MemberAvatar member={activity.byMember} />
+                                <div className="activity-description">
+                                    <p ><span>{activity.byMember.fullname}</span> {activity.txt} to {activity.task.title}</p>
+                                    <p>{formatDistance(activity.createdAt, Date.now())} ago</p>
+                                </div>
                             </div>
                         </div>
                     })

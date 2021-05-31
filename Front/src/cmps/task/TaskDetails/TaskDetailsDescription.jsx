@@ -35,7 +35,7 @@ export class TaskDetailsDescription extends Component {
     render() {
         const { description, toggleUpdate } = this.state;
         return (
-            <header className="taskDetails-description">
+            <section className="taskDetails-description">
                  <SectionTitle Icon={BsTextLeft}>Description</SectionTitle>
                 {(description)
                     ? <textarea value={description} name="description" spellCheck="false" onChange={this.handleChange} onFocus={this.toggleUpdate} />
@@ -44,7 +44,7 @@ export class TaskDetailsDescription extends Component {
                     />
                 }
                 {toggleUpdate && <button className="primary-btn" onClick={this.updateTaskDescription}>Save</button>}
-            </header>
+            </section>
         )
     }
 

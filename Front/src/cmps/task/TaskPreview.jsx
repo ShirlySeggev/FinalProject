@@ -19,7 +19,7 @@ class _TaskPreview extends Component {
         return (
             <div className="task-preview">
                 {labelIds && <div className="taskDetails-labels" >
-                    < TaskLabelPreview labelIds={labelIds} />
+                    < TaskLabelPreview labelIds={labelIds} isOpen={false}/>
                 </div>
                 }
                 <Link className="task-preview-info" to={`/board/${board._id}/group/${groupId}/task/${id}`}>
