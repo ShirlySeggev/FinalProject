@@ -132,7 +132,7 @@ class _TaskDetails extends Component {
         const { board } = this.props;
         const { task, group, toggleTaskLabel, isDate, isChecklistAdd } = this.state;
         if (!task) return <h1>Loading...</h1>
-        const { checklists, labelIds } = this.state.task;
+        const { checklists, labelIds, comments } = this.state.task;
         return (
             <section className="TaskDetails-modal">
                 <Link to={`/board/${board._id}/`}>

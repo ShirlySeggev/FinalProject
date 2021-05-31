@@ -58,7 +58,7 @@ class _Boards extends Component {
         addBoard(board);
         this.loadBoards();
         this.newBoardModal()
-        this.props.history.push(`/board/${board._id}`);
+        // this.props.history.push(`/board/${board._id}`);
     }
 
 

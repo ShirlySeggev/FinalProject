@@ -11,8 +11,7 @@ export function GroupPreview({ group, boardId, updateGroup, removeGroup }) {
     const { id, title, tasks, style } = group;
 
     return (
-        <Fragment>
-
+        <section>
             <Link to={`/board/${boardId}/`}>
                 <div className="outer-task-details-container">
                 </div>
@@ -24,7 +23,7 @@ export function GroupPreview({ group, boardId, updateGroup, removeGroup }) {
                     <TaskAdd groupId={id} />
                 </div>
             </section>
-        </Fragment>
+        </section>
 
     )
 }

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { BsTextLeft } from 'react-icons/bs';
 import { utilService } from '../../../services/util-service';
-import { SectionTitle } from '../../shared/SectionTitle';
+import { formatDistance } from 'date-fns'
 
 
 
@@ -38,8 +38,15 @@ export class TaskComment extends Component {
         const comment = this.addComment();
         console.log(comment);
         const { task, updateTask } = this.props;
-        const newTask= {...task};
-        console.log(newTask.comments);
+        const newTask = { ...task };
+        if (newTask.coments) newTask.coments.unshift(comment);
+        else {
+            newTask.coments = [];
+            newTask.coments.unshift(comment);
+        }
+        updateTask(newTask);
+        this.clearComment();
+        console.log(newTask);
         // newTask.comments.push(comment);
         // updateTask(newTask);
         // this.props.updateTask(newTask);
@@ -60,14 +67,25 @@ export class TaskComment extends Component {
         return newComment;
     }
 
+    clearComment = () => {
+        const comment = {
+            txt: ''
+        }
+        this.setState({ comment });
+    }
+
     render() {
         const { comment, toggleUpdate } = this.state;
+       
         return (
             <section className="taskDetails-coment">
                 <textarea value={comment.txt} name="txt" placeholder="Write a comment..." spellCheck="false" onChange={this.handleChange}
                     onFocus={this.toggleUpdate}
                 />
                 {toggleUpdate && <button className="primary-btn" onClick={this.saveComment}>Save</button>}
+
+
+
             </section>
         )
     }

@@ -1,5 +1,5 @@
 import { Component, Fragment } from 'react';
-import { formatDistance } from 'date-fns'
+import { formatDistance } from 'date-fns';
 import { utilService } from '../../../services/util-service.js';
 import { SectionTitle } from '../../shared/SectionTitle.jsx';
 import { BiCommentDots } from 'react-icons/bi';
@@ -42,7 +42,9 @@ export class TaskDetailsActivity extends Component {
 
     render() {
         const { toggleActivity, activities } = this.state;
-
+        const { task } = this.props;
+        const taskComments = task?.comments
+        console.log(taskComments);
         return (
 
             <div className="taskActivity-container" >
@@ -55,7 +57,26 @@ export class TaskDetailsActivity extends Component {
                     "fullname": "Guess User",
                     "imgUrl": "http://some-img"
                 }} />
-                <TaskComment task={this.props.task} updateTask={this.props.updateTask}/>
+                <TaskComment task={this.props.task} updateTask={this.props.updateTask} />
+
+                {task?.comments &&
+                    <p>comentsssssssssss</p>
+                    // {task.comments.map((comment, idx) => {
+                    //     return <div key={comment.id} className="task-user-comment flex">
+                    //     <div className="task-member-img"><img src={comment.byMember.imgUrl} /></div>
+                    //     <div className="activity-info flex column justify-center">
+                    //         <p className="activity-txt">
+                    //             <span className="activity-member-name">{comment.byMember.fullname} </span>
+                    //             <div className="activity-date" style={{ display: 'inline-block' }}><span>{formatDistance(comment.createdAt, Date.now())}</span></div>
+                    //         </p>
+                    //         <div className="comment-txt">
+                    //             <span>{comment.txt}</span>
+                    //         </div>
+                    //     </div>
+                    //     
+                    // </div>
+                    // })
+                }
                 {toggleActivity && <Fragment>
                     {activities.map(activity => {
                         return <div key={activity.id}>
