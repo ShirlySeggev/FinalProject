@@ -53,7 +53,7 @@ class _TaskAdd extends Component {
             dueDate: '',
             byMember: {},
             style: {
-                bgColor: utilService.getRandomColor()
+                bgColor: utilService.getRandmColor()
             }
         }
         return task;

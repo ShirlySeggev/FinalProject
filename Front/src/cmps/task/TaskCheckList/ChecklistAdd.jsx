@@ -1,14 +1,11 @@
 import { Component } from "react";
 import { utilService } from '../../../services/util-service';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ModalHeader } from "../../shared/ModalHeader";
 
 export class ChecklistAdd extends Component {
     state = {
         title: '',
     }
-
 
 
     onAddChecklist = () => {

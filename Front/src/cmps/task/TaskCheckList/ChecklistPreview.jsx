@@ -47,7 +47,6 @@ export class ChecklistPreview extends Component {
     }
 
     updateTodo = (todo) => {
-        // console.log('calld by child', todo);
         const { task } = this.props
         const listIdx = this.findChecklistIdx()
         const todoIdx = task.checklists[listIdx].todos.findIndex(currTodo => currTodo.id === todo.id)

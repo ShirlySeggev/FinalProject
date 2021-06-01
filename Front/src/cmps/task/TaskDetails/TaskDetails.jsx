@@ -10,6 +10,7 @@ import { ChecklistAdd } from '../TaskCheckList/ChecklistAdd';
 import { updateBoard } from '../../../store/actions/board.actions';
 import { TaskDueDate } from './TaskDueDate';
 import { TaskImg } from './TaskImg';
+import { TaskMembers } from './TaskMembers';
 import { TaskLabel } from './TaskLabel';
 import { GrFormClose } from 'react-icons/gr';
 import { BiCreditCard, BiTimeFive } from 'react-icons/bi';
@@ -17,6 +18,7 @@ import { MdLabelOutline, MdContentCopy } from 'react-icons/md';
 import { BsPerson, BsCheckBox, BsArrowRightShort, BsTrash } from 'react-icons/bs';
 import { ImAttachment } from 'react-icons/im';
 import { TaskLabelPreview } from './TaskLabelPreview';
+import { TaskMembersPreview } from './TaskMembersPreview';
 
 let modalPos;
 class _TaskDetails extends Component {
@@ -26,7 +28,8 @@ class _TaskDetails extends Component {
         toggleTaskLabel: false,
         isDate: false,
         isImg: false,
-        isChecklistAdd: false
+        isChecklistAdd: false,
+        isMembers: false
     }
 
     componentDidMount() {
@@ -61,6 +64,7 @@ class _TaskDetails extends Component {
         const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
         const updatedBoard = { ...board };
         updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1, task)
+        this.setState({ task: { ...task } })
         this.updateBoard(updatedBoard);
     }
 
@@ -116,7 +120,11 @@ class _TaskDetails extends Component {
 
 
     toggleAddCheckList = () => {
-        this.setState({ isChecklistAdd: !this.state.isChecklistAdd }, () => console.log(this.state.isChecklistAdd))
+        this.setState({ isChecklistAdd: !this.state.isChecklistAdd })
+    }
+
+    toggleMembers = () => {
+        this.setState({ isMembers: !this.state.isMembers })
     }
 
 
@@ -125,21 +133,22 @@ class _TaskDetails extends Component {
         console.log(this.state.task.img.name);
     }
 
-    // taskDetailsRef = React.createRef()
-
 
     render() {
         const { board } = this.props;
-        const { task, group, toggleTaskLabel, isDate, isChecklistAdd } = this.state;
+        const { task, group, toggleTaskLabel, isDate, isChecklistAdd, isMembers } = this.state;
         if (!task) return <h1>Loading...</h1>
-        const { checklists, labelIds, comments } = this.state.task;
+        const { checklists, labelIds, comments, members } = this.state.task;
         return (
             <section className="TaskDetails-modal">
+
                 <Link to={`/board/${board._id}/`}>
                     <div className="outer-task-details-container">
                     </div>
                 </Link>
+
                 <section ref={this.taskDetailsRef} className="taskDetails-container" >
+
                     <div className="taskDetails-header">
                         <div className="header-icon">
                             <BiCreditCard className="modalHeader icon" />
@@ -147,16 +156,21 @@ class _TaskDetails extends Component {
                         </div>
                         <Link to={`/board/${board._id}/`}><GrFormClose className="modalHeader icon" /></Link>
                     </div>
+
                     <div className="taskDetails-body">
                         <div className="task-details">
+
+                            {members && <div className="task-members-preview">
+                                <h3>Members</h3>
+                                < TaskMembersPreview members={members} isOpen={true} />
+                            </div>}
 
                             {labelIds && <div className="taskDetails-labels">
                                 <p>LABELS</p>
                                 <div className="labels-container">
-                                    < TaskLabelPreview labelIds={labelIds} isOpen={true}/>
+                                    < TaskLabelPreview labelIds={labelIds} isOpen={true} />
                                 </div>
-                            </div>
-                            }
+                            </div>}
                             {isDate && <TaskDueDate onChange={this.handleDateChange} task={task} dueDate={this.state.task.dueDate} updateTask={this.updateTask} />}
                             {this.state.isImg && <TaskImg onChange={this.handleDateChange} task={task} updateTask={this.updateTask} />}
                             <CheckBox handleChange={this.handleChange} isChecked={this.state.task.isDone} updateTask={this.updateTask} task={task} />
@@ -167,13 +181,22 @@ class _TaskDetails extends Component {
                         </div>
 
                         <ul className="task-actions">
+                            {/* ADD MEMBERS */}
+                            <li className="button-link" onClick={this.toggleMembers}><BsPerson />Memebrs</li>
+                            {isMembers && <TaskMembers toggleMembers={this.toggleMembers} updateTask={this.updateTask} members={board.members} task={task} />}
+                            {/* ADD LABELS */}
                             <li className="button-link" onClick={this.toggleTaskLabel}><MdLabelOutline />Labels</li>
-                            <li className="button-link"><BsPerson />Memebrs</li>
+                            {/* ADD DATES */}
                             <li className="button-link" onClick={this.toggleDate}><BiTimeFive />Due Date</li>
+                            {/* ADD CHECLIST */}
                             <li className="button-link" onClick={this.toggleAddCheckList}><BsCheckBox />Checklist</li>
+                            {/* ADD IMAGE */}
                             <li className="button-link" onClick={this.toggleImgUpload}><ImAttachment />Image</li>
+                            {/* MOVE TASK */}
                             <li className="button-link"><BsArrowRightShort />Move</li>
+                            {/* COPY TASK */}
                             <li className="button-link"><MdContentCopy />Copy</li>
+                            {/* DELETE TASK */}
                             <li className="button-link" onClick={this.removeTask}><BsTrash />Delete</li>
                         </ul>
 

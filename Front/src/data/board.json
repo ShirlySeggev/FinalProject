@@ -21,11 +21,13 @@
         "members": [
             {
                 "_id": "u106",
+                "username": "Gali",
                 "fullname": "Gal Meir Nelken",
                 "imgUrl": "http://some-img"
             },
             {
                 "_id": "u107",
+                "username": "Maayan",
                 "fullname": "Maayan Naidik",
                 "imgUrl": "https://www.google.com"
             }
@@ -133,6 +135,14 @@
                                         "isDone": false
                                     }
                                 ]
+                            }
+                        ],
+                        "members": [
+                            {
+                                "_id": "u106",
+                                "username": "Gali",
+                                "fullname": "Gal Meir Nelken",
+                                "imgUrl": "http://some-img"
                             }
                         ]
                     },
@@ -548,6 +558,565 @@
         "style": {
             "bgc": "#B04632"
         },
+        "labels": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            }
+        ],
+        "members": [
+            {
+                "_id": "u106",
+                "fullname": "Gal Meir Nelken",
+                "imgUrl": "http://some-img"
+            },
+            {
+                "_id": "u107",
+                "fullname": "Maayan Naidik",
+                "imgUrl": "https://www.google.com"
+            }
+        ],
+        "groups": [
+            {
+                "id": "g101",
+                "title": "Done Tasks",
+                "tasks": [
+                    {
+                        "id": "t101",
+                        "title": "Eilat Todos",
+                        "checklists": [
+                            {
+                                "id": "sdgs5g5",
+                                "title": "Beaches",
+                                "todos": [
+                                    {
+                                        "id": "bxxr53",
+                                        "title": "Dolphin Riff",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "bgx53",
+                                        "title": "Viliage Beach",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "asdfv4",
+                                        "title": "The Beach of Mosh",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "sfg53",
+                                        "title": "The Dekel Beach",
+                                        "isDone": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "af4fa",
+                                "title": "Attractions",
+                                "todos": [
+                                    {
+                                        "id": "asdfae",
+                                        "title": "Ice Mall",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "a6s23df",
+                                        "title": "Atlantis water sport",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "as23df",
+                                        "title": "Eilat botanic garden",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "hs64s",
+                                        "title": "Lego Show",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "t102",
+                        "title": "Yoash Mountain",
+                        "description": "Amazing lookout (just a short drive from Eilat) is on the top of Har Yoash (Yoash Mountain). Jordan is right across the way, Egypt’s border fence is visible to the naked eye, and Saudi Arabia is just a bit farther down (most easily seen on a clear day). Israel, Jordan, Egypt, and Saudi Arabia just a stone’s throw away!"
+                    },
+                    {
+                        "id": "t103",
+                        "title": "Arava Peace Road",
+                        "description": "This fascinating driving route follows the border between Israel and Jordan. The look-out points along the way offer stunning views of cultivated fields, the Edom mountians and the Arava streambed."
+                    },
+                    {
+                        "id": "t104",
+                        "title": "Ein Yahav Dam",
+                        "description": "Ever heard of Petra? I’m sure there are few of us who haven’t. Well, Petra is a very famous Nabatean city, the ancient Nabatean capital city per say. What most people don’t know is that there are many more such cities and Israel has four of them. Shivta, Avdat, Moa, and Nitzana. Shivta, one of the most beautiful and well preserved is an amazing place to stop in the Israeli desert. Along the ancient Incense Route you can see these incredible ruins. Full post about this location coming soon!"
+                    }
+                ],
+                "style": {
+                    "bgc": "#fefbd8"
+                }
+            },
+            {
+                "id": "g102",
+                "title": "Optional Road Stops",
+                "tasks": [
+                    {
+                        "id": "t105",
+                        "title": "Mactesh Ramon",
+                        "description": "Makhtesh Ramon (Hebrew: מכתש רמון‎; lit. Ramon Crater/Makhtesh ; Arabic: وادي الرمان‎) is a geological feature of Israel's Negev desert. Located at the peak of Mount Negev, some 85 km south of the city of Beersheba, the landform is not an impact crater from a meteor nor a volcanic crater formed by a volcanic eruption, but rather is the world's largest \"erosion cirque\" (steephead valley or box canyons). The formation is 40 km long, 2–10 km wide and 500 meters deep, and is shaped like an elongated heart. The only settlement in the area is the small town of Mitzpe Ramon (מצפה רמון, \"Ramon Lookout\") located on the northern edge of the depression. Today the area forms Israel's largest national park, the Ramon Nature Reserve.",
+                        "checklists": [
+                            {
+                                "id": "gjm77",
+                                "title": "Mactesh Ramon",
+                                "todos": [
+                                    {
+                                        "id": "s12wd",
+                                        "title": "Makhtesh Ramon Visitors Center",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "212jX",
+                                        "title": "Ammonite Wall",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "sad37s3s",
+                                        "title": "Rock Wind Water Fountain",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "t106",
+                        "title": "Yoash Mountain",
+                        "description": "Amazing lookout (just a short drive from Eilat) is on the top of Har Yoash (Yoash Mountain). Jordan is right across the way, Egypt’s border fence is visible to the naked eye, and Saudi Arabia is just a bit farther down (most easily seen on a clear day). Israel, Jordan, Egypt, and Saudi Arabia just a stone’s throw away!"
+                    },
+                    {
+                        "id": "t107",
+                        "title": "Arava Peace Road",
+                        "description": "This fascinating driving route follows the border between Israel and Jordan. The look-out points along the way offer stunning views of cultivated fields, the Edom mountians and the Arava streambed."
+                    },
+                    {
+                        "id": "t108",
+                        "title": "Ein Yahav Dam",
+                        "description": "Ever heard of Petra? I’m sure there are few of us who haven’t. Well, Petra is a very famous Nabatean city, the ancient Nabatean capital city per say. What most people don’t know is that there are many more such cities and Israel has four of them. Shivta, Avdat, Moa, and Nitzana. Shivta, one of the most beautiful and well preserved is an amazing place to stop in the Israeli desert. Along the ancient Incense Route you can see these incredible ruins. Full post about this location coming soon!"
+                    }
+                ],
+                "style": {
+                    "bgc": "#fefbd8"
+                }
+            },
+            {
+                "id": "g103",
+                "title": "Possible Hotels",
+                "tasks": [
+                    {
+                        "id": "t109",
+                        "title": "Club Hotel Eilat",
+                        "description": "Half Board,5 star hotel 7589₪ for  4 nights, Double or twin room"
+                    },
+                    {
+                        "id": "t110",
+                        "title": "Dan Eilat Hotel",
+                        "description": "Half board, 5 star hotel, 10750₪ for 5 nights, Double or twin room"
+                    },
+                    {
+                        "id": "t111",
+                        "title": "Astral Maris Hotel",
+                        "description": "Full board, 4 star hotel, 6477₪ for 5 nights, Double or twin room"
+                    },
+                    {
+                        "id": "t112",
+                        "title": " Isrotel Lagoona",
+                        "description": "Half board, 4 star hotel, 6890₪ for 5 nights, Double or twin room"
+                    }
+                ],
+                "style": {
+                    "bgc": "#fefbd8"
+                }
+            },
+            {
+                "id": "g104",
+                "title": "Shoping",
+                "tasks": [
+                    {
+                        "id": "t113",
+                        "title": "Samsung Note 11"
+                    },
+                    {
+                        "id": "t114",
+                        "title": "JBL flip 5"
+                    },
+                    {
+                        "id": "t115",
+                        "title": "New Swimsuits"
+                    },
+                    {
+                        "id": "t116",
+                        "title": "Diving equipment"
+                    }
+                ],
+                "style": {
+                    "bgc": "#fefbd8"
+                }
+            },
+            {
+                "id": "g105",
+                "title": "Equipment To Bring",
+                "tasks": [
+                    {
+                        "id": "t117",
+                        "title": "Cloths",
+                        "checklists": [
+                            {
+                                "id": "asd34",
+                                "title": "Shoes",
+                                "todos": [
+                                    {
+                                        "id": "hasdt6h",
+                                        "title": "Flipflop 2",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "sdafdsf3",
+                                        "title": "Flipflop 2",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "dfg44qcq",
+                                        "title": "Climbing Shoes",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "s3hgj6",
+                                        "title": "Sport shoes",
+                                        "isDone": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "as3f36j",
+                                "title": "Cloths",
+                                "todos": [
+                                    {
+                                        "id": "vf3gbv5",
+                                        "title": "3 trico shirt",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "vg4tr67",
+                                        "title": "7 undearwears",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "2dhhdsf365",
+                                        "title": "3 pairs of socks",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "g3m65",
+                                        "title": "3 Swimsuits",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "f5jdfe6",
+                                        "title": "2 short pants",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "vedf3y",
+                                        "title": "1 pair of jeans",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "t118",
+                        "title": "Shower stuff",
+                        "comments": [
+                            {
+                                "id": "a43rvc444",
+                                "txt": "do you think we need more towls?",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u107",
+                                    "fullname": "Maayan Naidik",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            },
+                            {
+                                "id": "ke3ah3",
+                                "txt": "maybe we need flashlihts?",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u107",
+                                    "fullname": "Maayan Naidik",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "vr443d",
+                                "title": "List",
+                                "todos": [
+                                    {
+                                        "id": "hnfd5",
+                                        "title": "2 Towls",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "fhd74ds",
+                                        "title": "Shampo",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "h6rdh",
+                                        "title": "Conditioner",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "asfgsddf4",
+                                        "title": "Q-tips",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "asdtfbff4",
+                                        "title": "First aid kit and pills",
+                                        "isDone": false
+                                    },
+                                    {
+                                        "id": "dfasdh5d",
+                                        "title": "Deodorant",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "labelIds": [
+                            "101"
+                        ],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
+                        }
+                    }
+                ],
+                "style": {
+                    "bgc": "#fefbd8"
+                }
+            }
+        ],
+        "activities": [
+            {
+                "id": "a101",
+                "txt": "Gal Meir Nelken has changed title [Negev trip] to [Mactesh Ramon]",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u106",
+                    "fullname": "Gal Meir Nelken",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t105",
+                    "title": "Mactesh Ramon"
+                }
+            },
+            {
+                "id": "a102",
+                "txt": "Gal Meir Nelken created new checklist ",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u106",
+                    "fullname": "Gal Meir Nelken",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t105",
+                    "title": "Mactesh Ramon"
+                }
+            },
+            {
+                "id": "a103",
+                "txt": "Abi Abambi has changed title",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t108",
+                    "title": "Ein Yahav Dam"
+                }
+            },
+            {
+                "id": "a104",
+                "txt": "Guest has changed description",
+                "createdAt": 1554514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t108",
+                    "title": "Ein Yahav Dam"
+                }
+            },
+            {
+                "id": "a105",
+                "txt": "Abi Abambi has changed title",
+                "createdAt": 15451514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t108",
+                    "title": "Ein Yahav Dam"
+                }
+            },
+            {
+                "id": "a106",
+                "txt": "Abi Abambi has description",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t101",
+                    "title": "Eilat Todos"
+                }
+            },
+            {
+                "id": "a107",
+                "txt": "Abi Abambi has changed background color",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t101",
+                    "title": "Eilat Todos"
+                }
+            },
+            {
+                "id": "a108",
+                "txt": "Abi Abambi has changed title",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t101",
+                    "title": "Eilat Todos"
+                }
+            },
+            {
+                "id": "a109",
+                "txt": "Abi Abambi has changed title",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t109",
+                    "title": "Club Hotel Eilat"
+                }
+            },
+            {
+                "id": "a110",
+                "txt": "Abi Abambi has changed title",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t109",
+                    "title": "Club Hotel Eilat"
+                }
+            },
+            {
+                "id": "a111",
+                "txt": "Abi Abambi has changed title",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t111",
+                    "title": "Astral Maris Hotel"
+                }
+            },
+            {
+                "id": "a112",
+                "txt": "Abi Abambi has changed description",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t111",
+                    "title": "Astral Maris Hotel"
+                }
+            },
+            {
+                "id": "a113",
+                "txt": "Abi Abambi has removed checklist",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "t111",
+                    "title": "Astral Maris Hotel"
+                }
+            }
+        ]
+    },
+    {
+        "_id": "b102",
+        "title": "Pergola Project",
+        "createdAt": 1589983468418,
+        "createdBy": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "style": {},
         "labels": [
             {
                 "id": "l101",

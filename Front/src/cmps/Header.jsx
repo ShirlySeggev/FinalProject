@@ -18,6 +18,7 @@ class _Header extends React.Component {
                     <ul>
                         <li><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to="/board">Boards</NavLink></li>
+                        <li><NavLink to="/login">login</NavLink></li>
                     </ul>
                 </nav>
             </header>

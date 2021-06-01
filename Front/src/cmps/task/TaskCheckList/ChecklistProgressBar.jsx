@@ -3,20 +3,7 @@ import { Component } from "react";
 
 
 export class ChecklistProgressBar extends Component {
-    // state = {
-    //     completed: null,
-    // }
 
-    // componentDidMount() {
-    //     this.updateProgressBar()
-    // }
-
-    // updateProgressBar = () => {
-    //     const { todos } = this.props
-    //     const completed = this.getCompletedRatio(todos)
-    //     this.setState({ completed: completed })
-    //     // console.log('DONE', this.state.completed);
-    // }
 
     getCompletedRatio = (todos = []) => {
         const todoDone = todos.filter(todo => todo.isDone)
@@ -28,12 +15,11 @@ export class ChecklistProgressBar extends Component {
     render() {
         // const { completed } = this.state
         const { todos } = this.props
-        const width = { width: `${this.getCompletedRatio(todos)}%` }
-        // console.log(todos);
+        const completed = { width: `${this.getCompletedRatio(todos)}%` }
         return (
             <div className="checklist-progress-bar-main">
-                <div className="checklist-progress-bar-secondery" style={width}>
-                    <span>{`${width.width}`}</span>
+                <h4>{completed.width}</h4>
+                <div className="checklist-progress-bar-secondery" style={completed}>
                 </div>
             </div>
         )

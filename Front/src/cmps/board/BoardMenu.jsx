@@ -52,7 +52,11 @@ export class BoardMenu extends Component {
                 <ModalHeader title='About this board' closeModal={toggleBoardMenu} />
                 <ul className="menu-options">
                     <li onClick={this.toggleBoardBcg}>Change board background</li>
+
+                    {/* ----------------- HERE BROTHER ------------------------ */}
                     <li /* onClick={this.openToggle} */>Add a member</li>
+
+
                     <li onClick={this.toggleRemoveBoard}>Delete board</li>
                     <li onClick={this.toggleActivity}>Activity menu</li>
                     <li /* onClick={this.openDashboard} */>Board dashboard</li>
