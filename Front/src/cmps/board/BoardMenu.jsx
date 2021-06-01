@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { boardService } from '../../services/board.service.js';
 import { ModalHeader } from '../shared/ModalHeader.jsx';
 import { BoardBackground } from './BoardBackground.jsx';
 import { ActivityLog } from './ActivityLog.jsx';
@@ -7,6 +6,7 @@ import { ActivityLog } from './ActivityLog.jsx';
 
 export class BoardMenu extends Component {
     state = {
+        isAlreadyOpen: false,
         toggleBoardBcg: false,
         toggleRemoveBoard: false,
         toggleActivity: false,
@@ -17,14 +17,14 @@ export class BoardMenu extends Component {
 
 
     toggleBoardBcg = () => {
-        this.setState({ toggleBoardBcg: !this.state.toggleBoardBcg })
+        this.setState({ toggleBoardBcg: !this.state.toggleBoardBcg, isAlreadyOpen: !this.state.isAlreadyOpen })
     }
 
     toggleRemoveBoard = () => {
-        this.setState({ toggleRemoveBoard: !this.state.toggleRemoveBoard })
+        this.setState({ toggleRemoveBoard: !this.state.toggleRemoveBoard, isAlreadyOpen: !this.state.isAlreadyOpen })
     }
     toggleActivity = () => {
-        this.setState({ toggleActivity: !this.state.toggleActivity })
+        this.setState({ toggleActivity: !this.state.toggleActivity, isAlreadyOpen: !this.state.isAlreadyOpen })
     }
 
 
@@ -44,7 +44,7 @@ export class BoardMenu extends Component {
 
 
     render() {
-        const { toggleBoardBcg, toggleRemoveBoard, toggleActivity } = this.state;
+        const { isAlreadyOpen, toggleBoardBcg, toggleRemoveBoard, toggleActivity } = this.state;
         const { toggleBoardMenu } = this.props;
         const { activities } = this.props.board;
         return (
@@ -56,15 +56,15 @@ export class BoardMenu extends Component {
                     <li onClick={this.toggleRemoveBoard}>Delete board</li>
                     <li onClick={this.toggleActivity}>Activity menu</li>
                     <li /* onClick={this.openDashboard} */>Board dashboard</li>
-                    {toggleBoardBcg && <BoardBackground onUpdateBgc={this.onUpdateBgc} />}
-                    {toggleRemoveBoard &&
+                    {/* isAlreadyOpen && */ toggleBoardBcg && <BoardBackground onUpdateBgc={this.onUpdateBgc} />}
+                    {/* isAlreadyOpen && */ toggleRemoveBoard &&
                         <div>
                             <p>Are you shure?</p>
-                            <button onClick={this.onRemove}>Yes, delete board</button>
-                            <button onClick={this.toggleRemoveBoard}>No</button>
+                            <button className="primary-btn menu-btn" onClick={this.onRemove}>Yes, delete board</button>
+                            <button className="primary-btn" onClick={this.toggleRemoveBoard}>No</button>
                         </div>
                     }
-                    {toggleActivity && <ActivityLog activities={activities} />}
+                    {/* isAlreadyOpen && */ toggleActivity && <ActivityLog activities={activities} />}
                 </ul>
 
             </section >

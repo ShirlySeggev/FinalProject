@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { BsTextLeft } from 'react-icons/bs';
 import { utilService } from '../../../services/util-service';
 import { formatDistance } from 'date-fns'
+import MemberAvatar from '../../shared/MemberAvatar';
 
 
 
@@ -36,21 +37,16 @@ export class TaskComment extends Component {
 
     saveComment = () => {
         const comment = this.addComment();
-        console.log(comment);
         const { task, updateTask } = this.props;
         const newTask = { ...task };
-        if (newTask.coments) newTask.coments.unshift(comment);
+        if (newTask.comments) newTask.comments.unshift(comment);
         else {
-            newTask.coments = [];
-            newTask.coments.unshift(comment);
+            newTask.comments = [];
+            newTask.comments.unshift(comment);
         }
         updateTask(newTask);
         this.clearComment();
-        console.log(newTask);
-        // newTask.comments.push(comment);
-        // updateTask(newTask);
-        // this.props.updateTask(newTask);
-        // this.toggleUpdate();
+        console.log('newTask', newTask);
     }
 
     addComment = () => {
@@ -76,16 +72,20 @@ export class TaskComment extends Component {
 
     render() {
         const { comment, toggleUpdate } = this.state;
-       
+
         return (
-            <section className="taskDetails-coment">
-                <textarea value={comment.txt} name="txt" placeholder="Write a comment..." spellCheck="false" onChange={this.handleChange}
-                    onFocus={this.toggleUpdate}
-                />
+            <section>
+                <div className="taskDetails-coment">
+                    <MemberAvatar member={{
+                        "_id": "u1001",
+                        "fullname": "Guess User",
+                        "imgUrl": "http://some-img"
+                    }} />
+                    <textarea value={comment.txt} name="txt" placeholder="Write a comment..." spellCheck="false" onChange={this.handleChange}
+                        onFocus={this.toggleUpdate}
+                    />
+                </div>
                 {toggleUpdate && <button className="primary-btn" onClick={this.saveComment}>Save</button>}
-
-
-
             </section>
         )
     }

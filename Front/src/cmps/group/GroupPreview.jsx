@@ -7,19 +7,20 @@ import { Fragment } from 'react';
 
 
 
-export function GroupPreview({ group, boardId, updateGroup, removeGroup }) {
+export function GroupPreview({ group, boardId, updateGroup, removeGroup, handleDragEnd , board}) {
     const { id, title, tasks, style } = group;
+
 
     return (
         <section>
             <Link to={`/board/${boardId}/`}>
-                <div className="outer-task-details-container">
+                <div className="main-screen">
                 </div>
             </Link>
             <section className="group-preview" /* style={{ backgroundColor: `${style.bgc}` }} */>
                 <div>
                     <GroupHeader group={group} updateGroup={updateGroup} removeGroup={removeGroup} />
-                    <TaskList tasks={tasks} groupId={id} />
+                    <TaskList tasks={tasks} groupId={id} board={board} handleDragEnd={handleDragEnd} />
                     <TaskAdd groupId={id} />
                 </div>
             </section>

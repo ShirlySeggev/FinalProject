@@ -6,18 +6,13 @@ import { GroupList } from '../cmps/group/GroupList';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { TaskDetails } from '../cmps/task/TaskDetails/TaskDetails';
 
-
-
-
 class _WePlanApp extends Component {
     state = {
-
     }
 
     componentDidMount() {
         this.loadBoard();
     }
-
     // componentDidUpdate(prevProps,prevState) {
     //     console.log('this.props.match.arams.boardId: ', this.props.match.params)
     // }
@@ -77,6 +72,49 @@ class _WePlanApp extends Component {
         this.props.updateBoard(updatedBoard);
     }
 
+    handleDragEnd = async (res) => {
+        console.log('in handleDragEnd')
+        const { source, destination, type } = res;
+        const { board } = this.props;
+        const updatedBoard = { ...board };
+        if (!destination) return;
+        if (destination.droppableId === source.droppableId
+            &&
+            destination.index === source.index) return;
+        if (type === 'group') {
+            const newGroups = this._reorder(board.groups, source.index, destination.index);
+            updatedBoard.groups = newGroups;
+        } else if (type === 'task') {
+            if (destination.droppableId === source.droppableId) {
+                var groupIdx = board.groups.findIndex(group => group.id === source.droppableId)
+                const newTasks = this._reorder(board.groups[groupIdx].tasks, source.index, destination.index);
+                updatedBoard.groups[groupIdx].tasks = newTasks;
+            } else if (destination.droppableId !== source.droppableId) {
+                const sourceGroup = source.droppableId;
+                const destinationGroup = destination.droppableId;
+                //remove task from source group
+                const sourceGroupIdx = board.groups.findIndex(group => group.id === sourceGroup)
+                const sourceGroupItems = Array.from(board.groups[sourceGroupIdx].tasks)
+                const [transferedItem] = sourceGroupItems.splice(source.index, 1);
+                //add task to destination group
+                const destinationGroupIdx = board.groups.findIndex(group => group.id === destinationGroup);
+                const destinationGroupItems = Array.from(board.groups[destinationGroupIdx].tasks);
+                destinationGroupItems.splice(destination.index, 0, transferedItem);
+                //update groups in data
+                updatedBoard.groups[sourceGroupIdx].tasks = sourceGroupItems;
+                updatedBoard.groups[destinationGroupIdx].tasks = destinationGroupItems;
+            }
+        }
+        await this.props.updateBoard(updatedBoard);
+    }
+
+    _reorder = (list, sourceIdx, destIdx) => {
+        const items = Array.from(list);
+        const [removedItem] = items.splice(sourceIdx, 1);
+        items.splice(destIdx, 0, removedItem);
+        return items;
+    }
+
 
     render() {
         const { board } = this.props;
@@ -88,7 +126,7 @@ class _WePlanApp extends Component {
                 <Switch>
                     <Route path='/board/:boardId/group/:groupId/task/:taskId' component={TaskDetails} />
                 </Switch>
-                <GroupList groups={groups} boardId={board._Id} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} />
+                <GroupList groups={groups} boardId={board._Id} board={board} updateGroup={this.updateGroup} removeGroup={this.removeGroup} addGroup={this.addGroup} handleDragEnd={this.handleDragEnd} />
             </section >
         )
     }

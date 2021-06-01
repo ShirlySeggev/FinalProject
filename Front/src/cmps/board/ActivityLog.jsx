@@ -10,7 +10,6 @@ export function ActivityLog({ activities }) {
         <section className="ActivityLog">
             {activities.map(activity => {
                 return <div key={activity.id}>
-                    {/* <img src={activity.byMember.imgUrl} /> */}
                     <div className="activity">
                         <MemberAvatar member={activity.byMember} />
                         <div className="activity-description">

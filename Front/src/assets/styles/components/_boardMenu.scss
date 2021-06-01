@@ -25,7 +25,28 @@
         color: $clr1;
         border-radius: .0625rem;
     }
-    li:not(:last-of-type) {
+    li/* :not(:last-of-type) */ {
         margin-bottom: 10px;
+    }
+
+    li:last-of-type{
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+    }
+
+    .activity {
+        display: flex;
+        align-items: center;
+    }
+    .activity-description {
+        font-size: 14px;
+        margin-left: 10px;
+        p {
+            margin-bottom: 0;
+           
+        }
+        span {
+            font-weight: bold;
+        }
     }
 }
