@@ -45,7 +45,6 @@ class _TaskDetails extends Component {
         this.setState({ task, group: board.groups[groupIdx] })
     }
 
-
     async updateBoard(board) {
         try {
             this.props.updateBoard(board);
@@ -53,7 +52,6 @@ class _TaskDetails extends Component {
             console.log('On Task details, Update Board:', err)
         }
     }
-
 
     updateTask = (task) => {
         this.setState({ task })
@@ -78,9 +76,9 @@ class _TaskDetails extends Component {
         const updatedBoard = { ...board };
         updatedBoard.groups[groupIdx].tasks.splice(taskIdx, 1)
         this.updateBoard(updatedBoard);
+        this.props.history.push(`/board/${boardId}`)
         // this.setState({ task: null, group: null })
         // this.loadTask();
-        // this.props.history.push(`/board/${boardId}`)
     }
 
     handleChange = ({ target }) => {
@@ -104,7 +102,6 @@ class _TaskDetails extends Component {
         })
     }
 
-
     toggleTaskLabel = (ev) => {
         // let { top, left } = this.taskDetailsRef.current.getBoundingClientRect();
         // top = parseFloat(top);
@@ -118,7 +115,6 @@ class _TaskDetails extends Component {
         this.setState({ isDate: !this.state.isDate });
     }
 
-
     toggleAddCheckList = () => {
         this.setState({ isChecklistAdd: !this.state.isChecklistAdd })
     }
@@ -126,7 +122,6 @@ class _TaskDetails extends Component {
     toggleMembers = () => {
         this.setState({ isMembers: !this.state.isMembers })
     }
-
 
     toggleImgUpload = () => {
         this.setState({ isImg: !this.state.isImg })
@@ -143,7 +138,7 @@ class _TaskDetails extends Component {
             <section className="TaskDetails-modal">
 
                 <Link to={`/board/${board._id}/`}>
-                    <div className="outer-task-details-container">
+                    <div className="main-screen">
                     </div>
                 </Link>
 

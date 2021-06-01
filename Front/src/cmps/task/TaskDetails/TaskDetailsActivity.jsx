@@ -43,8 +43,10 @@ export class TaskDetailsActivity extends Component {
     render() {
         const { toggleActivity, activities } = this.state;
         const { task } = this.props;
-        const taskComments = task?.comments
-        console.log(taskComments);
+        console.log('taskComments', task.comments);
+        let comments;
+        if (task.comments) comments = true;
+        else comments = false;
         return (
 
             <div className="taskActivity-container" >
@@ -52,35 +54,23 @@ export class TaskDetailsActivity extends Component {
                     <SectionTitle Icon={BiCommentDots}>Activity</SectionTitle>
                     <button className="secondary-btn" onClick={this.onToggleActivity}>{toggleActivity ? 'Hide details' : 'Show details'}</button>
                 </div>
-                <MemberAvatar member={{
-                    "_id": "u1001",
-                    "fullname": "Guess User",
-                    "imgUrl": "http://some-img"
-                }} />
+               
                 <TaskComment task={this.props.task} updateTask={this.props.updateTask} />
+                {comments &&
+                    task.comments.map((comment, idx) => {
+                        return <div key={comment.id} className="activity">
+                            <MemberAvatar member={comment.byMember} />
+                            <div className="activity-description">
+                                <p><span>{comment.byMember.fullname}</span> {formatDistance(comment.createdAt, Date.now())} </p>
+                                <p className="comment-txt">{comment.txt}</p>
+                            </div>
 
-                {task?.comments &&
-                    <p>comentsssssssssss</p>
-                    // {task.comments.map((comment, idx) => {
-                    //     return <div key={comment.id} className="task-user-comment flex">
-                    //     <div className="task-member-img"><img src={comment.byMember.imgUrl} /></div>
-                    //     <div className="activity-info flex column justify-center">
-                    //         <p className="activity-txt">
-                    //             <span className="activity-member-name">{comment.byMember.fullname} </span>
-                    //             <div className="activity-date" style={{ display: 'inline-block' }}><span>{formatDistance(comment.createdAt, Date.now())}</span></div>
-                    //         </p>
-                    //         <div className="comment-txt">
-                    //             <span>{comment.txt}</span>
-                    //         </div>
-                    //     </div>
-                    //     
-                    // </div>
-                    // })
+                        </div>
+                    })
                 }
                 {toggleActivity && <Fragment>
                     {activities.map(activity => {
                         return <div key={activity.id}>
-                            {/* <img src={activity.byMember.imgUrl} /> */}
                             <div className="activity">
                                 <MemberAvatar member={activity.byMember} />
                                 <div className="activity-description">

@@ -7,15 +7,29 @@
     height: auto;
     padding: 10px;
     position: relative;
-    input {
-        width: 100%;
-        padding: 5px;
+    .board-header {
+        font-size: 18px;
+        line-height: 32px;
+        padding: 0 12px;
         border: none;
         outline: none;
-        background: transparent;
+        background: hsla(0, 0%, 100%, 0.24);
+        font-size: 18px;
+        font-family: Poppings-bold, "Segoe UI", sans-serif;
+        color: #fff;
+        border-radius: 4px;
+        cursor: default;
+        font-size: 18px;
+        line-height: 32px;
+        padding: 0 12px;
+        text-decoration: none;
+        // max-width: calc(100% - 24px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         &:hover {
-            background-color: rgba(9, 30, 66, 0.08);
-            color: #172b4d;
+            background-color: hsla(0, 0%, 100%, 0.377);
+            transition-duration: 0.15s;
             cursor: pointer;
         }
     }
@@ -25,23 +39,35 @@
         font-weight: 700;
         line-height: 32px;
     }
-    .board-members{
+    .board-members {
         display: flex;
     }
     .board-menu-btn {
         display: flex;
         align-items: center;
+        font-size: 18px;
+        line-height: 32px;
+        padding: 0 12px;
+        border: none;
+        outline: none;
+        background: hsla(0, 0%, 100%, 0.24);
+        font-family: Poppings, "Segoe UI", sans-serif;
+        color: #fff;
+        border-radius: 4px;
+        cursor: default;
+        font-size: 14px;
+        line-height: 32px;
+        padding: 0 12px;
+        text-decoration: none;
+        // max-width: calc(100% - 24px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
-        .board-btn-icon {
-            height: 20px;
-            font-size: 16px;
-            line-height: 20px;
-            width: 20px;
-        }
-        .board-btn-txt {
-            font-size: 14px;
-            line-height: 32px;
+        &:hover {
+            // background-color: hsla(0, 0%, 100%, 0.377);
+            // transition-duration: 0.15s;
+            // cursor: pointer;
         }
     }
-
 }

@@ -46,16 +46,16 @@ export class BoardHeader extends Component {
         return (
             <section className="wePlanApp-header" >
                 <form onSubmit={this.onChangeBoardHeader}>
-                    <input type="text" name="title" value={title} autoComplete="off" onChange={this.handleChange} />
+                    <input className="board-header" type="text" name="title" value={title} autoComplete="off" spellCheck="false" onChange={this.handleChange} />
                 </form>
                 <div className="board-members">
                     {members.map(member => <MemberAvatar member={member} key={member._id} />)}
                 </div>
                 <div className="board-menu-btn btn" onClick={this.toggleBoardMenu}>
-                    <div className="board-btn-icon"><BsThreeDots /></div>
-                    <span className="board-btn-txt">Show menu</span>
+                    <div><BsThreeDots /></div>
+                    <span>Show menu</span>
                 </div>
-                {toggleMenu && <BoardMenu board={board} toggleBoardMenu={this.toggleBoardMenu} onRemoveBoard={this.props.onRemoveBoard} onUpdateBoard={this.props.onUpdateBoard}/>}
+                {toggleMenu && <BoardMenu board={board} toggleBoardMenu={this.toggleBoardMenu} onRemoveBoard={this.props.onRemoveBoard} onUpdateBoard={this.props.onUpdateBoard} />}
             </section >
         )
     }

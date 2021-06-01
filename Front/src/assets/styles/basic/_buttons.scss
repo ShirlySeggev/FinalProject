@@ -26,8 +26,12 @@
     box-shadow: none;
     border: none;
     color: #fff;
+    font-family: Poppings, "Segoe UI", sans-serif;
     &:hover {
         background-color: #026aa7;
+    }
+    &.menu-btn {
+        margin-right: 10px;
     }
 }
 
@@ -42,6 +46,7 @@
     padding: 6px 12px;
     text-decoration: none;
     position: relative;
+    font-family: Poppings, "Segoe UI", sans-serif;
     &:hover {
         background-color: rgba(9, 30, 66, 0.08);
     }
@@ -69,9 +74,13 @@
     transition-property: background-color, border-color, box-shadow;
     transition-duration: 85ms;
     transition-timing-function: ease;
+    font-family: Poppings, "Segoe UI", sans-serif;
     &:hover {
         background-color: rgba(9, 30, 66, 0.08);
     }
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0c02720a3014c9696c48c9025f474296ddb739aa
