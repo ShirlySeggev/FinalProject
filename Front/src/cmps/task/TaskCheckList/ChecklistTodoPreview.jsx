@@ -8,7 +8,7 @@ export class ChecklistTodoPreview extends Component {
 
     onUpdateTodo = (title) => {
         const { todo } = this.props
-        this.props.updateTodo(...todo, title)
+        this.props.updateTodo({...todo, title})
     }
 
     toggleIsDone = ({ target }) => {
