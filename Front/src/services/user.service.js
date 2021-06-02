@@ -1,5 +1,9 @@
 import { httpService } from './http.service'
-const SCORE_FOR_REVIEW = 10
+import { asyncBoardService } from './async-board.service.js';
+
+// const SCORE_FOR_REVIEW = 10
+
+const STORAGE_KEY= 'boardUsers'
 
 export const userService = {
     login,
@@ -10,17 +14,20 @@ export const userService = {
     remove,
     update,
     getLoggedinUser,
-    increaseScore
+    // increaseScore
 }
 const BASE_URL = process.env.NODE_ENV === 'production' ? '/api/user' : 'http://localhost:3030/api/user';
 
 
 function getUsers() {
-    return httpService.get(`user`)
+    // return httpService.get(`user`)
+    return asyncBoardService.queryUsers(STORAGE_KEY)
 }
 
 function getById(userId) {
-    return httpService.get(`user/${userId}`)
+    // return httpService.get(`user/${userId}`)
+    return asyncBoardService.get(STORAGE_KEY, userId);
+
 }
 
 function remove(userId) {
@@ -32,12 +39,12 @@ async function update(user) {
     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
 }
 
-async function increaseScore(by = SCORE_FOR_REVIEW) {
-    const user = getLoggedinUser()
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
-}
+// async function increaseScore(by = SCORE_FOR_REVIEW) {
+//     const user = getLoggedinUser()
+//     user.score = user.score + by || by
+//     await update(user)
+//     return user.score
+// }
 
 async function login(userCred) {
     try{

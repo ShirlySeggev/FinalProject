@@ -1,6 +1,7 @@
 
 export const asyncBoardService = {
     query,
+    queryUsers,
     get,
     post,
     // postMany,
@@ -8,9 +9,14 @@ export const asyncBoardService = {
     remove,
 }
 
-
+// query boards
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || require('../data/board.json');
+    _save(entityType, entities);
+    return Promise.resolve(entities)
+}
+function queryUsers(entityType) {
+    var entities = JSON.parse(localStorage.getItem(entityType)) || require('../data/user.json');
     _save(entityType, entities);
     return Promise.resolve(entities)
 }

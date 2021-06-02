@@ -40,7 +40,12 @@
     li:not(:last-of-type) {
         padding-right: 20px;
     }
-
+    .MuiAvatar-colorDefault{
+    background-color: inherit;
+    &:hover{
+        color: #D20C5F;
+    }
+}
 }
 
 .app-header a {

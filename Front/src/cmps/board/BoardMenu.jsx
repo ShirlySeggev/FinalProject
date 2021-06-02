@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { ModalHeader } from '../shared/ModalHeader.jsx';
 import { BoardBackground } from './BoardBackground.jsx';
 import { ActivityLog } from './ActivityLog.jsx';
+import { BoardMembers } from './BoardMembers';
 
 
 export class BoardMenu extends Component {
@@ -10,6 +11,7 @@ export class BoardMenu extends Component {
         toggleBoardBcg: false,
         toggleRemoveBoard: false,
         toggleActivity: false,
+        isMembers: false
     }
 
     componentDidMount() {
@@ -26,7 +28,9 @@ export class BoardMenu extends Component {
     toggleActivity = () => {
         this.setState({ toggleActivity: !this.state.toggleActivity, isAlreadyOpen: !this.state.isAlreadyOpen })
     }
-
+    toggleMembers = () => {
+        this.setState({ isMembers: !this.state.isMembers })
+    }
 
     onRemove = () => {
         console.log('here');
@@ -44,17 +48,17 @@ export class BoardMenu extends Component {
 
 
     render() {
-        const { isAlreadyOpen, toggleBoardBcg, toggleRemoveBoard, toggleActivity } = this.state;
-        const { toggleBoardMenu } = this.props;
-        const { activities } = this.props.board;
+        const { isAlreadyOpen, isMembers, toggleBoardBcg, toggleRemoveBoard, toggleActivity } = this.state;
+        const { toggleBoardMenu, board } = this.props;
+        const { activities, members } = board;
         return (
             <section className="wePlanApp-menu open" >
                 <ModalHeader title='About this board' closeModal={toggleBoardMenu} />
                 <ul className="menu-options">
                     <li onClick={this.toggleBoardBcg}>Change board background</li>
 
-                    {/* ----------------- HERE BROTHER ------------------------ */}
-                    <li /* onClick={this.openToggle} */>Add a member</li>
+                    <li  onClick={this.toggleMembers} >Add a member</li>
+                    {isMembers && <BoardMembers toggleMembers={this.toggleMembers} members={members} board={board}/>}
 
 
                     <li onClick={this.toggleRemoveBoard}>Delete board</li>
